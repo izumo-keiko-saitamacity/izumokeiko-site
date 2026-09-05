@@ -454,7 +454,6 @@
   .report-body p { margin: 0; font-size: 14px; color: var(--muted); }
 
   /* --- bottom cta --- */
-  .bottom-section { background: var(--considering-bg); }
   .bottom-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -478,6 +477,7 @@
     text-align: center;
   }
   .cta-panel p { margin: 0 0 16px; font-size: 14.5px; color: var(--muted); }
+  .footer-cta { margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
 
   @media (max-width: 860px) {
     .bottom-grid { grid-template-columns: 1fr; }
@@ -703,9 +703,9 @@
   </div>
 </section>
 
-<section class="bottom-section">
+<footer class="site-footer">
   <div class="inner">
-    <div class="bottom-grid">
+    <div class="bottom-grid footer-cta">
       <div>
         <p class="bottom-heading">あなたの声から、<br>まちの未来をつくります。</p>
       </div>
@@ -714,11 +714,6 @@
         <a class="btn btn-primary" href="contact.html">あなたの声を届ける ＞</a>
       </div>
     </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="inner">
     <div class="footer-grid">
       <ul class="footer-nav">
         <li><a href="profile.html">プロフィール</a></li>
