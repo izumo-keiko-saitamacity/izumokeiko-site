@@ -45,6 +45,58 @@
   .sns-row a { width: 30px; height: 30px; border-radius: 50%; background: var(--considering-bg); display: flex; align-items: center; justify-content: center; color: var(--text-green); }
   .sns-row svg { width: 15px; height: 15px; fill: currentColor; }
 
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 34px; height: 34px;
+    padding: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex: none;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.active span:nth-child(2) { opacity: 0; }
+  .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 720px) {
+    .brand { order: 1; }
+    .sns-row { order: 2; }
+    .nav-toggle { display: flex; order: 3; }
+    .nav-links {
+      order: 4;
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      gap: 0;
+      margin-top: 6px;
+      border-top: 1px solid var(--line);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      display: block;
+      padding: 13px 4px;
+      border: none;
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-links a:hover, .nav-links a.current {
+      border-bottom-color: var(--line);
+      color: var(--text-green);
+    }
+  }
+
+
   main { max-width: 720px; margin: 0 auto; padding: 56px 20px 8px; text-align: center; }
   main h1 { font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; font-size: 26px; color: var(--text-green); margin: 0 0 14px; }
   main p { color: var(--muted); font-size: 15px; }
@@ -143,6 +195,15 @@
   }
   .bio-pet img { width: 72px; height: 72px; object-fit: contain; flex: none; }
   .bio-pet p { margin: 0; }
+  .bio-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+    margin: 24px 0;
+    box-shadow: 0 2px 10px rgba(34,48,42,.12);
+  }
+  .bio-photo.portrait { max-width: 300px; margin: 24px auto; }
 
   /* --- profile links --- */
   .profile-links { max-width: 720px; margin: 0 auto 72px; padding: 0 20px; }
@@ -211,13 +272,16 @@
 <header class="topbar">
   <div class="inner">
     <a class="brand" href="index.html">出雲けいこ</a>
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" onclick="var l=document.querySelector('.nav-links');var o=l.classList.toggle('open');this.classList.toggle('active',o);this.setAttribute('aria-expanded',o?'true':'false');this.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');">
+      <span></span><span></span><span></span>
+    </button>
     <ul class="nav-links">
       <li><a href="profile.html" class="current">プロフィール</a></li>
-      <li><a href="record.html">議会活動の記録</a></li>
-      <li><a href="policy.html">政策</a></li>
+      <li><a href="record.html">議会でしていること</a></li>
+      <li><a href="policy.html">私がめざすまち</a></li>
       <li><a href="reports.html">市議会レポート</a></li>
-      <li><a href="archive.html">アーカイブ</a></li>
-      <li><a href="contact.html">ご相談・ご要望</a></li>
+      <li><a href="archive.html">これまでの活動</a></li>
+      <li><a href="contact.html">あなたの声を聞かせてください</a></li>
     </ul>
     <nav class="sns-row" aria-label="SNS">
       <a href="https://www.instagram.com/izumokeiko/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.9 1 1.5.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.9.7-1.5 1-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.9-1-1.5-.2-.5-.4-1.2-.5-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.9-.7 1.5-1 .5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-1.9.4-.5.2-.8.4-1.1.7-.3.3-.6.6-.7 1.1-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.6.4 1.9.2.5.4.8.7 1.1.3.3.6.6 1.1.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 1.9-.4.5-.2.8-.4 1.1-.7.3-.3.6-.6.7-1.1.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.6-1.1-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.7-2a1.1 1.1 0 11-2.1 0 1.1 1.1 0 012.1 0z"/></svg></a>
@@ -228,7 +292,7 @@
 </header>
 
 <main>
-  <img class="profile-photo" src="izumo-keiko.jpg" alt="出雲けいこ">
+  <img class="profile-photo" src="images/profile-portrait-hero.jpg" alt="出雲けいこ">
   <h1>出雲けいこ</h1>
   <p class="profile-role">さいたま市議会議員</p>
 </main>
@@ -261,17 +325,24 @@
     <p class="bio-quote">「ひとりで抱え込まなくていいまちへ」</p>
     <p>2010年、夫と0歳の子どもと3人で、関西からさいたま市へ引っ越してきました。親せきも友人も近くにいない中での子育て。</p>
     <p>そして、さいたまに来て1年も経たない2011年、東日本大震災が起こりました。</p>
-    <p>不安な日々を過ごす中で感じたのは、家族だけで子どもを守ることには限界があるということ。友人や地域とのつながり、そして社会全体で子どもを育てていく仕組みや温かさが大切だと実感しました。</p>
-    <p>2015年の統一地方選挙の際には、友人と一緒に当時の市議会議員から「どんなことに取り組んでいるのか」を聞くイベントを企画しました。当時のさいたま市議会は、60人中　女性議員が12人。子育て真っ最中の女性議員はいませんでした。</p>
-    <p class="bio-quote small">「子育てをしている当事者の声を、議会に届けたい」</p>
-    <p>そう思い、2019年春、さいたま市議会議員選挙に立候補しました。2023年の2期目には、私を含めて子育て中のママ議員が3人に増えました！</p>
-    <p>阪神・淡路大震災と東日本大震災、二つの震災を経験したことから、「起きてから」ではなく「起きる前」の備えを大切に、防災アドバイザーとしての活動も続けています。</p>
-    <h3 class="bio-subhead">子どもと一緒に、暮らしを楽しむことも大切にしています</h3>
-    <p>日本固有種の野菜を育てたり、梅酒・梅干し・かりんジュース・お味噌を手作りしたり。読み語りボランティアや、英語・スペイン語・中国語などの多言語活動も、子どもたちと一緒に楽しんでいます。</p>
+    <p>不安な日々の中で、家族だけで子どもを守ることには限界があると感じました。だからこそ、友人や地域とのつながり、そして社会全体で子どもを育てていく仕組みが大切だと考えるようになりました。</p>
+    <img class="bio-photo" src="images/profile-photo-kids.jpg" alt="公園で段ボールの車に乗って遊ぶ子どもたち">
+    <p>2015年の統一地方選挙の際には、友人と一緒に当時の市議会議員さんたちから「どんなことに取り組んでいるのか」を聞くイベントを企画しました。</p>
+    <p>当時のさいたま市議会は、60人中12人が女性議員。けれど、子育て中の女性議員はいませんでした。</p>
+    <p class="bio-quote small">「子育てをしている当事者だからこそ、届けられる声がある」</p>
+    <p>そう思い、2019年春、さいたま市議会議員選挙に立候補しました。2023年の2期目には、私を含めて子育て中のママ議員が3人に。女性議員は15人になりました。</p>
+    <img class="bio-photo" src="images/profile-portrait-main.jpg" alt="出雲けいこ">
+    <p>子育てのリアルな声を政策提案につなげています。子どもたちが安全に、こころにっこり過ごせるまちは、子どもだけでなく、高齢の方や障害のある方など、誰もが安心して暮らせるまちにもつながると考えています。</p>
+    <p>一人ひとりの暮らしの声に耳を傾け、「こんなこと、相談していいのかな？」と思うような小さな声も、きめ細かな政策につなげていきます。</p>
+    <p>お困りごとや、まちについて気になることがあれば、どうぞお気軽にお聞かせください。</p>
+    <h3 class="bio-subhead">暮らしを楽しむことも、大切にしています</h3>
+    <img class="bio-photo portrait" src="images/profile-photo-outdoor.jpg" alt="公園で体を動かして楽しむ出雲けいこ">
+    <p>日本固有種の野菜を育てたり、梅酒・梅干し・かりんジュース・お味噌を手作りしたり。読み語りボランティアや英語・スペイン語・中国語などの多言語活動も、子どもたちと一緒に楽しんでいます。</p>
     <div class="bio-pet">
       <img src="images/rabbit-kinako.png" alt="うさぎのきなこ">
-      <p>そして、うさぎが我が家の仲間入りしました。</p>
+      <p>そして最近は、うさぎも我が家の仲間入り。</p>
     </div>
+    <p>議員として、そして一人の生活者・母親として。日々の暮らしの中で感じることを大切にしています。</p>
   </div>
 </section>
 
@@ -296,11 +367,11 @@
     <div class="footer-grid">
       <ul class="footer-nav">
         <li><a href="profile.html">プロフィール</a></li>
-        <li><a href="record.html">議会活動の記録</a></li>
-        <li><a href="policy.html">政策</a></li>
+        <li><a href="record.html">議会でしていること</a></li>
+        <li><a href="policy.html">私がめざすまち</a></li>
         <li><a href="reports.html">市議会レポート</a></li>
-        <li><a href="archive.html">アーカイブ</a></li>
-        <li><a href="contact.html">ご相談・ご要望</a></li>
+        <li><a href="archive.html">これまでの活動</a></li>
+        <li><a href="contact.html">あなたの声を聞かせてください</a></li>
       </ul>
       <nav class="sns-row" aria-label="SNS">
         <a href="https://www.instagram.com/izumokeiko/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.9 1 1.5.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.9.7-1.5 1-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.9-1-1.5-.2-.5-.4-1.2-.5-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.9-.7 1.5-1 .5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-1.9.4-.5.2-.8.4-1.1.7-.3.3-.6.6-.7 1.1-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.6.4 1.9.2.5.4.8.7 1.1.3.3.6.6 1.1.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 1.9-.4.5-.2.8-.4 1.1-.7.3-.3.6-.6.7-1.1.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.6-1.1-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.7-2a1.1 1.1 0 11-2.1 0 1.1 1.1 0 012.1 0z"/></svg></a>
