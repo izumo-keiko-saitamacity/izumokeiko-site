@@ -118,6 +118,32 @@
   }
   .bio-text p { text-align: left; font-size: 15px; margin: 0 0 18px; }
   .bio-text p:last-child { margin-bottom: 0; }
+  .bio-text p.bio-quote {
+    text-align: center;
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--text-green);
+    margin: 0 0 24px;
+  }
+  .bio-text p.bio-quote.small { font-size: 15.5px; margin: 30px 0 20px; }
+  .bio-text h3.bio-subhead {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 32px 0 14px;
+  }
+  .bio-pet {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 4px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+  .bio-pet img { width: 72px; height: 72px; object-fit: contain; flex: none; }
+  .bio-pet p { margin: 0; }
 
   /* --- profile links --- */
   .profile-links { max-width: 720px; margin: 0 auto 72px; padding: 0 20px; }
@@ -227,13 +253,20 @@
 <section class="profile-section">
   <h2>プロフィール</h2>
   <div class="info-card bio-text">
-    <p>さいたま市議会議員60人中、唯一の現役子育てのママ議員（小・中学生２人）。</p>
-    <p>０歳の子どもと、夫と関西から引っ越しをしてきたばかりの私は孤独な子育てにつらさを感じていました。</p>
-    <p>そしてさいたまに来て一年も経たない時に、東日本大震災が発生しました。</p>
-    <p>この経験から家族だけで子どもたちを守ることには限界があり、社会全体で子どもを守り、育てていくための仕組みや温かさが必要だと考えるようになりました。</p>
-    <p>阪神淡路大震災・東日本大震災の二つを経験し、事前の準備の必要性を痛感し、防災アドバイザーとしても活動しています。</p>
-    <p>趣味は、日本固有種の野菜づくり、梅酒・梅干し、かりんジュース、お味噌づくりなどを子どもと一緒に手作りしています。読み語りボランティア（現在中止）や英語、スペイン語、中国語などの多言語活動も子どもと一緒に楽しんでいます。</p>
-    <p>うさぎが我が家に来てくれました。</p>
+    <p class="bio-quote">「ひとりで抱え込まなくていいまちへ」</p>
+    <p>2010年、夫と0歳の子どもと3人で、関西からさいたま市へ引っ越してきました。親せきも友人も近くにいない中での子育て。</p>
+    <p>そして、さいたまに来て1年も経たない2011年、東日本大震災が起こりました。</p>
+    <p>不安な日々を過ごす中で感じたのは、家族だけで子どもを守ることには限界があるということ。友人や地域とのつながり、そして社会全体で子どもを育てていく仕組みや温かさが大切だと実感しました。</p>
+    <p>2015年の統一地方選挙の際には、友人と一緒に当時の市議会議員から「どんなことに取り組んでいるのか」を聞くイベントを企画しました。当時のさいたま市議会は、60人中　女性議員が12人。子育て真っ最中の女性議員はいませんでした。</p>
+    <p class="bio-quote small">「子育てをしている当事者の声を、議会に届けたい」</p>
+    <p>そう思い、2019年春、さいたま市議会議員選挙に立候補しました。2023年の2期目には、私を含めて子育て中のママ議員が3人に増えました！</p>
+    <p>阪神・淡路大震災と東日本大震災、二つの震災を経験したことから、「起きてから」ではなく「起きる前」の備えを大切に、防災アドバイザーとしての活動も続けています。</p>
+    <h3 class="bio-subhead">子どもと一緒に、暮らしを楽しむことも大切にしています</h3>
+    <p>日本固有種の野菜を育てたり、梅酒・梅干し・かりんジュース・お味噌を手作りしたり。読み語りボランティアや、英語・スペイン語・中国語などの多言語活動も、子どもたちと一緒に楽しんでいます。</p>
+    <div class="bio-pet">
+      <img src="images/rabbit-kinako.png" alt="うさぎのきなこ">
+      <p>そして、うさぎが我が家の仲間入りしました。</p>
+    </div>
   </div>
 </section>
 
