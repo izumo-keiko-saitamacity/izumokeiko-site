@@ -42,10 +42,74 @@
   .sns-row a { width: 30px; height: 30px; border-radius: 50%; background: var(--considering-bg); display: flex; align-items: center; justify-content: center; color: var(--text-green); }
   .sns-row svg { width: 15px; height: 15px; fill: currentColor; }
 
-  main { max-width: 720px; margin: 0 auto; padding: 72px 20px; text-align: center; }
+  main { max-width: 720px; margin: 0 auto; padding: 56px 20px 8px; text-align: center; }
   main h1 { font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; font-size: 26px; color: var(--text-green); margin: 0 0 14px; }
   main p { color: var(--muted); font-size: 15px; }
   .badge { display: inline-block; background: var(--considering-bg); color: #6B7A63; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 999px; margin-bottom: 18px; }
+
+  /* --- profile hero --- */
+  .profile-photo {
+    width: 128px; height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 18px;
+    display: block;
+    border: 4px solid #fff;
+    box-shadow: 0 2px 10px rgba(34,48,42,.12);
+  }
+  .profile-role { font-size: 14.5px; color: var(--muted); margin: 0 0 4px; }
+
+  /* --- profile content sections --- */
+  .profile-section { max-width: 720px; margin: 0 auto; padding: 40px 20px; }
+  .profile-section h2 {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-size: 19px;
+    color: var(--text-green);
+    margin: 0 0 18px;
+  }
+  .profile-section h3 {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--muted);
+    margin: 22px 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .profile-section h3:first-of-type { margin-top: 0; }
+  .now-badge {
+    display: inline-block;
+    background: var(--green);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 999px;
+  }
+  .info-card {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 24px 28px;
+  }
+  .info-list { list-style: none; margin: 0; padding: 0; }
+  .info-list li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 14.5px;
+    margin: 0 0 10px;
+  }
+  .info-list li:last-child { margin-bottom: 0; }
+  .info-list li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 9px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+  }
+  .bio-text p { text-align: left; font-size: 15px; margin: 0 0 18px; }
+  .bio-text p:last-child { margin-bottom: 0; }
 
   /* --- profile links --- */
   .profile-links { max-width: 720px; margin: 0 auto 72px; padding: 0 20px; }
@@ -112,10 +176,55 @@
 </header>
 
 <main>
-  <span class="badge">準備中</span>
-  <h1>プロフィール</h1>
-  <p>経歴や活動方針、SNSガイドラインなどを、このページに追って掲載していきます。</p>
+  <img class="profile-photo" src="izumo-keiko.jpg" alt="出雲けいこ">
+  <h1>出雲けいこ</h1>
+  <p class="profile-role">さいたま市議会議員</p>
 </main>
+
+<section class="profile-section">
+  <h2>所属政党</h2>
+  <div class="info-card">
+    <ul class="info-list">
+      <li>立憲民主党　埼玉県総支部連合会</li>
+      <li>さいたま市議会　立憲・国民・無所属の会さいたま市議団</li>
+    </ul>
+  </div>
+</section>
+
+<section class="profile-section">
+  <h2>所属委員会</h2>
+  <div class="info-card">
+    <h3><span class="now-badge">現在</span></h3>
+    <ul class="info-list">
+      <li>保健福祉委員会　委員長</li>
+      <li>市庁舎等整備検討特別委員会　副委員長</li>
+    </ul>
+    <h3>2026年5月まで</h3>
+    <ul class="info-list">
+      <li>市民生活委員会　委員長</li>
+      <li>文教委員会　委員長</li>
+      <li>まちづくり委員会　副委員長</li>
+      <li>市民生活委員会　副委員長</li>
+      <li>予算委員会</li>
+      <li>決算特別委員会</li>
+      <li>議会広報委員会</li>
+      <li>大宮駅グランドセントラルステーション化構想特別委員会</li>
+    </ul>
+  </div>
+</section>
+
+<section class="profile-section">
+  <h2>プロフィール</h2>
+  <div class="info-card bio-text">
+    <p>さいたま市議会議員60人中、唯一の現役子育てのママ議員（小・中学生２人）。</p>
+    <p>０歳の子どもと、夫と関西から引っ越しをしてきたばかりの私は孤独な子育てにつらさを感じていました。</p>
+    <p>そしてさいたまに来て一年も経たない時に、東日本大震災が発生しました。</p>
+    <p>この経験から家族だけで子どもたちを守ることには限界があり、社会全体で子どもを守り、育てていくための仕組みや温かさが必要だと考えるようになりました。</p>
+    <p>阪神淡路大震災・東日本大震災の二つを経験し、事前の準備の必要性を痛感し、防災アドバイザーとしても活動しています。</p>
+    <p>趣味は、日本固有種の野菜づくり、梅酒・梅干し、かりんジュース、お味噌づくりなどを子どもと一緒に手作りしています。読み語りボランティア（現在中止）や英語、スペイン語、中国語などの多言語活動も子どもと一緒に楽しんでいます。</p>
+    <p>うさぎが我が家に来てくれました。</p>
+  </div>
+</section>
 
 <section class="profile-links">
   <h2>関連リンク</h2>
