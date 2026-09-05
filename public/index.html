@@ -58,9 +58,20 @@
 
   /* --- brand wordmark: hand-drawn "こころにっこり" logo asset --- */
   .brand-logo-img { display: block; height: 30px; width: auto; }
-  .hero-logo-img { display: block; align-self: flex-start; height: 28px; width: auto; margin: 0 0 14px; }
+  .hero-logo-wrap { display: inline-block; position: relative; align-self: flex-start; margin: 0 0 14px; }
+  .hero-logo-img { display: block; height: 28px; width: auto; margin: 0; }
+  .hero-logo-dots { position: absolute; top: -7px; right: -13px; width: 15px; height: 16px; pointer-events: none; }
+  .hero-logo-dots i { position: absolute; display: block; border-radius: 50%; background: var(--accent-pink); }
+  .hero-logo-dots i:nth-child(1) { width: 6px; height: 6px; top: 0; left: 0; }
+  .hero-logo-dots i:nth-child(2) { width: 6px; height: 6px; top: 1px; left: 8px; }
+  .hero-logo-dots i:nth-child(3) { width: 6px; height: 6px; top: 10px; left: 5px; }
   @media (max-width: 720px) {
-    .hero-logo-img { height: 24px; margin: 4px 0 10px; }
+    .hero-logo-img { height: 24px; }
+    .hero-logo-wrap { margin: 4px 0 10px; }
+    .hero-logo-dots { top: -6px; right: -11px; width: 13px; height: 14px; }
+    .hero-logo-dots i:nth-child(1), .hero-logo-dots i:nth-child(2), .hero-logo-dots i:nth-child(3) { width: 5px; height: 5px; }
+    .hero-logo-dots i:nth-child(2) { left: 7px; }
+    .hero-logo-dots i:nth-child(3) { top: 9px; left: 4px; }
   }
 
   /* --- top nav --- */
@@ -517,7 +528,10 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <img class="hero-logo-img" src="images/kokoro-nikkori-logo.png" alt="こころにっこり">
+      <div class="hero-logo-wrap">
+        <img class="hero-logo-img" src="images/kokoro-nikkori-logo.png" alt="こころにっこり">
+        <span class="hero-logo-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      </div>
       <p class="tagline">ひとりで抱え込まなくて<br>いいまちへ</p>
       <p class="pledge">子どももおとなも。<br>障害のある人も、高齢の人も。<br>誰もが安心して、自分らしく暮らせるまちへ。</p>
       <p class="signoff"><span class="role">さいたま市議会議員</span><span class="name">出雲けいこ</span></p>
