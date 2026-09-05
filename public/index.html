@@ -56,19 +56,12 @@
     margin: 0 0 10px;
   }
 
-  /* --- brand wordmark: hand-drawn "こころにっこり" mark (smile curve + spark dots) --- */
-  .brand-mark { position: relative; display: inline-block; }
-  .brand-mark .smile {
-    display: block;
-    width: 76%;
-    height: auto;
-    margin: 1px 0 0 12%;
-    overflow: visible;
+  /* --- brand wordmark: hand-drawn "こころにっこり" logo asset --- */
+  .brand-logo-img { display: block; height: 30px; width: auto; }
+  .hero-logo-img { display: block; height: 76px; width: auto; margin: 0 0 14px; }
+  @media (max-width: 720px) {
+    .hero-logo-img { height: 56px; margin: 4px 0 10px; }
   }
-  .brand-mark .spark { position: absolute; top: -0.35em; right: -0.7em; display: flex; gap: 3px; }
-  .brand-mark .spark i { display: block; border-radius: 50%; }
-  .brand-mark .spark i:nth-child(1) { width: 6px; height: 6px; background: var(--accent-orange); }
-  .brand-mark .spark i:nth-child(2) { width: 5px; height: 5px; background: #F2C230; margin-top: 5px; }
 
   /* --- top nav --- */
   .topbar {
@@ -505,10 +498,7 @@
 <header class="topbar">
   <div class="inner">
     <a class="brand" href="index.html">
-      <span class="brand-mark">こころにっこり
-        <svg class="smile" viewBox="0 0 100 18" aria-hidden="true"><path d="M6 3 Q50 20 94 3" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
-        <span class="spark"><i></i><i></i></span>
-      </span>
+      <img class="brand-logo-img" src="images/kokoro-nikkori-logo.png" alt="こころにっこり">
     </a>
     <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" onclick="var l=document.querySelector('.nav-links');var o=l.classList.toggle('open');this.classList.toggle('active',o);this.setAttribute('aria-expanded',o?'true':'false');this.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');">
       <span></span><span></span><span></span>
@@ -532,13 +522,8 @@
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <p class="tagline">
-        <span class="brand-mark">こころにっこり
-          <svg class="smile" viewBox="0 0 100 18" aria-hidden="true"><path d="M6 3 Q50 20 94 3" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
-          <span class="spark"><i></i><i></i></span>
-        </span><br>
-        ひとりで抱え込まなくて<br>いいまちへ
-      </p>
+      <img class="hero-logo-img" src="images/kokoro-nikkori-logo.png" alt="こころにっこり">
+      <p class="tagline">ひとりで抱え込まなくて<br>いいまちへ</p>
       <p class="pledge">子どももおとなも。<br>障害のある人も、高齢の人も。<br>誰もが安心して、自分らしく暮らせるまちへ。</p>
       <p class="signoff"><span class="role">さいたま市議会議員</span><span class="name">出雲けいこ</span></p>
       <div class="hero-ctas">
