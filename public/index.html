@@ -252,11 +252,25 @@
   .archive-card p { margin: 0; font-size: 14px; color: var(--muted); max-width: 46ch; }
 
   footer.site-footer {
-    background: var(--green-dark);
+    position: relative;
     color: #EAF2EB;
     padding: 40px 0 24px;
     font-size: 13px;
+    overflow: hidden;
   }
+  footer.site-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("images/footer-ajisai.jpg") center 15%/cover no-repeat;
+  }
+  footer.site-footer::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 107, 78, .72);
+  }
+  footer.site-footer .inner { position: relative; z-index: 1; }
   .footer-grid {
     display: flex;
     justify-content: space-between;
