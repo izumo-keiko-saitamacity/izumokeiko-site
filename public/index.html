@@ -26,6 +26,10 @@
     --considering-bg: #EEF1EA; --considering-fg: #6B7A63;
     --progress-bg: #DCEEDF;   --progress-fg: #256B44;
     --done-bg: #2C6B4E;       --done-fg: #FFFFFF;
+    --accent-orange: #E8935B;
+    --accent-teal: #4E9C95;
+    --accent-pink: #D97A93;
+    --accent-blue: #5B8DBE;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -37,7 +41,7 @@
     line-height: 1.8;
   }
   a { color: inherit; }
-  .inner { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  .inner { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
   section { padding: 64px 0; }
   h2.section-title {
     font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
@@ -46,6 +50,18 @@
     margin: 0 0 6px;
   }
   .section-lede { color: var(--muted); font-size: 14.5px; margin: 0 0 32px; }
+  .leaf-eyebrow {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 700; color: var(--green-dark);
+    margin: 0 0 10px;
+  }
+
+  /* --- brand wordmark (shared feel with nav + hero kicker) --- */
+  .dots { display: inline-flex; gap: 3px; margin-left: 6px; vertical-align: middle; }
+  .dots i { display: inline-block; width: 5px; height: 5px; border-radius: 50%; }
+  .dots i:nth-child(1) { background: var(--accent-orange); }
+  .dots i:nth-child(2) { background: var(--accent-pink); }
+  .dots i:nth-child(3) { background: var(--green); }
 
   /* --- top nav --- */
   .topbar {
@@ -56,7 +72,7 @@
     z-index: 50;
   }
   .topbar .inner {
-    max-width: 1040px;
+    max-width: 1080px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -66,10 +82,12 @@
   }
   .brand {
     font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--ink);
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--text-green);
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
   }
   .nav-links {
     display: flex;
@@ -98,6 +116,19 @@
   }
   .sns-row svg { width: 15px; height: 15px; fill: currentColor; }
 
+  .nav-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--green);
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 9px 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .nav-cta svg { width: 15px; height: 15px; fill: currentColor; }
+
   .nav-toggle {
     display: none;
     flex-direction: column;
@@ -123,8 +154,9 @@
   .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   @media (max-width: 720px) {
-    .brand { order: 1; }
-    .sns-row { order: 2; }
+    .brand { order: 1; font-size: 15px; }
+    .sns-row { display: none; }
+    .nav-cta { order: 2; font-size: 12.5px; padding: 8px 14px; }
     .nav-toggle { display: flex; order: 3; }
     .nav-links {
       order: 4;
@@ -153,21 +185,38 @@
   /* --- hero --- */
   .hero { position: relative; background: var(--paper); overflow: hidden; padding: 0; }
   .hero-inner {
+    position: relative;
     display: grid;
-    grid-template-columns: minmax(280px, 560px) 1fr;
+    grid-template-columns: minmax(280px, 480px) 1fr;
     align-items: stretch;
     min-height: 380px;
   }
   .hero-text {
     position: relative; z-index: 2;
     display: flex; flex-direction: column; justify-content: center;
-    padding: 48px clamp(20px, 4vw, 56px) 48px clamp(20px, 6vw, 64px);
+    padding: 48px clamp(20px, 6vw, 64px) 48px clamp(20px, 4vw, 56px);
   }
   .hero-photo { position: relative; min-height: 320px; }
   .hero-photo img {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 48%);
-    mask-image: linear-gradient(to right, transparent 0%, #000 48%);
+    -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 48%);
+    mask-image: linear-gradient(to left, transparent 0%, #000 48%);
+  }
+  .hero-decor {
+    position: absolute;
+    right: 0; bottom: -18px;
+    width: min(340px, 30vw);
+    opacity: .5;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .kicker {
+    display: flex; align-items: center;
+    margin: 0 0 10px;
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--accent-orange);
   }
   .tagline {
     margin: 0 0 20px;
@@ -185,7 +234,7 @@
     font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
     color: var(--ink);
   }
-  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; position: relative; z-index: 2; }
   .btn {
     display: inline-flex; align-items: center; gap: 6px;
     padding: 12px 22px;
@@ -201,12 +250,41 @@
 
   @media (max-width: 720px) {
     .hero-inner { grid-template-columns: 1fr; }
-    .hero-photo { order: -1; min-height: 46vw; }
+    .hero-photo { min-height: 46vw; }
     .hero-photo img {
-      mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
-      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+      mask-image: none;
+      -webkit-mask-image: none;
     }
-    .hero-text { padding: 8px 20px 40px; }
+    .hero-text { padding: 28px 20px 40px; }
+    .hero-decor { display: none; }
+  }
+
+  /* --- reason section --- */
+  .reason-section { background: var(--card); }
+  .reason-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 420px) 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+  .reason-text p { margin: 0 0 16px; font-size: 15px; }
+  .reason-text p:last-child { margin-bottom: 0; }
+  .reason-collage {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 14px;
+  }
+  .reason-collage img {
+    display: block; width: 100%; height: 100%;
+    object-fit: cover; border-radius: 16px;
+    box-shadow: 0 4px 14px rgba(34,48,42,.10);
+  }
+  .reason-collage .c-large { grid-row: 1 / 3; aspect-ratio: 3 / 4; }
+  .reason-collage .c-small { aspect-ratio: 4 / 3; }
+
+  @media (max-width: 860px) {
+    .reason-grid { grid-template-columns: 1fr; }
   }
 
   /* --- record teaser --- */
@@ -223,45 +301,84 @@
   .record-teaser p { margin: 0; font-size: 14.5px; color: var(--text-green); font-weight: 700; }
   .record-teaser .more-link { margin: 0; }
 
-  /* --- policy cards --- */
-  .policy-grid {
+  /* --- theme tiles (shared visual language with 議会でしていること) --- */
+  .tile-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 18px;
   }
-  .policy-card {
+  .tile {
+    display: block;
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 16px;
-    padding: 26px 24px;
-  }
-  .status-badge {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 999px;
-    margin-bottom: 14px;
-  }
-  .status-considering { background: var(--considering-bg); color: var(--considering-fg); }
-  .status-progress     { background: var(--progress-bg); color: var(--progress-fg); }
-  .status-done         { background: var(--done-bg); color: var(--done-fg); }
-  .policy-card h3 {
-    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
-    font-size: 17px;
-    margin: 0 0 8px;
-  }
-  .policy-card p { font-size: 14px; color: var(--muted); margin: 0; }
-  .sample-tag { font-size: 11px; color: #9AA79C; margin-left: 6px; font-weight: 500; }
-  .more-link {
-    display: inline-block;
-    margin-top: 28px;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text-green);
+    padding: 22px 20px;
     text-decoration: none;
-    border-bottom: 1.5px solid var(--green);
+    color: inherit;
+    transition: box-shadow .15s, transform .15s;
   }
+  .tile:hover { box-shadow: 0 6px 18px rgba(34,48,42,.10); transform: translateY(-2px); }
+  .tile-icon {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .tile-icon img { width: 100%; height: 100%; object-fit: contain; }
+  .theme-1 .tile-icon { background: #FBEADD; }
+  .theme-2 .tile-icon { background: #E4F0EE; }
+  .theme-3 .tile-icon { background: #F7E6EA; }
+  .theme-4 .tile-icon { background: #E5EEF6; }
+  .theme-5 .tile-icon { background: #E4F2E8; }
+  .tile-num {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-weight: 900;
+    font-size: 12px;
+    letter-spacing: .04em;
+  }
+  .theme-1 .tile-num { color: var(--accent-orange); }
+  .theme-2 .tile-num { color: var(--accent-teal); }
+  .theme-3 .tile-num { color: var(--accent-pink); }
+  .theme-4 .tile-num { color: var(--accent-blue); }
+  .theme-5 .tile-num { color: var(--green); }
+  .tile-sub {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    margin: 2px 0 8px;
+  }
+  .tile h3 { margin: 0 0 8px; font-size: 16px; font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; }
+  .tile-desc { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
+  .tile-link { font-size: 13px; font-weight: 700; color: var(--text-green); }
+
+  /* --- feature row --- */
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+  }
+  .feature-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 20px;
+  }
+  .feature-thumb {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    background: var(--considering-bg);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .feature-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .feature-thumb svg { width: 24px; height: 24px; fill: none; stroke: var(--text-green); stroke-width: 1.8; }
+  .feature-card h3 { margin: 0 0 8px; font-size: 15.5px; font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; }
+  .feature-card p { margin: 0 0 16px; font-size: 13.5px; color: var(--muted); }
+  .feature-card .btn { padding: 9px 18px; font-size: 13px; }
+  .btn-small-outline { background: transparent; color: var(--text-green); border: 1.5px solid var(--line); }
 
   /* --- report --- */
   .report-band { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -288,6 +405,51 @@
   .report-body h3 { margin: 0 0 8px; font-size: 16px; }
   .report-body p { margin: 0; font-size: 14px; color: var(--muted); }
 
+  /* --- bottom cta --- */
+  .bottom-section { background: var(--considering-bg); }
+  .bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+  .bottom-heading {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--text-green);
+    margin: 0 0 14px;
+    line-height: 1.5;
+  }
+  .bottom-strip { display: flex; gap: 4px; }
+  .bottom-strip span { font-size: 20px; }
+  .cta-panel {
+    background: #fff;
+    border-radius: 16px;
+    padding: 26px 24px;
+    text-align: center;
+  }
+  .cta-panel p { margin: 0 0 16px; font-size: 14.5px; color: var(--muted); }
+  .about-panel { display: flex; flex-direction: column; gap: 14px; }
+  .about-photo { border-radius: 16px; overflow: hidden; }
+  .about-photo img { width: 100%; height: 150px; object-fit: cover; display: block; }
+  .about-panel h3 { margin: 0; font-size: 15px; }
+  .about-list { list-style: none; margin: 0; padding: 0; }
+  .about-list li { border-bottom: 1px solid #fff; }
+  .about-list a {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 2px;
+    text-decoration: none;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .about-list a:hover { color: var(--text-green); }
+
+  @media (max-width: 860px) {
+    .bottom-grid { grid-template-columns: 1fr; }
+  }
+
   /* --- archive --- */
   .archive-card {
     background: linear-gradient(135deg, var(--considering-bg), var(--paper));
@@ -302,6 +464,16 @@
   }
   .archive-card h3 { margin: 0 0 6px; font-size: 17px; }
   .archive-card p { margin: 0; font-size: 14px; color: var(--muted); max-width: 46ch; }
+
+  .more-link {
+    display: inline-block;
+    margin-top: 28px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-green);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--green);
+  }
 
   footer.site-footer {
     position: relative;
@@ -342,7 +514,7 @@
 
 <header class="topbar">
   <div class="inner">
-    <a class="brand" href="index.html">出雲けいこ</a>
+    <a class="brand" href="index.html">こころにっこり<span class="dots"><i></i><i></i><i></i></span></a>
     <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" onclick="var l=document.querySelector('.nav-links');var o=l.classList.toggle('open');this.classList.toggle('active',o);this.setAttribute('aria-expanded',o?'true':'false');this.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');">
       <span></span><span></span><span></span>
     </button>
@@ -352,29 +524,30 @@
       <li><a href="policy.html">私がめざすまち</a></li>
       <li><a href="reports.html">市議会レポート</a></li>
       <li><a href="archive.html">これまでの活動</a></li>
-      <li><a href="contact.html">あなたの声を聞かせてください</a></li>
     </ul>
     <nav class="sns-row" aria-label="SNS">
       <a href="https://www.instagram.com/izumokeiko/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.9 1 1.5.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.9.7-1.5 1-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.9-1-1.5-.2-.5-.4-1.2-.5-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.9-.7 1.5-1 .5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-1.9.4-.5.2-.8.4-1.1.7-.3.3-.6.6-.7 1.1-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.6.4 1.9.2.5.4.8.7 1.1.3.3.6.6 1.1.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 1.9-.4.5-.2.8-.4 1.1-.7.3-.3.6-.6.7-1.1.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.6-1.1-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.7-2a1.1 1.1 0 11-2.1 0 1.1 1.1 0 012.1 0z"/></svg></a>
       <a href="https://go2senkyo.com/seijika/168450" target="_blank" rel="noopener" title="ブログ"><svg viewBox="0 0 24 24"><path d="M5 3h14a1 1 0 011 1v16a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1zm2 5h10V6H7v2zm0 4h10v-2H7v2zm0 4h7v-2H7v2z"/></svg></a>
       <a href="https://line.me/R/ti/p/@jev4977j" target="_blank" rel="noopener" title="公式LINE"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 5.6 2 10c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3 0 .7 0 1l-.1.9c0 .3-.2 1.1 1 .6 1.1-.5 6.2-3.6 8.4-6.2C22.1 12.9 22 11.5 22 10c0-4.4-4.5-8-10-8z"/></svg></a>
     </nav>
+    <a class="nav-cta" href="contact.html"><svg viewBox="0 0 24 24"><path d="M3 5h18a1 1 0 011 1v12a1 1 0 01-1 1H3a1 1 0 01-1-1V6a1 1 0 011-1zm1.4 2L12 12.5 19.6 7H4.4zM2 8.4V17h20V8.4l-9.4 6.1a1 1 0 01-1.2 0L2 8.4z"/></svg>あなたの声</a>
   </div>
 </header>
 
 <section class="hero">
   <div class="hero-inner">
+    <div class="hero-photo">
+      <img src="izumo-keiko.jpg" alt="出雲けいこ">
+    </div>
     <div class="hero-text">
-      <p class="tagline">こころにっこり<br>ひとりで抱え込まなくて<br>いいまちへ</p>
+      <p class="kicker">こころにっこり<span class="dots"><i></i><i></i><i></i></span></p>
+      <p class="tagline">ひとりで抱え込まなくて<br>いいまちへ</p>
       <p class="pledge">子どももおとなも。<br>障害のある人も、高齢の人も。<br>誰もが安心して、自分らしく暮らせるまちへ。</p>
       <p class="signoff"><span class="role">さいたま市議会議員</span><span class="name">出雲けいこ</span></p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="policy.html">重点政策を見る</a>
-        <a class="btn btn-outline" href="reports.html">市議会レポートを見る</a>
+        <a class="btn btn-primary" href="contact.html">あなたの声を聞かせてください ＞</a>
       </div>
-    </div>
-    <div class="hero-photo">
-      <img src="izumo-keiko.jpg" alt="出雲けいこ">
+      <img class="hero-decor" src="images/saitama-community.png" alt="" aria-hidden="true">
     </div>
   </div>
   <svg class="hero-wave" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
@@ -383,52 +556,103 @@
   </svg>
 </section>
 
-<section style="padding: 40px 0 0;">
+<section class="reason-section">
   <div class="inner">
-    <div class="record-teaser">
-      <p>📋 これまでの議会活動をテーマ別にご覧いただけます</p>
-      <a class="more-link" href="record.html">議会活動の記録を見る ＞</a>
+    <p class="leaf-eyebrow">🌿 政治を始めた理由</p>
+    <div class="reason-grid">
+      <div class="reason-text">
+        <p>2010年、関西からさいたま市へ引っ越してきました。親戚や友人もいない中で、0歳の子どもを育てる毎日。そして、翌年 東日本大震災が発生しました。</p>
+        <p>家族だけでは子どもを守ることには限界があり、友人や地域とのつながりが必要だと痛感しました。</p>
+        <p>子育てのリアルな声を活かした政策提案で、誰もが安心して暮らせるまちにしたい。その思いから、私は市議会議員になりました。</p>
+      </div>
+      <div class="reason-collage">
+        <img class="c-large" src="images/profile-photo-kids.jpg" alt="公園で子どもたちと過ごす出雲けいこ">
+        <img class="c-small" src="images/profile-portrait-main.jpg" alt="出雲けいこ">
+        <img class="c-small" src="images/profile-photo-outdoor.jpg" alt="地域の公園で活動する出雲けいこ">
+      </div>
     </div>
   </div>
 </section>
 
 <section id="policy">
   <div class="inner">
-    <h2 class="section-title">重点政策</h2>
+    <h2 class="section-title">私がめざすまち － 5つのテーマ</h2>
     <p class="section-lede">テーマごとに、今どこまで進んでいるかをお伝えします。</p>
-    <div class="policy-grid">
-      <div class="policy-card" id="policy-1">
-        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※状況は仮表示</span>
-        <h3>①その子らしく育つための環境の充実</h3>
-        <p>一人ひとりの個性や成長のペースを大切にできる、子育て・教育環境をつくります。</p>
-      </div>
-      <div class="policy-card" id="policy-2">
-        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※状況は仮表示</span>
-        <h3>②ママ、パパに寄り添った支援の充実</h3>
-        <p>妊娠・出産・子育ての時期を、孤立せずに乗り越えられる支援を広げます。</p>
-      </div>
-      <div class="policy-card" id="policy-3">
-        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※状況は仮表示</span>
-        <h3>③あなたらしさが尊重される社会</h3>
-        <p>性別や年齢、障害の有無にかかわらず、自分らしく生きられる社会を目指します。</p>
-      </div>
-      <div class="policy-card" id="policy-4">
-        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※状況は仮表示</span>
-        <h3>④命と暮らしを守るさいたま</h3>
-        <p>災害や急な困りごとがあっても、命と暮らしが守られるまちをつくります。</p>
-      </div>
-      <div class="policy-card" id="policy-5">
-        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※状況は仮表示</span>
-        <h3>⑤持続可能な社会のために</h3>
-        <p>次の世代に引き継げる、環境にも財政にもやさしいまちづくりを進めます。</p>
-      </div>
+    <div class="tile-grid">
+      <a class="tile theme-1" href="policy.html#policy-1">
+        <div class="tile-icon"><img src="images/icon-kosodate.png" alt=""></div>
+        <span class="tile-num">01</span>
+        <span class="tile-sub">子ども・子育て</span>
+        <h3>その子らしく育つために</h3>
+        <p class="tile-desc">一人ひとりの個性や成長のペースを大切にできる、子育て・教育環境をつくります。</p>
+        <span class="tile-link">くわしく見る ＞</span>
+      </a>
+      <a class="tile theme-2" href="policy.html#policy-2">
+        <div class="tile-icon"><img src="images/icon-mamapapa.png" alt=""></div>
+        <span class="tile-num">02</span>
+        <span class="tile-sub">ケア・福祉</span>
+        <h3>ママ・パパに寄り添った支援を</h3>
+        <p class="tile-desc">妊娠・出産から子育てまで、切れ目のない支援で負担や不安を減らします。</p>
+        <span class="tile-link">くわしく見る ＞</span>
+      </a>
+      <a class="tile theme-3" href="policy.html#policy-3">
+        <div class="tile-icon"><img src="images/icon-anatarashisa.png" alt=""></div>
+        <span class="tile-num">03</span>
+        <span class="tile-sub">人権・多様性</span>
+        <h3>あなたらしさが尊重される社会に</h3>
+        <p class="tile-desc">誰もが自分らしく生きられる、差別や偏見のない社会をめざします。</p>
+        <span class="tile-link">くわしく見る ＞</span>
+      </a>
+      <a class="tile theme-4" href="policy.html#policy-4">
+        <div class="tile-icon"><img src="images/icon-bousai.png" alt=""></div>
+        <span class="tile-num">04</span>
+        <span class="tile-sub">防災・暮らし</span>
+        <h3>命と暮らしを守る</h3>
+        <p class="tile-desc">災害や急な困りごとがあっても、命と暮らしの安全を守ります。</p>
+        <span class="tile-link">くわしく見る ＞</span>
+      </a>
+      <a class="tile theme-5" href="policy.html#policy-5">
+        <div class="tile-icon"><img src="images/icon-kankyo.png" alt=""></div>
+        <span class="tile-num">05</span>
+        <span class="tile-sub">環境・まちづくり</span>
+        <h3>持続可能な社会のために</h3>
+        <p class="tile-desc">未来の子どもたちへつなぐために、環境にやさしいまちをつくります。</p>
+        <span class="tile-link">くわしく見る ＞</span>
+      </a>
     </div>
-    <a class="more-link" href="policy.html">すべての政策を見る ＞</a>
+    <a class="more-link" href="policy.html">テーマごとの取り組み状況を見る ＞</a>
   </div>
 </section>
 
 <section class="report-band">
   <div class="inner">
+    <div class="feature-grid" style="margin-bottom: 40px;">
+      <div class="feature-card">
+        <div class="feature-thumb"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+        <h3>実現したこと・進行中のこと</h3>
+        <p>これまでに実現したこと、今すすめていることをご紹介します。</p>
+        <a class="btn btn-small-outline" href="archive.html">詳しく見る ＞</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-thumb"><img src="images/profile-portrait-main.jpg" alt=""></div>
+        <h3>議会でしていること</h3>
+        <p>議会での質問・提案と、その後の進み方をお伝えしています。</p>
+        <a class="btn btn-small-outline" href="record.html">詳しく見る ＞</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-thumb"><img src="images/icon-report.png" alt=""></div>
+        <h3>市議会レポート（最新）</h3>
+        <p>議会での活動や市政の動きなど、わかりやすくお届けします。</p>
+        <a class="btn btn-small-outline" href="reports.html">レポートを見る ＞</a>
+      </div>
+      <div class="feature-card">
+        <div class="feature-thumb"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7.5-4.6-10-9.1C.5 8.6 2 5 5.5 5c2 0 3.3 1 4.5 2.5C11.2 6 12.5 5 14.5 5 18 5 19.5 8.6 22 11.9 19.5 16.4 12 21 12 21z"/></svg></div>
+        <h3>あなたの声</h3>
+        <p>「こんなこと相談していいのかな？」そんな小さな困りごとも、聞かせてください。</p>
+        <a class="btn btn-small-outline" href="contact.html">声を届ける ＞</a>
+      </div>
+    </div>
+
     <h2 class="section-title">市議会レポート（最新）</h2>
     <p class="section-lede">議会での質問・提案と、その後の進み方をお伝えしています。</p>
     <div class="report-card">
@@ -442,14 +666,26 @@
   </div>
 </section>
 
-<section id="archive">
+<section class="bottom-section">
   <div class="inner">
-    <div class="archive-card">
+    <div class="bottom-grid">
       <div>
-        <h3>これまでの活動記録</h3>
-        <p>旧ホームページで、これまでの活動記録や資料をそのままご覧いただけます。</p>
+        <p class="bottom-heading">あなたの声から、<br>まちの未来をつくります。</p>
+        <p class="leaf-eyebrow" style="margin:0;">🌿🌿🌿</p>
       </div>
-      <a class="btn btn-primary" href="https://izumokeiko.com/" target="_blank" rel="noopener">旧ホームページを見る</a>
+      <div class="cta-panel">
+        <p>お困りごとがありましたら、<br>お気軽にご連絡ください。</p>
+        <a class="btn btn-primary" href="contact.html">あなたの声を届ける ＞</a>
+      </div>
+      <div class="about-panel">
+        <div class="about-photo"><img src="images/profile-photo-outdoor.jpg" alt="地域の公園で活動する出雲けいこ"></div>
+        <h3>出雲けいこについて</h3>
+        <ul class="about-list">
+          <li><a href="profile.html">＞ プロフィール</a></li>
+          <li><a href="policy.html">＞ 私がめざすまち</a></li>
+          <li><a href="archive.html">＞ これまでの活動・資料</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
