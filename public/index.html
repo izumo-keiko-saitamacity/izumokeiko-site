@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 仮公開ページなので検索エンジンには載せない。本番化するときにこの1行を消す -->
 <meta name="robots" content="noindex">
 <title>出雲けいこ｜テストページ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,8 +10,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green: #3DB56A;      /* テーマカラー（明るいグリーン）。好みで変えてよい */
-    --green-dark: #2A8A4E;
+    --green: #3DB56A;
+    --green-photo: #8FA46A;
+    --green-dark: #223B24;
+    --text-green: #2C6B4E;
     --ink: #22302A;
     --paper: #FAFCF9;
   }
@@ -24,27 +25,84 @@
     font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
     line-height: 1.8;
   }
-  header {
-    background: var(--green);
-    color: #fff;
-    padding: 48px 20px 40px;
-  }
   .inner { max-width: 680px; margin: 0 auto; }
-  header h1 {
-    margin: 0 0 3px;
+
+  .hero {
+    position: relative;
+    background: var(--paper);
+    overflow: hidden;
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(280px, 560px) 1fr;
+    align-items: stretch;
+    min-height: 380px;
+  }
+  .hero-text {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px clamp(20px, 4vw, 56px) 48px clamp(20px, 6vw, 64px);
+  }
+  .hero-photo { position: relative; min-height: 320px; }
+  .hero-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 48%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 48%);
+  }
+
+  .tagline {
+    margin: 0 0 20px;
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-weight: 900;
+    font-size: clamp(24px, 2.8vw, 32px);
+    line-height: 1.4;
+    color: var(--text-green);
+  }
+  .pledge {
+    margin: 0 0 24px;
+    font-size: 15px;
+    line-height: 1.9;
+    color: #3A463F;
+  }
+  .signoff { margin: 0; }
+  .signoff .role {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ink);
+    margin-right: 10px;
+  }
+  .signoff .name {
     font-size: 22px;
     font-weight: 700;
     font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    color: var(--ink);
   }
-  header p.role { margin: 0; font-size: 14px; opacity: .9; }
-  header p.tagline {
-    margin: 0 0 20px;
-    font-size: clamp(24px, 5.5vw, 34px);
-    line-height: 1.5;
-    font-weight: 900;
-    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
-    text-wrap: balance;
+
+  .hero-wave {
+    display: block;
+    width: 100%;
+    height: 64px;
+    margin-top: -1px;
   }
+
+  @media (max-width: 720px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-photo { order: -1; min-height: 46vw; }
+    .hero-photo img {
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+    }
+    .hero-text { padding: 8px 20px 40px; }
+  }
+
   main { padding: 36px 20px 48px; }
   main h2 { font-size: 18px; color: var(--green-dark); margin: 28px 0 8px; }
   main p  { margin: 0 0 16px; }
@@ -58,13 +116,22 @@
 </head>
 <body>
 
-<header>
-  <div class="inner">
-    <p class="tagline">こころにっこり<br>ひとりで抱え込まなくていいまちへ</p>
-    <h1>出雲けいこ</h1>
-    <p class="role">さいたま市議会議員</p>
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="tagline">こころにっこり<br>ひとりで抱え込まなくて<br>いいまちへ</p>
+      <p class="pledge">子どももおとなも。<br>障害のある人も、高齢の人も。<br>誰もが安心して、自分らしく暮らせるまちへ。</p>
+      <p class="signoff"><span class="role">さいたま市議会議員</span><span class="name">出雲けいこ</span></p>
+    </div>
+    <div class="hero-photo">
+      <img src="izumo-keiko.jpg" alt="出雲けいこ">
+    </div>
   </div>
-</header>
+  <svg class="hero-wave" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,45 C280,90 620,10 900,35 C1040,48 1140,30 1200,20 L1200,80 L0,80 Z" fill="var(--green-photo)" opacity="0.28"/>
+    <path d="M0,60 C320,95 700,35 1000,55 C1090,61 1150,50 1200,45 L1200,80 L0,80 Z" fill="var(--green)" opacity="0.22"/>
+  </svg>
+</section>
 
 <main>
   <div class="inner">
@@ -73,9 +140,7 @@
     <p>これは、ホームページを自分で公開・更新できるかを確かめるための仮のページです。</p>
 
     <h2>今日の練習</h2>
-    <!-- ▼▼ 翌日の30分テストで直すのはこの1文。書き換えて、もう一度公開する ▼▼ -->
     <p>これは出雲けいこが自分で書き換えたテストです 一日目。</p>
-    <!-- ▲▲ ここまで ▲▲ -->
 
     <h2>次にやること</h2>
     <p>この仕組みで公開・更新ができたら、次は議会活動の記録を載せていきます。</p>
