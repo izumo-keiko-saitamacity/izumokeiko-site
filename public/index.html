@@ -259,6 +259,29 @@
   }
   .btn-primary { background: var(--green); color: #fff; }
   .btn-outline { background: transparent; color: var(--text-green); border: 1.5px solid var(--green); }
+  .hero-speech-btn {
+    position: relative;
+    display: inline-flex; align-items: center;
+    background: var(--green);
+    color: #fff;
+    font-size: 14.5px;
+    font-weight: 700;
+    padding: 14px 26px;
+    border-radius: 22px;
+    text-decoration: none;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(34,48,42,.12);
+  }
+  .hero-speech-btn::after {
+    content: "";
+    position: absolute;
+    right: -9px;
+    bottom: 13px;
+    width: 0; height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 10px solid var(--green);
+  }
   .hero-wave { display: block; width: 100%; height: 64px; margin-top: -1px; }
 
   @media (max-width: 720px) {
@@ -544,7 +567,7 @@
       <p class="pledge">子どももおとなも。<br>障害のある人も、高齢の人も。<br>誰もが安心して、自分らしく暮らせるまちへ。</p>
       <p class="signoff"><span class="role">さいたま市議会議員</span><span class="name">出雲けいこ</span></p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="contact.html">あなたの声を聞かせてください ＞</a>
+        <a class="hero-speech-btn" href="contact.html">あなたの声を聞かせてください</a>
       </div>
     </div>
     <div class="hero-photo">
