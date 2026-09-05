@@ -92,14 +92,10 @@
     border-radius: 16px;
     padding: 24px 28px;
   }
-  .party-card { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
-  .party-logo-link { flex: none; display: block; line-height: 0; transition: opacity .15s; }
+  .party-logo-link { display: block; line-height: 0; transition: opacity .15s; }
   .party-logo-link:hover { opacity: .78; }
   .party-logo { width: 82px; height: auto; display: block; }
-  .party-card .info-list { flex: 1 1 220px; margin: 0; }
-  @media (max-width: 480px) {
-    .party-card { gap: 18px; }
-  }
+  .link-card-logo { display: flex; justify-content: center; padding: 22px 0 6px; }
   .info-list { list-style: none; margin: 0; padding: 0; }
   .info-list li {
     position: relative;
@@ -216,19 +212,6 @@
 </main>
 
 <section class="profile-section">
-  <h2>所属政党</h2>
-  <div class="info-card party-card">
-    <a class="party-logo-link" href="https://cdp-japan.jp/" target="_blank" rel="noopener" aria-label="立憲民主党　公式サイトへ">
-      <img class="party-logo" src="images/cdp-logo.png" alt="立憲民主党　The Constitutional Democratic Party of Japan">
-    </a>
-    <ul class="info-list">
-      <li>立憲民主党　埼玉県総支部連合会</li>
-      <li>さいたま市議会　立憲・国民・無所属の会さいたま市議団</li>
-    </ul>
-  </div>
-</section>
-
-<section class="profile-section">
   <h2>所属委員会</h2>
   <div class="info-card">
     <h3><span class="now-badge">現在</span></h3>
@@ -273,6 +256,9 @@
 <section class="profile-links">
   <h2>関連リンク</h2>
   <div class="link-card">
+    <a class="party-logo-link link-card-logo" href="https://cdp-japan.jp/" target="_blank" rel="noopener" aria-label="立憲民主党　公式サイトへ">
+      <img class="party-logo" src="images/cdp-logo.png" alt="立憲民主党　The Constitutional Democratic Party of Japan">
+    </a>
     <ul class="link-list">
       <li><a href="https://saitama-city.stream.jfit.co.jp/?tpl=speaker_result&amp;speaker_id=421" target="_blank" rel="noopener"><span class="label">インターネット議会中継</span><span class="chev">＞</span></a></li>
       <li><a href="https://www.city.saitama.jp" target="_blank" rel="noopener"><span class="label">さいたま市</span><span class="chev">＞</span></a></li>
