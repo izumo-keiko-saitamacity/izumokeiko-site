@@ -462,11 +462,17 @@
     margin: 0 0 14px;
     line-height: 1.5;
   }
+  .footer-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
   .footer-heading-right {
     text-align: right;
-    margin: 0 0 22px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--line);
+    margin: 0;
   }
 
   @media (max-width: 860px) {
@@ -695,7 +701,6 @@
 
 <footer class="site-footer">
   <div class="inner">
-    <p class="bottom-heading footer-heading-right">あなたの声から、<br>まちの未来をつくります。</p>
     <div class="footer-grid">
       <ul class="footer-nav">
         <li><a href="profile.html">プロフィール</a></li>
@@ -711,9 +716,12 @@
         <a href="https://line.me/R/ti/p/@jev4977j" target="_blank" rel="noopener" title="公式LINE"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 5.6 2 10c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3 0 .7 0 1l-.1.9c0 .3-.2 1.1 1 .6 1.1-.5 6.2-3.6 8.4-6.2C22.1 12.9 22 11.5 22 10c0-4.4-4.5-8-10-8z"/></svg></a>
       </nav>
     </div>
-    <div class="office-info">
-      <p class="office-address">〒331-0045　さいたま市西区内野本郷448-9　第２ノグチコーポ201</p>
-      <p class="office-contact">TEL 048-607-9593　／　FAX 048-715-0919　／　<a href="mailto:izumokeiko@outlook.jp">izumokeiko@outlook.jp</a></p>
+    <div class="footer-bottom-row">
+      <div class="office-info">
+        <p class="office-address">〒331-0045　さいたま市西区内野本郷448-9　第２ノグチコーポ201</p>
+        <p class="office-contact">TEL 048-607-9593　／　FAX 048-715-0919　／　<a href="mailto:izumokeiko@outlook.jp">izumokeiko@outlook.jp</a></p>
+      </div>
+      <p class="bottom-heading footer-heading-right">あなたの声から、<br>まちの未来をつくります。</p>
     </div>
     <p class="copyright">© 2026 出雲けいこ</p>
   </div>
