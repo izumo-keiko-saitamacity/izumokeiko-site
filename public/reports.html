@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<meta name="description" content="出雲けいこ（さいたま市議会議員）｜市議会レポート">
+<meta name="description" content="出雲けいこ（さいたま市議会議員）｜市議会レポート。定例会での質問・提案と、その後の進み方をまとめています。">
 <title>市議会レポート｜出雲けいこ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,18 +18,21 @@
     --muted: #5A6B62;
     --paper: #FAFCF9;
     --line: #E1E9E2;
+    --card: #FFFFFF;
     --considering-bg: #EEF1EA; --considering-fg: #6B7A63;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     margin: 0;
     background: var(--paper);
     color: var(--ink);
     font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
-    line-height: 1.8;
+    line-height: 1.85;
   }
   a { color: inherit; }
   .inner { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+  .narrow { max-width: 760px; margin: 0 auto; padding: 0 20px; }
 
   /* --- top nav (shared) --- */
   .topbar { background: var(--paper); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; }
@@ -42,10 +45,148 @@
   .sns-row a { width: 30px; height: 30px; border-radius: 50%; background: var(--considering-bg); display: flex; align-items: center; justify-content: center; color: var(--text-green); }
   .sns-row svg { width: 15px; height: 15px; fill: currentColor; }
 
-  main { max-width: 720px; margin: 0 auto; padding: 72px 20px; text-align: center; }
-  main h1 { font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; font-size: 26px; color: var(--text-green); margin: 0 0 14px; }
-  main p { color: var(--muted); font-size: 15px; }
-  .badge { display: inline-block; background: var(--considering-bg); color: #6B7A63; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 999px; margin-bottom: 18px; }
+  /* --- page header --- */
+  .page-header { padding: 56px 0 8px; text-align: center; }
+  .page-header h1 {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 3.4vw, 30px);
+    color: var(--text-green);
+    margin: 0 0 14px;
+  }
+  .page-header p { max-width: 46ch; margin: 0 auto; color: var(--muted); font-size: 15px; }
+
+  /* --- report index (jump nav) --- */
+  .report-index { padding: 32px 0 8px; }
+  .report-index-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 24px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 28px;
+    align-items: baseline;
+  }
+  .report-index-label { font-size: 12.5px; font-weight: 700; color: var(--muted); }
+  .report-index a { font-size: 14.5px; font-weight: 700; color: var(--text-green); text-decoration: none; border-bottom: 1.5px solid var(--green); }
+
+  /* --- report article --- */
+  .report-article { padding: 56px 0; }
+  .report-article + .report-article { border-top: 1px solid var(--line); }
+  .report-head { margin-bottom: 28px; }
+  .report-period-badge {
+    display: inline-block;
+    background: var(--considering-bg);
+    color: var(--text-green);
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 5px 16px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+  }
+  .report-head h2 {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-size: clamp(20px, 2.6vw, 25px);
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .report-summary { font-size: 15px; color: var(--ink); }
+
+  .topic { margin: 36px 0 0; }
+  .topic h3 {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-size: 17px;
+    color: var(--text-green);
+    border-left: 4px solid var(--green);
+    padding-left: 12px;
+    margin: 0 0 16px;
+  }
+  .topic h4 {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 20px 0 8px;
+  }
+  .topic p { margin: 0 0 14px; font-size: 14.5px; }
+  .topic ul, .topic ol { margin: 0 0 14px; padding-left: 22px; font-size: 14.5px; }
+  .topic li { margin: 0 0 6px; }
+  .topic .note { font-size: 12.5px; color: var(--muted); }
+
+  .qa { margin: 0 0 18px; }
+  .qa .q { font-weight: 700; color: var(--ink); margin: 0 0 6px; font-size: 14.5px; }
+  .qa .q .tag, .qa .a .tag { color: var(--text-green); font-weight: 900; margin-right: 4px; }
+  .qa .a { margin: 0; font-size: 14.5px; background: var(--considering-bg); border-radius: 10px; padding: 12px 16px; }
+
+  .notice-box {
+    background: #fff;
+    border: 1.5px solid var(--green);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: var(--text-green);
+    font-weight: 700;
+    margin: 0 0 16px;
+  }
+
+  .table-scroll { overflow-x: auto; margin: 0 0 16px; }
+  table.spec-table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 480px;
+    font-size: 13.5px;
+  }
+  table.spec-table caption { text-align: left; font-size: 13px; font-weight: 700; color: var(--muted); margin-bottom: 8px; }
+  table.spec-table th, table.spec-table td {
+    border: 1px solid var(--line);
+    padding: 8px 12px;
+    text-align: left;
+  }
+  table.spec-table th { background: var(--considering-bg); font-weight: 700; }
+  table.spec-table td.num { text-align: right; white-space: nowrap; }
+
+  .stat-row { display: flex; gap: 20px; flex-wrap: wrap; margin: 0 0 16px; }
+  .stat-box {
+    background: var(--considering-bg);
+    border-radius: 12px;
+    padding: 14px 20px;
+    flex: 1 1 140px;
+    text-align: center;
+  }
+  .stat-box .num { font-size: 22px; font-weight: 900; color: var(--text-green); font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; }
+  .stat-box .cap { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .agenda-list { list-style: none; margin: 0 0 16px; padding: 0; counter-reset: agenda; }
+  .agenda-list > li { margin: 0 0 14px; }
+  .agenda-list > li > .agenda-title { font-weight: 700; font-size: 14.5px; color: var(--ink); }
+  .agenda-list ul { margin: 8px 0 0; padding-left: 20px; font-size: 13.5px; color: var(--muted); }
+
+  .cta-band {
+    margin-top: 12px;
+    background: var(--considering-bg);
+    border-radius: 14px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .cta-band p { margin: 0; font-size: 14px; color: var(--text-green); font-weight: 700; }
+  .cta-band a.btn {
+    display: inline-block;
+    background: var(--green);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  .source-note { font-size: 12px; color: var(--muted); margin-top: 24px; }
 
   footer.site-footer { background: var(--green-dark); color: #EAF2EB; padding: 40px 0 24px; font-size: 13px; }
   .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; }
@@ -79,11 +220,346 @@
   </div>
 </header>
 
-<main>
-  <span class="badge">準備中</span>
-  <h1>市議会レポート</h1>
-  <p>議会での質問と、その後の進み方をまとめたレポートを、このページに追って掲載していきます。</p>
-</main>
+<section class="page-header">
+  <div class="inner">
+    <h1>市議会レポート</h1>
+    <p>定例会で何を質問し、行政がどう答え、その後どうなったか。出雲けいこの議会活動を、テーマごとにまとめています。</p>
+  </div>
+</section>
+
+<section class="report-index">
+  <div class="inner">
+    <div class="report-index-card">
+      <span class="report-index-label">レポート一覧：</span>
+      <a href="#r202606">2026年6月定例会</a>
+      <a href="#r202602">2026年2月定例会</a>
+    </div>
+  </div>
+</section>
+
+<section class="report-article" id="r202606">
+  <div class="narrow">
+    <div class="report-head">
+      <span class="report-period-badge">2026年6月定例会</span>
+      <h2>6月定例会レポート</h2>
+      <p class="report-summary">2026年6月3日から26日までの24日間開催されました。市長提出条例議案・補正予算議案が15件、その他議案23件の計38件、議員提出議案3件、委員会提出議案1件、すべて原案通り可決・同意し、閉会しました。</p>
+    </div>
+
+    <div class="topic">
+      <h3>さいたま市民医療センターの改修・修繕</h3>
+      <p>補正予算案の一つとして、さいたま市民医療センターの改修が可決されました。</p>
+      <ul>
+        <li>施設修繕：工事着手予定 9月〜、工事完了・供用開始 2027年3月予定</li>
+        <li>無停電電源装置の修繕：工事着手予定 9月〜、工事完了・供用開始 2027年11月予定</li>
+        <li>直流電源装置の修繕：工事着手予定 9月〜、工事完了・供用開始 2027年11月予定</li>
+      </ul>
+      <p class="note">※無停電電源装置・直流電源装置は、停電や瞬断等の際に、心肺蘇生装置などの医療機器や非常照明へ電源を供給する役割があります。</p>
+
+      <h4>さいたま市民医療センター長期修繕計画（2030年度まで）</h4>
+      <p>竣工後17年が経過し、一部の設備機器が更新時期を迎えています。今後も安定した医療提供体制を維持するために実施します。</p>
+      <ul>
+        <li>緊急性が高い空調設備・給湯配管・電気設備の機器（装置）の更新を先行し、長期修繕計画最終年度の2030年度から屋上防水実施設計を開始し、各年度の支出予算の平準化を図る。</li>
+        <li>経年劣化で今後増加が予測される緊急修繕に対応するため、各年度に予算措置する。</li>
+        <li>各設備を更新する中で、荒川氾濫時のリスクや被害軽減対策があれば、費用対効果を考慮し、その都度実施する。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3>新庁舎整備関連</h3>
+      <p>4月に基本設計説明書が取りまとめられました。今後、実施設計や建設工事に向けた準備と、さいたま新都心バスターミナルの解体も合わせて進められます。新庁舎は、防災機能や高い環境性能を備え、持続的な行政サービスを提供する拠点として整備されます。地上19階・地下1階の行政棟、議会棟、中広場棟で構成され、さいたま新都心駅やコクーンシティとは歩行者デッキで接続。完成は2031年度を予定しています。</p>
+
+      <div class="table-scroll">
+        <table class="spec-table">
+          <caption>新庁舎整備等推進事業（2026年6月での想定・概算額）</caption>
+          <thead>
+            <tr><th>内訳</th><th>2025年度以前</th><th>26年6月補正</th><th>27年度以降</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>基本設計業務費</td><td class="num">約6億円</td><td class="num">―</td><td class="num">―</td></tr>
+            <tr><td>環境アセス業務費</td><td class="num">約1億円</td><td class="num">―</td><td class="num">―</td></tr>
+            <tr><td>実施設計業務費</td><td class="num">―</td><td class="num">約14億円</td><td class="num">―</td></tr>
+            <tr><td>ECI技術協力業務委託費</td><td class="num">―</td><td class="num">約0.3億円</td><td class="num">―</td></tr>
+            <tr><td>工事監理業務費</td><td class="num">―</td><td class="num">―</td><td class="num">約4億円</td></tr>
+            <tr><td>発注者支援業務費</td><td class="num">約1億円</td><td class="num">約0.7億円</td><td class="num">約2億円</td></tr>
+            <tr><td><strong>調査・設計費 計</strong></td><td colspan="3" class="num"><strong>約29億円</strong></td></tr>
+            <tr><td>建物建設費</td><td colspan="3" class="num">約702億円</td></tr>
+            <tr><td>既存施設解体費</td><td colspan="3" class="num">約3億円</td></tr>
+            <tr><td><strong>本体工事費 計</strong></td><td colspan="3" class="num"><strong>約705億円（うち地方債519億円）</strong></td></tr>
+            <tr><td>移転費・什器購入費等</td><td colspan="3" class="num">約35億円</td></tr>
+            <tr><td><strong>合計（概算）</strong></td><td colspan="3" class="num"><strong>約769億円</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">※調査・設計費は委託業務別の概算額を記載。街区外の歩行者デッキ整備工事費は、さいたま新都心にぎわい創出事業に計上。既存施設解体費は、整備予定地の「さいたま新都心バスターミナル」及び「新都心みどり広場」を指す。移転費は、移転計画業務費、引越し業務費、什器購入費等を想定しており、今後策定する移転計画に基づき精査。</p>
+
+      <p>現時点での総事業費は約769億円です。内訳は、調査・設計費約29億円、本体工事費（解体工事費を含む）約705億円、移転費約35億円です。財源は、国庫補助金4%、地方債74%、庁舎整備基金など22%を予定しています。新庁舎整備等基本構想（21年）では約221億円とされていましたが、今後の職員数の増加に伴う設計変更や物価・労務単価の上昇などにより事業費が大幅に増加した一方で、外装や屋上計画の見直しなどにより、一部コスト縮減も図られています。今後も機能を精査するとともに、事業費や計画変更などについて市民への丁寧な説明が求められます。</p>
+
+      <p>また、中央区役所再編や義務教育学校整備などで入札不調が続いたことを踏まえ、今回はECI方式（設計段階から施工予定者が参画する方式）を採用します。施工者の技術やノウハウを実施設計に反映するとともに、市から独立した発注者支援業者が専門的な助言やチェックを行う予定です。</p>
+
+      <h4>さいたま新都心バスターミナルについて</h4>
+      <p>新庁舎整備に伴い、さいたま新都心バスターミナルは今年度末で閉鎖されます。バスターミナルは、東京2020オリンピック・パラリンピックでのバス需要などを見据えて20年6月に開設されましたが、昨年度までの累計では支出約3億円に対し、収入約2億円となっています。廃止後は、高速バス乗り場のみをさいたま新都心駅東口交通広場へ移設し、待合室や一般駐車場、バス駐車場などの機能は廃止される予定です。</p>
+    </div>
+
+    <div class="topic">
+      <h3>指扇小学校 建設工事関連　施工者が決定しました</h3>
+      <ul>
+        <li>学校部分：最大42学級・新設放課後児童クラブ。工事着手7月〜2028年6月完成。2028年2学期から共用開始予定。</li>
+        <li>新校舎棟（北校舎＋児童クラブ）：2028年12月工事完了予定。2031年度、室内温水プールなど利用開始予定。</li>
+      </ul>
+    </div>
+
+    <div class="topic">
+      <h3>会派報告会のご案内</h3>
+      <p>今任期（2023〜2027年）での会派基本方針『市民と共に明日を創る』に沿った最終報告会を行います。</p>
+      <ul>
+        <li>日時：10月31日（土）14時〜</li>
+        <li>会場：さいたま共済会館5階（浦和区岸町7-5-14）</li>
+      </ul>
+      <p>参加申込は出雲けいこ事務所まで、または下の「ご相談・ご要望」ページからご連絡ください。</p>
+    </div>
+
+    <div class="topic">
+      <h3>日本版DBSとは？（こども性暴力防止法について）</h3>
+      <p>こども性暴力防止法（日本版DBS）は、12月25日に施行されます。子どもと接する仕事に就く人の性犯罪歴を確認し、子どもへの性犯罪を未然に防ぐ制度です。</p>
+
+      <h4>なぜ日本版DBSが必要なのか</h4>
+      <p>性犯罪は再犯率が比較的高いこと、被害者は長期間にわたり心身に大きな影響を受けること。「被害が起きる前に、未然に防ぐ仕組みが必要」という考えで制度化されました。</p>
+
+      <h4>性犯罪歴の確認の流れ</h4>
+      <ol>
+        <li>事業者が確認申請 － 事業者が、こども家庭庁に対して申請します。</li>
+        <li>本人が情報を提出 － 本人が、こども家庭庁に必要な情報を提出します（戸籍情報など）。</li>
+        <li>こども家庭庁が法務省のデータベースを照会 － こども家庭庁が、法務省の性犯罪歴のデータベースをもとに確認します。</li>
+        <li>証明書を交付 － こども家庭庁が、結果を事業者に証明書として交付します。</li>
+      </ol>
+      <div class="notice-box">5年ごとに再確認されます。性犯罪歴がある場合は、本人に通知されます。内容の訂正を求めることができ、一定期間、内定辞退や退職も可能です。</div>
+
+      <h4>対象となる施設・事業（義務／認定制）</h4>
+      <ul>
+        <li>義務：学校・幼稚園、認可保育所、認定こども園、児童養護施設、障害児施設など</li>
+        <li>認定制：認可外保育施設、放課後児童クラブ、学習塾、スポーツクラブ、ボーイスカウトなど（今後、見直される可能性があります）</li>
+        <li>対象外の例：個人家庭教師、個人ベビーシッター、医療機関　など</li>
+      </ul>
+      <p>性犯罪歴があった場合は、子どもと接しない部署への配置転換や、状況に応じて採用見送り・解雇などの対応がとられます。</p>
+
+      <h4>4人に1人以上が被害を経験</h4>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">26.4%</div><div class="cap">若年層（16〜24歳）で何らかの性暴力被害を経験</div></div>
+        <div class="stat-box"><div class="num">15.0%</div><div class="cap">女の子の被害割合</div></div>
+        <div class="stat-box"><div class="num">5.1%</div><div class="cap">男の子の被害割合</div></div>
+      </div>
+      <p>被害は女の子だけではありません。男の子も性暴力の被害を受けています。強制性交等の認知件数のうち、被害者が20代以下が8割以上、そのうち10代以下が4割以上を占めています。ワンストップ支援センターへの相談者の被害時の年齢は、約半数を10代以下が占め、中学生以下に限れば、3割にもなることがわかっています。</p>
+
+      <h4>子どもたちへ</h4>
+      <p>あなたの身体はあなたのもの。水着で隠れる部分（プライベートゾーン）は大切な場所です。好きな人、先生、知っている人でも同じです：見せなくていい／触らせなくていい／イヤなことは断っていい。</p>
+      <p>「誰にも言わないでね」と言われても、イヤだったことや怖かったことは信頼できる大人に話してください。あなたは悪くありません。秘密にしなくていいのです。</p>
+
+      <h4>大人のみなさんへ</h4>
+      <p>子どもは被害を受けても言葉にできないことがあります。次のような変化が見られることがあります：急に元気がなくなった／頭痛や腹痛が続く／夜眠れなくなった／おねしょが増えた／学校へ行きたがらない／攻撃的になる／不安が強くなる（※サインが全く現れない場合もあります）。</p>
+      <p>子どもから相談されたら、まず「話してくれてありがとう」「あなたは悪くないよ」と伝えてください。子どもの安全を守るため、一人で抱え込まず専門機関へ相談してください。</p>
+      <ul>
+        <li>性犯罪・性暴力被害者のためのワンストップ支援センター：#8891（はやくワンストップ）</li>
+        <li>性犯罪被害者相談電話：#8103（ハートさん）</li>
+        <li>児童相談所虐待対応ダイヤル：189（いちはやく）／24時間・年中無休で相談できます。秘密は守られます。</li>
+      </ul>
+      <p class="source-note">出典：内閣府「こども・若者の性被害に関する状況について」。このコーナーは、生成AIと共同で作成しました。</p>
+    </div>
+
+    <div class="topic">
+      <h3>市議会内で開催された「被爆者の話を聞く会」に参加しました</h3>
+      <p>ノーベル平和賞を受賞した日本被団協の地域組織である埼玉県原爆被害者協議会（しらさぎ会）の高橋薄さんから、被ばく体験や戦争の実相についてお話を伺いました。被ばくや戦争を体験した方々が年々少なくなっています。だからこそ、戦争を知らない私たちの世代が、その記憶や教訓をどう受け継ぎ、次の世代へ伝えていくのかが問われています。平和は、願うだけでは守れません。知り、学び、考え、語り継いでいくこと。その積み重ねが未来につながるのだと、改めて感じた時間でした。</p>
+    </div>
+
+    <div class="topic">
+      <h3>近況</h3>
+      <p>6月定例会から、保健福祉委員会の委員長を拝命いたしました。9月定例会は、9月2日〜10月16日までの45日間（予定）です。</p>
+    </div>
+
+    <div class="cta-band">
+      <p>市政に関するご意見・ご要望をお聞かせください</p>
+      <a class="btn" href="contact.html">ご相談・ご要望ページへ</a>
+    </div>
+  </div>
+</section>
+
+<section class="report-article" id="r202602">
+  <div class="narrow">
+    <div class="report-head">
+      <span class="report-period-badge">2026年2月定例会</span>
+      <h2>2月定例会レポート</h2>
+      <p class="report-summary">2026年2月3日から3月12日までの38日間開催されました。過去最大規模となった令和8年度当初予算議案を含む予算議案・条例議案などの市長提出議案計105件、議員提出議案2件が可決・同意・承認されました。そのうちいじめ問題救済委員会の1議案は、一部を修正可決し閉会しました。</p>
+      <p class="report-summary">議員提出議案①「消費者がより安心して食品を選択できる表示制度に向けた検討・措置を求める意見書」は、表示義務のないゲノム編集応用食品について、消費者の知る権利・選ぶ権利を守るため、食品表示の充実を国に求めるもの。②「イランを巡る軍事的緊張の高まりに対し、外交的解決に向けた国際社会との連携を求める意見書」は、武力行使と報復の連鎖を抑え、核問題を含む諸課題を対話と国際法に基づき平和的に解決するよう求めるもの。いずれの意見書も、全会一致で可決されました。</p>
+    </div>
+
+    <div class="topic">
+      <h3>いじめ問題救済委員会 設置へ</h3>
+      <p>いじめの認知件数やいじめの重大事態が増える中、独立した第三者機関として「いじめ問題救済委員会」が設置されます。小・中・高校生年代の子どもたちや保護者から、学校をはじめ、塾やスポーツクラブなどで現在進行中のいじめの相談を受け付けます。</p>
+      <p>子どもの相談のノウハウを持つ相談員と、救済委員には弁護士・公認心理師などで対応します。いじめが発生している施設などへ調査・調整・勧告・要請などを行います。子どもの意見を反映した「（仮称）子どもの権利条例」を2028年度の施行を目指し、いじめ問題救済委員会は子どもの権利救済機関へと発展的に解消されることが検討されています。</p>
+      <p>子どもの権利条例の制定に向けては、いじめ問題救済委員会の検証を行いながら、天理市のように子どもや保護者に寄り添った心理的、福祉的、教育・保育面からの重層的な個別サポートが行える体制づくりを求めています。</p>
+    </div>
+
+    <div class="topic">
+      <h3>代表質問に登壇しました！</h3>
+      <ol class="agenda-list">
+        <li><span class="agenda-title">1. 市長の政治姿勢について</span>
+          <ul>
+            <li>(1) 人口減少・低成長時代の『選択と集中』の判断</li>
+            <li>(2) 新市庁舎整備について</li>
+            <li>(3) 透明性確保のための第三者機関の設置</li>
+            <li>(4) 地下鉄7号線延伸の事業実施要請の時期と浦和美園の市有地の利活用について</li>
+          </ul>
+        </li>
+        <li><span class="agenda-title">2. 社会全体で子どもと若者を支えるまち</span>
+          <ul>
+            <li>(1) 市立病院の小児入院体制の向上</li>
+            <li>(2) 特別支援学校の学びの環境の充実</li>
+            <li>(3) 障害を持つ方、家族の災害、防災対策</li>
+          </ul>
+        </li>
+        <li><span class="agenda-title">3. 脱炭素・循環型社会とみどり豊かな都市の創造</span>
+          <ul>
+            <li>(1) まちのみどりを守る都市農業の充実</li>
+            <li>(2) 地産地消を進めるシステム構築</li>
+          </ul>
+        </li>
+        <li><span class="agenda-title">4. 持続可能な働き方と経済成長の実現</span>
+          <ul>
+            <li>(1) 女性の雇用創出・多様な働き方の推進と中小企業のDX支援のベストミックスを</li>
+          </ul>
+        </li>
+        <li><span class="agenda-title">5. 『誰ひとり取り残さない』社会に向けて</span>
+          <ul>
+            <li>(1) 緩やかなつながりができる社会を</li>
+          </ul>
+        </li>
+      </ol>
+      <p class="note">このうち、いくつかの項目について、以下で詳しくご報告します。</p>
+    </div>
+
+    <div class="topic">
+      <h3>人口減少・低成長時代の『選択と集中』の判断</h3>
+      <div class="qa">
+        <p class="q"><span class="tag">Q1.</span>人口減少・低成長時代を見据えた市政運営の中で、「行わない」「進めない」「立ち止まる」対応も必要だと考える。どのような考え方や基準に基づき、政策の優先順位を判断するのか。</p>
+        <p class="a"><span class="tag">A1.</span>優先度の基本的な考え方は、1）市民の生命・身体・財産を守る危機管理・防災機能の強化に資する事業を最優先とする。2）市民生活に密接に関わる既存施設の改善・再整備など、適切な市民サービスを継続するための事業を着実に実施する。3）都市拠点形成や魅力向上など、市の成長・発展に資する事業も、必要性・政策効果を見極め判断する。以上のような考え方を基本に、今後も市民の声を幅広く聞きながら、適時適切に判断していく。</p>
+      </div>
+      <div class="qa">
+        <p class="q"><span class="tag">Q2.</span>それらの判断を行う場合は、どのように示していく考えなのか。</p>
+        <p class="a"><span class="tag">A2.</span>事業の見直しは、市民生活に直接影響があるため、その判断の在り方が重要である。一定の判断を行う際は、検討プロセスを公表する。様々な機会を捉えて、市民や議会に丁寧に説明し、理解を得ながら進める。</p>
+      </div>
+    </div>
+
+    <div class="topic">
+      <h3>新市庁舎整備について</h3>
+      <div class="qa">
+        <p class="q"><span class="tag">Q.</span>新市庁舎整備構想では、当初案（2023年）の200億円から現行案では770億を超えている。規模や機能を見直した複数案を検討し、事業費や将来負担を整理し、市民への判断材料を示すべきでは。</p>
+        <p class="a"><span class="tag">A.</span>新庁舎整備は物価・労務高騰の影響はあるものの、今後80年使用する都市経営拠点として必要不可欠。学識経験者や市民、関係団体が入った審議会やワークショップなどでニーズ把握や市民が集まるシンボル的な庁舎の方向性が整理されてきた。そのため計画見直しには、議論や検討のための時間を要し、結果的に事業費の縮減につながらない懸念があるため、速やかに設計・工事を着手していく。</p>
+      </div>
+      <p class="note">さいたま市HPには、新庁舎整備などに係る主な検討経緯が時系列で掲載されています。今まで行ってきたオープンハウスやパブリックコメント、市議会の特別委員会などでの報告資料も確認できます。</p>
+    </div>
+
+    <div class="topic">
+      <h3>市立病院の小児入院体制の向上</h3>
+      <div class="qa">
+        <p class="q"><span class="tag">Q.</span>市立病院の看護師配置基準は守られているが、30分以上のアラームが鳴るなど、現場や入院家族から看護人材が圧倒的に足りていないと聞いている。人員増員やアラーム対応強化をどのように行っていくのか。看護師の増員のために、国への改善要望が必要ではないか。</p>
+        <p class="a"><span class="tag">A.</span>小児病棟では国の基準を満たす看護職員を配置しているが、小児特有の細やかな介助（食事・排せつ・睡眠・精神的なサポート）が必要なため、診療報酬評価見直しを活用して保育士を増員、週休日もシフトを工夫して対応。看護補助職員を日勤に加え夜勤にも配置し、看護師負担の軽減と安全な医療体制の確保に努めている。アラーム対応強化のため、年齢別基準値の設定・医師連携による患者の状態に応じた設定、意識を高めるための指導、ナースコール連携機器導入などを検討し、緊急度の高い処置を迅速に行えるように検討を進める。今後も診療報酬を活かし、必要な人員確保に努める。看護師配置基準は多くの自治体の共通課題であり、本市単独ではなく、全国自治体病院協議会などを通じて国に要望することを検討する。</p>
+      </div>
+      <div class="table-scroll">
+        <table class="spec-table">
+          <caption>小児医療について、直接・間接看護業務と小児総合医療施設の調査結果</caption>
+          <thead><tr><th>指標</th><th>数値・状況</th></tr></thead>
+          <tbody>
+            <tr><td>患者1人当たり1日総看護時間</td><td class="num">1,164.9分</td></tr>
+            <tr><td>成人病棟との比較</td><td class="num">約6.5倍</td></tr>
+            <tr><td>必要看護師数（平均）</td><td class="num">14.4人</td></tr>
+            <tr><td>各勤務帯の不足数</td><td class="num">8〜10人</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">出典：小児患者に要する看護時間と適正人員配置の研究</p>
+      <div class="notice-box">医療的ケアを含む障害を持つ子どもたちの生活には、医療、教育、福祉の3つの領域で支援が必要です。発達段階過程において相互に連携し、総合的なサポート体制の構築が必要です。</div>
+    </div>
+
+    <div class="topic">
+      <h3>医療的ケアや障害を持つ方などの災害時支援体制</h3>
+      <div class="qa">
+        <p class="q"><span class="tag">Q1.</span>埼玉県医療的ケア児者等実態調査結果（2024年）では、医療的ケア児者の約半数が災害時に同居家族以外の手助けがなく、支援体制の弱さが明らかになっている。地域の医療・保健・福祉関係者との連携強化や、家族・市職員・避難所、それぞれに向けたガイドブックの作成、また個別避難支援プランの作成について伺う。</p>
+        <p class="a"><span class="tag">A1.</span>医療的ケア者などが災害時に適切な支援を受けるには、医療・保健・福祉の支援者や避難経路を事前に定めた個別避難支援プランの作成が重要。個別避難支援プランの作成の優先度が高い医療的ケア者などを対象に、相談支援専門員などの福祉専門職が参画するモデル事業を行い、関係機関と連携し作成する。要配慮者やその支援者に向けて、事前の準備や実際に災害が発生した場合にとるべき行動などをまとめた「災害時要配慮者支援マニュアル」を公開し、周知啓発を行っている。</p>
+      </div>
+      <div class="notice-box">個別避難計画の作成費用について、2026年度から100人分の作成費用が盛り込まれました。埼玉県で作成されました。</div>
+      <div class="qa">
+        <p class="q"><span class="tag">Q2.</span>個別避難支援プランの作成に福祉専門職だけでは医療対応が不安。当事者団体・障害福祉施設・家族会との平時からのネットワークが必要では。</p>
+        <p class="a"><span class="tag">A2.</span>作成には、保健所などが支援の輪に入る予定。当事者団体などからも意見を伺いながらマニュアル作成なども取り組んでいく。</p>
+      </div>
+      <p class="note">支援マニュアルは医療的ケア児を含む多様な要配慮者と支援者にとって有用な内容となるよう見直し、避難所運営にも活用しながら、今後も支援体制の強化と周知啓発に取り組みを進めていきます。</p>
+    </div>
+
+    <div class="topic">
+      <h3>～2026年度当初予算から～　新規＆拡大事業の抜粋</h3>
+      <p>「シンカし続けるまちへ。暮らしを高め、共創で希望を拓く予算」として、一般会計：7,160億円（前年比＋126億円、＋1.8%）。全会計：1兆2,000億円（前年比＋337億円、＋2.9%）で過去最大となりました。2030年のSDGs達成に向けた事業として、以下が挙げられます。</p>
+      <ol>
+        <li>災害に強く安全・安心な都市（139億8,500万円）：水防センター（西遊馬）の実施設計、市民医療センターの改修、橋梁耐震化や災害備蓄品の強化など。</li>
+        <li>未来のまちを拓くさいたま市らしさの深化（384億4,976万円）：生物多様性を守るために、保全活動を支援する生物多様性活動支援センターの運営や自然共生サイト認定の支援・促進。大宮盆栽村地域連携推進体制の構築など。</li>
+        <li>誰一人取り残さない地域共生社会（278億5,350万円）：子育て負担の軽減（第2子保育料軽減、小学校給食費無償化）、5歳児健診、認知症セルフチェックツールの導入、ねんりんピック、心身障害者医療費拡大、コミュニティソーシャルワーカー配置など。</li>
+        <li>ゼロカーボンシティ（155億4,000万円）とDX推進（97億円）：ゼロカーボンでは再エネ設備導入支援（太陽光、蓄電池）、ペロブスカイト太陽電池実証・支援・実装化など（行政の取組で年間6.5万トンCO2削減見込み）。DXでは学校特別教室の開放のために予約システム・スマートロックの整備、電子契約の導入など。</li>
+      </ol>
+
+      <h4>私たちの取り組みが実現します</h4>
+      <ul>
+        <li>市立特別支援学校に通う医療的ケア児の通学支援として、看護師などを派遣できる制度へ。通学中に医療的ケアが必要なお子さんは、通学バスには乗車できず、原則、保護者の自主登校となっているというご相談から、都立志村学園の先進事例を視察し、県議会・市議会でも取り組んできたことが進みました。</li>
+        <li>（仮称）子どもの権利条例の施行に向けて、今年度はワークショップやアンケートを通じて幅広く子どもたちの意見を聴き、2027年度に条例案をつくり、2028年度の条例制定を目指します。2023年にこども基本法が施行されました。「子どもの最善の利益」に沿った子どもの権利条例制定に向けて、子どもが主体となる検討会議や声を上げにくい子どもの関係機関にヒアリングなどで意見を聴き、そのうえで小・中・高校生を中心に議論・検討されます。</li>
+      </ul>
+
+      <h4>学びの多様化学校　いろどり学園（小・中学生）も始まります！</h4>
+      <p>拠点となる本校と6か所がキャンパスになります。自分のキャンパスに通いながら、他拠点と時間ごとにオンラインでつなぎ、学年ごとには月2〜3回集まる機会があります。次回10月の転入学は、7月ごろに体験会を開催する予定です。学校に長期欠席している子どもたちは約3,000人いる中、いろどり学園に通う子どもたちは140人弱です。フリースクールや塾、その他の居場所にいる子ども達も含めた学び続けられる環境を作り出していく必要があります。</p>
+
+      <h4>多胎児家庭への支援拡大されます！</h4>
+      <p>外出支援事業では、外出時の同行支援に加えて、おうちでの着替えやおむつ交換などの子育て支援ができるようサービス内容が広がりました。利用しやすさや1歳以上での利用も可能となることが必要です。</p>
+    </div>
+
+    <div class="topic">
+      <h3>予算委員会での質疑から</h3>
+      <div class="qa">
+        <p class="q"><span class="tag">Q.</span>2026年度当初予算「シンカし続けるまちへ。暮らしを高め、共創で希望を拓く予算」とし、『共創』が全体の柱として位置づけられました。従来の「協働」や「連携」は、行政が主体となり、市民や企業、NPOなどが支えるという構図が多かったと受け止めている一方で、近年は課題が多様化・複雑化し、従来型の協働・連携だけでは対応しきれない局面が増えている。今回の『共創』をどのように捉えているのか。</p>
+        <p class="a"><span class="tag">A.</span>本市は、2035年以降の人口減少や激甚化・頻発化する自然災害など、容易に解決できない社会課題に対応する必要がある。市民の暮らしをこれまで以上に支え高めるとともに、行政だけでなく、市民や事業者などが互いに対等の立場で協働し、新たな価値や仕組みを生み出していくことと認識している。</p>
+      </div>
+
+      <h4>経済成長と脱炭素社会の実現に向けて</h4>
+      <div class="qa">
+        <p class="q"><span class="tag">Q1.</span>生産緑地や市街化調整区域の開発などによって緑の減少が進む中で、どのように緑を増やし、経済活動や脱炭素社会の実現を両立させるのか。気候変動の深刻化や生物多様性の危機が高まる中、従来の「みどりの条例」や公共施設緑化マニュアルなどの見直しが必要ではないか。</p>
+        <p class="a"><span class="tag">A1.</span>ゼロカーボンシティの実現に向けて、公共施設への太陽光発電設備の導入やLED化など、行政が率先した取組を進めており、CO2削減も着実に進んでいる。しかしながら、近年の開発や生産緑地の減少で緑の量・質、生物多様性への影響が課題である。「緑の基本計画」を軸にグリーンインフラの考え方を取り入れ、公共施設緑化マニュアルについては、緑を増やす方向で見直しの検討を進める。</p>
+      </div>
+      <p class="note">名古屋市では、市の中心部や市街化調整区域を含む市全域で緑化規制を強化しています。さいたま市でも経済活動などでマイナスになる分を増やすための対策を。</p>
+
+      <h4>育休中に上のきょうだいの保育園を転園申請しても、復職を求めないで</h4>
+      <div class="qa">
+        <p class="q"><span class="tag">Q.</span>産休・育休中の保育施設の利用について、転居などで上のきょうだい児の転園が決まると、育休対象の子どもも預けて復職しなければならず、家族全体で負担が大きい。そのため制度の柔軟な見直しが必要では？</p>
+        <p class="a"><span class="tag">A.</span>育休中でもきょうだい在園児の継続利用を認めているのは「子どもの環境を変えないため」である。転園した時点で環境は既に変わっているため、復職を前提としている。また、引っ越しなどと転入園、復職となることは、その家族の生活への影響は認識している一方で、保育園の待機児童がある状況のため、現状では制度変更は難しい。</p>
+      </div>
+
+      <h4>補装具の支給</h4>
+      <div class="qa">
+        <p class="q"><span class="tag">Q1.</span>国から、補装具費支給制度の支給事務について（旧完成用部品について特例申請を認める運用）が出されている。どのように運用に反映しているのか。</p>
+        <p class="a"><span class="tag">A1.</span>補装具の支給申請や決定は、区役所の支援課が、技術的な判定は障害者更生相談センターが担っている。</p>
+      </div>
+      <div class="qa">
+        <p class="q"><span class="tag">Q2.</span>国の通知では、自治体ごとの判断のばらつきを防ぐため、特例申請を適切に認めることが示されている。その判断はどのように行っているのか。</p>
+        <p class="a"><span class="tag">A2.</span>個々の障害の状態に応じて、本人に適した補装具かを判断している。基準にない補装具であっても必要性が認められる場合には、医師や技術職員、ケースワーカーなどの意見を踏まえ、「特例補装具審査会」において判定を行い、支給の可否を決定している。</p>
+      </div>
+      <div class="notice-box">特例申請を受け付けるようにする通知が出ていますが、現場で十分に共有されていないことがあります。国の通知の趣旨を踏まえ、利用者の実態に即した柔軟な対応が行われるよう、運用の徹底を求めました。</div>
+    </div>
+
+    <div class="topic">
+      <h3>手話通訳とAI字幕を試行</h3>
+      <p>手話言語条例を制定したことを契機に、2月定例会6日目、最終日の本会議にて、手話通訳者が入り、インターネット中継とAI字幕を試行実験しました。本会議場では、演壇付近で手話通訳者が発言を同時通訳。インターネットの配信では、通訳者と共にAIによるリアルタイム字幕を表示しました。今後も聴覚に障害のある方などに対する情報取得の機会拡大と利便性向上に取り組んでまいります。</p>
+    </div>
+
+    <div class="cta-band">
+      <p>市政に関するご意見・ご要望をお聞かせください</p>
+      <a class="btn" href="contact.html">ご相談・ご要望ページへ</a>
+    </div>
+  </div>
+</section>
+
 
 <footer class="site-footer">
   <div class="inner">
