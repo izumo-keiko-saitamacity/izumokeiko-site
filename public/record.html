@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="出雲けいこ（さいたま市議会議員）｜議会活動の記録（実績）。テーマ別に、これまでの議会活動をご覧いただけます。">
+<title>議会活動の記録（実績）｜出雲けいこ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #3DB56A;
+    --green-photo: #8FA46A;
+    --green-dark: #223B24;
+    --text-green: #2C6B4E;
+    --ink: #22302A;
+    --muted: #5A6B62;
+    --paper: #FAFCF9;
+    --line: #E1E9E2;
+    --card: #FFFFFF;
+    --considering-bg: #EEF1EA; --considering-fg: #6B7A63;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    line-height: 1.8;
+  }
+  a { color: inherit; }
+  .inner { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  /* --- top nav (shared with index.html) --- */
+  .topbar { background: var(--paper); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; }
+  .topbar .inner { max-width: 1040px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px; flex-wrap: wrap; }
+  .brand { font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; font-weight: 700; font-size: 16px; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+  .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--ink); border-bottom: 2px solid transparent; padding-bottom: 2px; }
+  .nav-links a:hover, .nav-links a.current { border-bottom-color: var(--green); }
+  .sns-row { display: flex; gap: 10px; align-items: center; }
+  .sns-row a { width: 30px; height: 30px; border-radius: 50%; background: var(--considering-bg); display: flex; align-items: center; justify-content: center; color: var(--text-green); }
+  .sns-row svg { width: 15px; height: 15px; fill: currentColor; }
+
+  /* --- page header --- */
+  .page-header { padding: 56px 0 8px; text-align: center; }
+  .page-header h1 {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-weight: 900;
+    font-size: clamp(22px, 3.4vw, 30px);
+    color: var(--text-green);
+    margin: 0 0 14px;
+  }
+  .page-header p { max-width: 46ch; margin: 0 auto; color: var(--muted); font-size: 15px; }
+
+  /* --- community illustration banner --- */
+  .community-banner { padding: 24px 0 8px; text-align: center; }
+  .community-banner img { width: 100%; max-width: 480px; height: auto; display: inline-block; }
+
+  /* --- tile grid --- */
+  .tile-section { padding: 48px 0 72px; }
+  .tile-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .tile {
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 22px 24px 26px;
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .tile:hover { border-color: var(--green); transform: translateY(-2px); }
+  .tile-icon {
+    height: 100px;
+    border-radius: 14px;
+    background: var(--considering-bg);
+    display: flex; align-items: center; justify-content: center;
+    padding: 10px;
+    margin-bottom: 16px;
+    overflow: hidden;
+  }
+  .tile-icon img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .tile h3 {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-size: 16.5px;
+    margin: 0 0 6px;
+    color: var(--ink);
+  }
+  .tile .tile-sub { font-size: 12.5px; color: var(--text-green); font-weight: 700; margin: 0 0 10px; }
+  .tile p.tile-desc { font-size: 13.5px; color: var(--muted); margin: 0 0 16px; flex: 1; }
+  .tile .tile-link { font-size: 13.5px; font-weight: 700; color: var(--text-green); }
+
+  footer.site-footer {
+    background: var(--green-dark);
+    color: #EAF2EB;
+    padding: 40px 0 24px;
+    font-size: 13px;
+  }
+  .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; }
+  .footer-nav { display: flex; gap: 18px; flex-wrap: wrap; list-style: none; padding: 0; margin: 0; }
+  .footer-nav a { color: #EAF2EB; text-decoration: none; font-size: 13.5px; }
+  .footer-nav a:hover { text-decoration: underline; }
+  footer.site-footer .sns-row a { background: rgba(255,255,255,.12); color: #fff; }
+  .copyright { opacity: .75; border-top: 1px solid rgba(255,255,255,.15); padding-top: 16px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="index.html">出雲けいこ</a>
+    <ul class="nav-links">
+      <li><a href="profile.html">プロフィール</a></li>
+      <li><a href="record.html" class="current">議会活動の記録</a></li>
+      <li><a href="policy.html">政策</a></li>
+      <li><a href="reports.html">市議会レポート</a></li>
+      <li><a href="archive.html">アーカイブ</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+    <nav class="sns-row" aria-label="SNS">
+      <a href="#" title="X（Twitter）"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-6.7L4 22H1l8.1-9.3L.9 2h7.3l5.1 6.1L18.9 2zm-1.3 18h2L7.5 4H5.4l12.2 16z"/></svg></a>
+      <a href="#" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.9 1 1.5.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.9.7-1.5 1-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.9-1-1.5-.2-.5-.4-1.2-.5-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.9-.7 1.5-1 .5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-1.9.4-.5.2-.8.4-1.1.7-.3.3-.6.6-.7 1.1-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.6.4 1.9.2.5.4.8.7 1.1.3.3.6.6 1.1.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 1.9-.4.5-.2.8-.4 1.1-.7.3-.3.6-.6.7-1.1.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.6-1.1-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.7-2a1.1 1.1 0 11-2.1 0 1.1 1.1 0 012.1 0z"/></svg></a>
+      <a href="#" title="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8.5h2.9l.4-3.4h-3.3V8c0-1 .3-1.6 1.7-1.6h1.7V3.3C16.6 3.2 15.5 3 14.3 3c-2.5 0-4.3 1.5-4.3 4.4v2.7H7v3.4h3v8.5h3.5z"/></svg></a>
+      <a href="#" title="LINE"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 5.6 2 10c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3 0 .7 0 1l-.1.9c0 .3-.2 1.1 1 .6 1.1-.5 6.2-3.6 8.4-6.2C22.1 12.9 22 11.5 22 10c0-4.4-4.5-8-10-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-header">
+  <div class="inner">
+    <h1>議会活動の記録（実績）</h1>
+    <p>テーマ別に、出雲けいこがこれまで取り組んできた議会活動をご覧いただけます。</p>
+  </div>
+</section>
+
+<section class="community-banner">
+  <img src="images/saitama-community.png" alt="さいたま市で暮らす、いろいろな世代のみなさん" loading="lazy">
+</section>
+
+<section class="tile-section">
+  <div class="inner">
+    <div class="tile-grid">
+      <a class="tile" href="index.html#policy-1">
+        <div class="tile-icon"><img src="images/icon-kosodate.png" alt="" loading="lazy"></div>
+        <p class="tile-sub">①その子らしく育つための環境の充実</p>
+        <h3>子育て・教育</h3>
+        <p class="tile-desc">一人ひとりの個性や成長のペースを大切にできる、子育て・教育環境について。</p>
+        <span class="tile-link">くわしく見る ＞</span>
+      </a>
+      <a class="tile" href="index.html#policy-2">
+        <div class="tile-icon"><img src="images/icon-mamapapa.png" alt="" loading="lazy"></div>
+        <p class="tile-sub">②ママ、パパに寄り添った支援の充実</p>
+        <h3>妊娠・出産・子育て中の方へ</h3>
+        <p class="tile-desc">妊娠期から子育て期まで、孤立せずに頼れる支援について。</p>
+        <span class="tile-link">くわしく見る ＞</span>
+      </a>
+      <a class="tile" href="index.html#policy-3">
+        <div class="tile-icon"><img src="images/icon-anatarashisa.png" alt="" loading="lazy"></div>
+        <p class="tile-sub">③あなたらしさが尊重される社会</p>
+        <h3>性別・障害・年齢にかかわらず</h3>
+        <p class="tile-desc">誰もが自分らしく生きられる社会づくりについて。</p>
+        <span class="tile-link">くわしく見る ＞</span>
+      </a>
+      <a class="tile" href="index.html#policy-4">
+        <div class="tile-icon"><img src="images/icon-bousai.png" alt="" loading="lazy"></div>
+        <p class="tile-sub">④命と暮らしを守るさいたま</p>
+        <h3>防災・安心なくらし</h3>
+        <p class="tile-desc">災害への備えや、急な困りごとがあったときの安心について。</p>
+        <span class="tile-link">くわしく見る ＞</span>
+      </a>
+      <a class="tile" href="index.html#policy-5">
+        <div class="tile-icon"><img src="images/icon-kankyo.png" alt="" loading="lazy"></div>
+        <p class="tile-sub">⑤持続可能な社会のために</p>
+        <h3>環境・次の世代へ</h3>
+        <p class="tile-desc">次の世代に引き継げる、環境にも財政にもやさしいまちづくりについて。</p>
+        <span class="tile-link">くわしく見る ＞</span>
+      </a>
+      <a class="tile" href="reports.html">
+        <div class="tile-icon"><img src="images/icon-report.png" alt="" loading="lazy"></div>
+        <p class="tile-sub">市議会での質問・提案</p>
+        <h3>市議会レポートを見る</h3>
+        <p class="tile-desc">議会で何を質問し、行政がどう答え、その後どうなったかをまとめています。</p>
+        <span class="tile-link">くわしく見る ＞</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div class="footer-grid">
+      <ul class="footer-nav">
+        <li><a href="profile.html">プロフィール</a></li>
+        <li><a href="record.html">議会活動の記録</a></li>
+        <li><a href="policy.html">政策</a></li>
+        <li><a href="reports.html">市議会レポート</a></li>
+        <li><a href="archive.html">アーカイブ</a></li>
+        <li><a href="contact.html">お問い合わせ</a></li>
+      </ul>
+      <nav class="sns-row" aria-label="SNS">
+        <a href="#" title="X（Twitter）"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-7.6 8.7L23.3 22h-7.2l-5.6-6.7L4 22H1l8.1-9.3L.9 2h7.3l5.1 6.1L18.9 2zm-1.3 18h2L7.5 4H5.4l12.2 16z"/></svg></a>
+        <a href="#" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.9 1 1.5.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.9.7-1.5 1-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.9-1-1.5-.2-.5-.4-1.2-.5-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.9-.7 1.5-1 .5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-1.9.4-.5.2-.8.4-1.1.7-.3.3-.6.6-.7 1.1-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.6.4 1.9.2.5.4.8.7 1.1.3.3.6.6 1.1.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 1.9-.4.5-.2.8-.4 1.1-.7.3-.3.6-.6.7-1.1.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.6-1.1-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.7-2a1.1 1.1 0 11-2.1 0 1.1 1.1 0 012.1 0z"/></svg></a>
+        <a href="#" title="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 22v-8.5h2.9l.4-3.4h-3.3V8c0-1 .3-1.6 1.7-1.6h1.7V3.3C16.6 3.2 15.5 3 14.3 3c-2.5 0-4.3 1.5-4.3 4.4v2.7H7v3.4h3v8.5h3.5z"/></svg></a>
+        <a href="#" title="LINE"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 5.6 2 10c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3 0 .7 0 1l-.1.9c0 .3-.2 1.1 1 .6 1.1-.5 6.2-3.6 8.4-6.2C22.1 12.9 22 11.5 22 10c0-4.4-4.5-8-10-8z"/></svg></a>
+      </nav>
+    </div>
+    <p class="copyright">© 2026 出雲けいこ</p>
+  </div>
+</footer>
+
+</body>
+</html>
