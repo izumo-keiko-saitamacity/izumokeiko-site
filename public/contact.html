@@ -4,37 +4,158 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>お問い合わせ｜出雲けいこ</title>
+<meta name="description" content="出雲けいこ（さいたま市議会議員）｜ご相談・ご要望をお聞かせください。">
+<title>ご相談・ご要望｜出雲けいこ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green: #3DB56A; --text-green: #2C6B4E; --green-dark: #223B24;
-    --ink: #22302A; --muted: #5A6B62; --paper: #FAFCF9; --line: #E1E9E2;
+    --green: #3DB56A;
+    --green-dark: #223B24;
+    --text-green: #2C6B4E;
+    --ink: #22302A;
+    --muted: #5A6B62;
+    --paper: #FAFCF9;
+    --line: #E1E9E2;
+    --card: #FFFFFF;
+    --considering-bg: #EEF1EA;
   }
   * { box-sizing: border-box; }
-  body { margin:0; background:var(--paper); color:var(--ink); font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif; line-height:1.8; }
-  .inner { max-width: 720px; margin:0 auto; padding: 0 20px; }
-  .topbar { border-bottom:1px solid var(--line); padding:16px 0; }
-  .topbar .inner { display:flex; align-items:center; justify-content:space-between; }
-  .brand { font-family:"Zen Maru Gothic",sans-serif; font-weight:700; color:var(--ink); text-decoration:none; }
-  .back { font-size:14px; color:var(--text-green); text-decoration:none; }
-  main { padding: 72px 0; text-align:center; }
-  main h1 { font-family:"Zen Maru Gothic",sans-serif; font-size:26px; color:var(--text-green); margin:0 0 14px; }
-  main p { color:var(--muted); font-size:15px; }
-  .badge { display:inline-block; background:#EEF1EA; color:#6B7A63; font-size:12px; font-weight:700; padding:4px 14px; border-radius:999px; margin-bottom:18px; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    line-height: 1.8;
+  }
+  a { color: inherit; }
+  .inner { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  /* --- top nav (shared with index.html) --- */
+  .topbar { background: var(--paper); border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 50; }
+  .topbar .inner { max-width: 1040px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 20px; flex-wrap: wrap; }
+  .brand { font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; font-weight: 700; font-size: 16px; color: var(--ink); text-decoration: none; }
+  .nav-links { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+  .nav-links a { text-decoration: none; font-size: 14px; font-weight: 500; color: var(--ink); border-bottom: 2px solid transparent; padding-bottom: 2px; }
+  .nav-links a:hover, .nav-links a.current { border-bottom-color: var(--green); }
+  .sns-row { display: flex; gap: 10px; align-items: center; }
+  .sns-row a { width: 30px; height: 30px; border-radius: 50%; background: var(--considering-bg); display: flex; align-items: center; justify-content: center; color: var(--text-green); }
+  .sns-row svg { width: 15px; height: 15px; fill: currentColor; }
+
+  /* --- page header --- */
+  .page-header { padding: 56px 0 8px; text-align: center; }
+  .page-header h1 {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-weight: 900;
+    font-size: clamp(20px, 3.2vw, 28px);
+    color: var(--text-green);
+    margin: 0 0 14px;
+  }
+  .page-header p { max-width: 46ch; margin: 0 auto; color: var(--muted); font-size: 15px; }
+
+  /* --- form --- */
+  .form-section { padding: 40px 0 72px; }
+  .form-wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 8px;
+  }
+  .form-wrap iframe {
+    width: 100%;
+    height: 1000px;
+    border: none;
+    border-radius: 12px;
+    display: block;
+  }
+  .form-fallback { text-align: center; margin: 18px auto 0; max-width: 720px; font-size: 13.5px; color: var(--muted); }
+  .form-fallback a { color: var(--text-green); font-weight: 700; text-decoration: underline; }
+
+  footer.site-footer {
+    background: var(--green-dark);
+    color: #EAF2EB;
+    padding: 40px 0 24px;
+    font-size: 13px;
+  }
+  .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; }
+  .footer-nav { display: flex; gap: 18px; flex-wrap: wrap; list-style: none; padding: 0; margin: 0; }
+  .footer-nav a { color: #EAF2EB; text-decoration: none; font-size: 13.5px; }
+  .footer-nav a:hover { text-decoration: underline; }
+  footer.site-footer .sns-row a { background: rgba(255,255,255,.12); color: #fff; }
+  .related-links { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12px; opacity: .75; margin: 0 0 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.15); }
+  .related-links a { color: #EAF2EB; text-decoration: none; }
+  .related-links a:hover { text-decoration: underline; }
+  .related-links .label { opacity: .85; }
+  .copyright { opacity: .75; margin-top: 0; }
 </style>
 </head>
 <body>
-<header class="topbar"><div class="inner">
-  <a class="brand" href="index.html">出雲けいこ</a>
-  <a class="back" href="index.html">トップページへ戻る ＞</a>
-</div></header>
-<main class="inner">
-  <span class="badge">準備中</span>
-  <h1>お問い合わせ</h1>
-  <p>お問い合わせ方法は、現在準備しています。</p>
-</main>
+
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="index.html">出雲けいこ</a>
+    <ul class="nav-links">
+      <li><a href="profile.html">プロフィール</a></li>
+      <li><a href="record.html">議会活動の記録</a></li>
+      <li><a href="policy.html">政策</a></li>
+      <li><a href="reports.html">市議会レポート</a></li>
+      <li><a href="archive.html">アーカイブ</a></li>
+      <li><a href="contact.html" class="current">ご相談・ご要望</a></li>
+    </ul>
+    <nav class="sns-row" aria-label="SNS">
+      <a href="https://www.instagram.com/izumokeiko/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.9 1 1.5.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.9.7-1.5 1-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.9-1-1.5-.2-.5-.4-1.2-.5-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.9-.7 1.5-1 .5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-1.9.4-.5.2-.8.4-1.1.7-.3.3-.6.6-.7 1.1-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.6.4 1.9.2.5.4.8.7 1.1.3.3.6.6 1.1.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 1.9-.4.5-.2.8-.4 1.1-.7.3-.3.6-.6.7-1.1.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.6-1.1-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.7-2a1.1 1.1 0 11-2.1 0 1.1 1.1 0 012.1 0z"/></svg></a>
+      <a href="https://go2senkyo.com/seijika/168450" target="_blank" rel="noopener" title="ブログ"><svg viewBox="0 0 24 24"><path d="M5 3h14a1 1 0 011 1v16a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1zm2 5h10V6H7v2zm0 4h10v-2H7v2zm0 4h7v-2H7v2z"/></svg></a>
+      <a href="https://line.me/R/ti/p/@jev4977j" target="_blank" rel="noopener" title="公式LINE"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 5.6 2 10c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3 0 .7 0 1l-.1.9c0 .3-.2 1.1 1 .6 1.1-.5 6.2-3.6 8.4-6.2C22.1 12.9 22 11.5 22 10c0-4.4-4.5-8-10-8z"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<section class="page-header">
+  <div class="inner">
+    <h1>ご相談・ご要望をお聞かせください。</h1>
+    <p>くらしの中で気になっていること、市政への要望など、どんなことでもお寄せください。いただいた内容は、今後の活動の参考にさせていただきます。</p>
+  </div>
+</section>
+
+<section class="form-section">
+  <div class="inner">
+    <div class="form-wrap">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeRnS9sTCh1COGLxiFtkgesLpU1nUQMnkrgQ1SDl2YpGLFdUQ/viewform?embedded=true" title="ご相談・ご要望フォーム">読み込んでいます…</iframe>
+    </div>
+    <p class="form-fallback">フォームがうまく表示されない場合は<br><a href="https://docs.google.com/forms/d/e/1FAIpQLSeRnS9sTCh1COGLxiFtkgesLpU1nUQMnkrgQ1SDl2YpGLFdUQ/viewform" target="_blank" rel="noopener">こちらから直接開く</a>こともできます。</p>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div class="footer-grid">
+      <ul class="footer-nav">
+        <li><a href="profile.html">プロフィール</a></li>
+        <li><a href="record.html">議会活動の記録</a></li>
+        <li><a href="policy.html">政策</a></li>
+        <li><a href="reports.html">市議会レポート</a></li>
+        <li><a href="archive.html">アーカイブ</a></li>
+        <li><a href="contact.html">ご相談・ご要望</a></li>
+      </ul>
+      <nav class="sns-row" aria-label="SNS">
+        <a href="https://www.instagram.com/izumokeiko/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.9 1 1.5.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.9.7-1.5 1-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.9-1-1.5-.2-.5-.4-1.2-.5-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.9-.7 1.5-1 .5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-1.9.4-.5.2-.8.4-1.1.7-.3.3-.6.6-.7 1.1-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.6.4 1.9.2.5.4.8.7 1.1.3.3.6.6 1.1.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 1.9-.4.5-.2.8-.4 1.1-.7.3-.3.6-.6.7-1.1.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.6-1.1-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.7-2a1.1 1.1 0 11-2.1 0 1.1 1.1 0 012.1 0z"/></svg></a>
+        <a href="https://go2senkyo.com/seijika/168450" target="_blank" rel="noopener" title="ブログ"><svg viewBox="0 0 24 24"><path d="M5 3h14a1 1 0 011 1v16a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1zm2 5h10V6H7v2zm0 4h10v-2H7v2zm0 4h7v-2H7v2z"/></svg></a>
+        <a href="https://line.me/R/ti/p/@jev4977j" target="_blank" rel="noopener" title="公式LINE"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 5.6 2 10c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3 0 .7 0 1l-.1.9c0 .3-.2 1.1 1 .6 1.1-.5 6.2-3.6 8.4-6.2C22.1 12.9 22 11.5 22 10c0-4.4-4.5-8-10-8z"/></svg></a>
+      </nav>
+    </div>
+    <p class="related-links">
+      <span class="label">関連リンク：</span>
+      <a href="https://www.city.saitama.jp" target="_blank" rel="noopener">さいたま市</a>
+      <a href="https://www.city.saitama.jp/gikai" target="_blank" rel="noopener">さいたま市議会</a>
+      <a href="https://democracy-saitamacity.jp/" target="_blank" rel="noopener">立憲・国民・無所属の会さいたま市議団</a>
+      <a href="https://cdp-japan.jp/" target="_blank" rel="noopener">立憲民主党</a>
+    </p>
+    <p class="copyright">© 2026 出雲けいこ</p>
+  </div>
+</footer>
+
 </body>
 </html>
