@@ -59,14 +59,22 @@
   /* --- brand wordmark: hand-drawn "こころにっこり" logo asset --- */
   .brand-logo-img { display: block; height: 30px; width: auto; }
   .hero-logo-wrap { display: inline-block; position: relative; align-self: flex-start; margin: 0 0 14px; }
-  .hero-logo-img { display: block; height: 28px; width: auto; margin: 0; }
+  .hero-logo-text {
+    display: block;
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 1.2;
+    color: var(--text-green);
+    letter-spacing: .02em;
+  }
   .hero-logo-dots { position: absolute; top: -7px; right: -13px; width: 15px; height: 16px; pointer-events: none; }
   .hero-logo-dots i { position: absolute; display: block; border-radius: 50%; background: var(--accent-pink); }
   .hero-logo-dots i:nth-child(1) { width: 6px; height: 6px; top: 0; left: 0; }
   .hero-logo-dots i:nth-child(2) { width: 6px; height: 6px; top: 1px; left: 8px; }
   .hero-logo-dots i:nth-child(3) { width: 6px; height: 6px; top: 10px; left: 5px; }
   @media (max-width: 720px) {
-    .hero-logo-img { height: 24px; }
+    .hero-logo-text { font-size: 21px; }
     .hero-logo-wrap { margin: 4px 0 10px; }
     .hero-logo-dots { top: -6px; right: -11px; width: 13px; height: 14px; }
     .hero-logo-dots i:nth-child(1), .hero-logo-dots i:nth-child(2), .hero-logo-dots i:nth-child(3) { width: 5px; height: 5px; }
@@ -529,7 +537,7 @@
   <div class="hero-inner">
     <div class="hero-text">
       <div class="hero-logo-wrap">
-        <img class="hero-logo-img" src="images/kokoro-nikkori-logo.png" alt="こころにっこり">
+        <span class="hero-logo-text">こころにっこり</span>
         <span class="hero-logo-dots" aria-hidden="true"><i></i><i></i><i></i></span>
       </div>
       <p class="tagline">ひとりで抱え込まなくて<br>いいまちへ</p>
