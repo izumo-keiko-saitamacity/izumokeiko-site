@@ -154,10 +154,24 @@
     .hero-text { padding: 8px 20px 40px; }
   }
 
+  /* --- life teaser --- */
+  .life-teaser {
+    background: var(--considering-bg);
+    border-radius: 18px;
+    padding: 26px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .life-teaser p { margin: 0; font-size: 14.5px; color: var(--text-green); font-weight: 700; }
+  .life-teaser .more-link { margin: 0; }
+
   /* --- policy cards --- */
   .policy-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
   }
   .policy-card {
@@ -261,6 +275,7 @@
     <a class="brand" href="index.html">出雲けいこ</a>
     <ul class="nav-links">
       <li><a href="profile.html">プロフィール</a></li>
+      <li><a href="life.html">くらしから探す</a></li>
       <li><a href="policy.html">政策</a></li>
       <li><a href="reports.html">市議会レポート</a></li>
       <li><a href="archive.html">アーカイブ</a></li>
@@ -297,25 +312,44 @@
   </svg>
 </section>
 
+<section style="padding: 40px 0 0;">
+  <div class="inner">
+    <div class="life-teaser">
+      <p>🔍 気になるテーマから探したい方へ</p>
+      <a class="more-link" href="life.html">あなたの暮らしから探す ＞</a>
+    </div>
+  </div>
+</section>
+
 <section id="policy">
   <div class="inner">
     <h2 class="section-title">重点政策</h2>
     <p class="section-lede">テーマごとに、今どこまで進んでいるかをお伝えします。</p>
     <div class="policy-grid">
-      <div class="policy-card">
-        <span class="status-badge status-progress">進行中</span><span class="sample-tag">※表示例</span>
-        <h3>子育て支援</h3>
-        <p>子どもも、子育てする人も安心できる環境づくりに取り組んでいます。</p>
+      <div class="policy-card" id="policy-1">
+        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※状況は仮表示</span>
+        <h3>①その子らしく育つための環境の充実</h3>
+        <p>一人ひとりの個性や成長のペースを大切にできる、子育て・教育環境をつくります。</p>
       </div>
-      <div class="policy-card">
-        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※表示例</span>
-        <h3>福祉・介護</h3>
-        <p>高齢の方や障害のある方が、その人らしく暮らせる仕組みを検討しています。</p>
+      <div class="policy-card" id="policy-2">
+        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※状況は仮表示</span>
+        <h3>②ママ、パパに寄り添った支援の充実</h3>
+        <p>妊娠・出産・子育ての時期を、孤立せずに乗り越えられる支援を広げます。</p>
       </div>
-      <div class="policy-card">
-        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※表示例</span>
-        <h3>防災・安心なまちづくり</h3>
-        <p>誰もが安心して暮らせる、災害に強い地域づくりを目指しています。</p>
+      <div class="policy-card" id="policy-3">
+        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※状況は仮表示</span>
+        <h3>③あなたらしさが尊重される社会</h3>
+        <p>性別や年齢、障害の有無にかかわらず、自分らしく生きられる社会を目指します。</p>
+      </div>
+      <div class="policy-card" id="policy-4">
+        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※状況は仮表示</span>
+        <h3>④命と暮らしを守るさいたま</h3>
+        <p>災害や急な困りごとがあっても、命と暮らしが守られるまちをつくります。</p>
+      </div>
+      <div class="policy-card" id="policy-5">
+        <span class="status-badge status-considering">検討中</span><span class="sample-tag">※状況は仮表示</span>
+        <h3>⑤持続可能な社会のために</h3>
+        <p>次の世代に引き継げる、環境にも財政にもやさしいまちづくりを進めます。</p>
       </div>
     </div>
     <a class="more-link" href="policy.html">すべての政策を見る ＞</a>
@@ -354,6 +388,7 @@
     <div class="footer-grid">
       <ul class="footer-nav">
         <li><a href="profile.html">プロフィール</a></li>
+        <li><a href="life.html">くらしから探す</a></li>
         <li><a href="policy.html">政策</a></li>
         <li><a href="reports.html">市議会レポート</a></li>
         <li><a href="archive.html">アーカイブ</a></li>
