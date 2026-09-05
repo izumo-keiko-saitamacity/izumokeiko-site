@@ -56,12 +56,19 @@
     margin: 0 0 10px;
   }
 
-  /* --- brand wordmark (shared feel with nav + hero kicker) --- */
-  .dots { display: inline-flex; gap: 3px; margin-left: 6px; vertical-align: middle; }
-  .dots i { display: inline-block; width: 5px; height: 5px; border-radius: 50%; }
-  .dots i:nth-child(1) { background: var(--accent-orange); }
-  .dots i:nth-child(2) { background: var(--accent-pink); }
-  .dots i:nth-child(3) { background: var(--green); }
+  /* --- brand wordmark: hand-drawn "こころにっこり" mark (smile curve + spark dots) --- */
+  .brand-mark { position: relative; display: inline-block; }
+  .brand-mark .smile {
+    display: block;
+    width: 76%;
+    height: auto;
+    margin: 1px 0 0 12%;
+    overflow: visible;
+  }
+  .brand-mark .spark { position: absolute; top: -0.35em; right: -0.7em; display: flex; gap: 3px; }
+  .brand-mark .spark i { display: block; border-radius: 50%; }
+  .brand-mark .spark i:nth-child(1) { width: 6px; height: 6px; background: var(--accent-orange); }
+  .brand-mark .spark i:nth-child(2) { width: 5px; height: 5px; background: #F2C230; margin-top: 5px; }
 
   /* --- top nav --- */
   .topbar {
@@ -187,36 +194,20 @@
   .hero-inner {
     position: relative;
     display: grid;
-    grid-template-columns: minmax(280px, 480px) 1fr;
+    grid-template-columns: minmax(280px, 560px) 1fr;
     align-items: stretch;
     min-height: 380px;
   }
   .hero-text {
     position: relative; z-index: 2;
     display: flex; flex-direction: column; justify-content: center;
-    padding: 48px clamp(20px, 6vw, 64px) 48px clamp(20px, 4vw, 56px);
+    padding: 48px clamp(20px, 4vw, 56px) 48px clamp(20px, 6vw, 64px);
   }
   .hero-photo { position: relative; min-height: 320px; }
   .hero-photo img {
     position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;
-    -webkit-mask-image: linear-gradient(to left, transparent 0%, #000 48%);
-    mask-image: linear-gradient(to left, transparent 0%, #000 48%);
-  }
-  .hero-decor {
-    position: absolute;
-    right: 0; bottom: -18px;
-    width: min(340px, 30vw);
-    opacity: .5;
-    pointer-events: none;
-    z-index: 1;
-  }
-  .kicker {
-    display: flex; align-items: center;
-    margin: 0 0 10px;
-    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
-    font-weight: 700;
-    font-size: 17px;
-    color: var(--accent-orange);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 48%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 48%);
   }
   .tagline {
     margin: 0 0 20px;
@@ -250,13 +241,12 @@
 
   @media (max-width: 720px) {
     .hero-inner { grid-template-columns: 1fr; }
-    .hero-photo { min-height: 46vw; }
+    .hero-photo { order: -1; min-height: 46vw; }
     .hero-photo img {
-      mask-image: none;
-      -webkit-mask-image: none;
+      mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 40%);
     }
-    .hero-text { padding: 28px 20px 40px; }
-    .hero-decor { display: none; }
+    .hero-text { padding: 8px 20px 40px; }
   }
 
   /* --- reason section --- */
@@ -514,7 +504,12 @@
 
 <header class="topbar">
   <div class="inner">
-    <a class="brand" href="index.html">こころにっこり<span class="dots"><i></i><i></i><i></i></span></a>
+    <a class="brand" href="index.html">
+      <span class="brand-mark">こころにっこり
+        <svg class="smile" viewBox="0 0 100 18" aria-hidden="true"><path d="M6 3 Q50 20 94 3" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+        <span class="spark"><i></i><i></i></span>
+      </span>
+    </a>
     <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" onclick="var l=document.querySelector('.nav-links');var o=l.classList.toggle('open');this.classList.toggle('active',o);this.setAttribute('aria-expanded',o?'true':'false');this.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');">
       <span></span><span></span><span></span>
     </button>
@@ -536,18 +531,22 @@
 
 <section class="hero">
   <div class="hero-inner">
-    <div class="hero-photo">
-      <img src="izumo-keiko.jpg" alt="出雲けいこ">
-    </div>
     <div class="hero-text">
-      <p class="kicker">こころにっこり<span class="dots"><i></i><i></i><i></i></span></p>
-      <p class="tagline">ひとりで抱え込まなくて<br>いいまちへ</p>
+      <p class="tagline">
+        <span class="brand-mark">こころにっこり
+          <svg class="smile" viewBox="0 0 100 18" aria-hidden="true"><path d="M6 3 Q50 20 94 3" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+          <span class="spark"><i></i><i></i></span>
+        </span><br>
+        ひとりで抱え込まなくて<br>いいまちへ
+      </p>
       <p class="pledge">子どももおとなも。<br>障害のある人も、高齢の人も。<br>誰もが安心して、自分らしく暮らせるまちへ。</p>
       <p class="signoff"><span class="role">さいたま市議会議員</span><span class="name">出雲けいこ</span></p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="contact.html">あなたの声を聞かせてください ＞</a>
       </div>
-      <img class="hero-decor" src="images/saitama-community.png" alt="" aria-hidden="true">
+    </div>
+    <div class="hero-photo">
+      <img src="izumo-keiko.jpg" alt="出雲けいこ">
     </div>
   </div>
   <svg class="hero-wave" viewBox="0 0 1200 80" preserveAspectRatio="none" aria-hidden="true">
