@@ -1,0 +1,17 @@
+// Cloudflare Workers（Static Assets）でこのフォルダを公開するための設定
+// このファイルはリポジトリの一番上（public フォルダと同じ階層）に置く
+{
+  // Cloudflare上での名前。仮URLは https://izumokeiko-site.<アカウント名>.workers.dev になる
+  "name": "izumokeiko-site",
+
+  // 動作の基準日。作成日をそのまま入れておけばよい（未来の日付は不可）
+  "compatibility_date": "2026-09-04",
+
+  "assets": {
+    // 公開するファイルを入れるフォルダ。index.html はこの中に置く
+    "directory": "./public",
+
+    // 存在しないURLにアクセスされたら public/404.html を返す（無ければ標準の404）
+    "not_found_handling": "404-page"
+  }
+}
