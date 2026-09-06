@@ -4,8 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<meta name="description" content="出雲けいこ（さいたま市議会議員）｜議会活動の記録（実績）。テーマ別に、これまでの議会活動をご覧いただけます。">
-<title>議会活動の記録（実績）｜出雲けいこ</title>
+<meta name="description" content="出雲けいこ（さいたま市議会議員）｜議会活動の記録。何を質問し、行政がどう答え、その後どうなったかを、テーマ・年・会議種別・対応状況で検索できます。">
+<title>議会活動の記録｜出雲けいこ</title>
+<link rel="alternate" href="record-text.html">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -24,6 +25,9 @@
     --line: #E1E9E2;
     --card: #FFFFFF;
     --considering-bg: #EEF1EA; --considering-fg: #6B7A63;
+    --badge-done-bg: #E3F3E9; --badge-done-fg: #2C6B4E;
+    --badge-progress-bg: #FFF3D6; --badge-progress-fg: #8A6D1D;
+    --badge-research-bg: #E6EEF7; --badge-research-fg: #35577D;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -99,7 +103,6 @@
     }
   }
 
-
   /* --- page header --- */
   .page-header { padding: 56px 0 8px; text-align: center; }
   .page-header h1 {
@@ -109,50 +112,136 @@
     color: var(--text-green);
     margin: 0 0 14px;
   }
-  .page-header p { max-width: 46ch; margin: 0 auto; color: var(--muted); font-size: 15px; }
+  .page-header p { max-width: 56ch; margin: 0 auto; color: var(--muted); font-size: 15px; }
+  .page-header .total-count { display: block; margin-top: 8px; font-size: 13.5px; color: var(--text-green); font-weight: 700; }
 
-  /* --- community illustration banner --- */
-  .community-banner { padding: 24px 0 8px; text-align: center; }
-  .community-banner img { width: 100%; max-width: 480px; height: auto; display: inline-block; }
-
-  /* --- tile grid --- */
-  .tile-section { padding: 48px 0 72px; }
-  .tile-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+  /* --- db controls --- */
+  .db-controls { padding: 28px 0 8px; }
+  .search-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .search-row input[type="search"] {
+    flex: 1 1 260px;
+    padding: 12px 16px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    font-size: 14.5px;
+    font-family: inherit;
+    background: var(--card);
+    color: var(--ink);
   }
-  .tile {
-    display: flex;
-    flex-direction: column;
+  .search-row input[type="search"]:focus { outline: 2px solid var(--green); outline-offset: 1px; }
+  .controls-toggle-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--green);
+    background: var(--card);
+    color: var(--text-green);
+    font-size: 14.5px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+  }
+  .controls-toggle-bar:hover { background: var(--considering-bg); }
+  .controls-toggle-bar .chev { transition: transform .15s ease; }
+  .controls-toggle-bar[aria-expanded="true"] .chev { transform: rotate(180deg); }
+
+  .filter-panel {
+    margin-top: 14px;
+    padding: 18px;
     background: var(--card);
     border: 1px solid var(--line);
-    border-radius: 18px;
-    padding: 22px 24px 26px;
-    text-decoration: none;
-    color: var(--ink);
-    transition: border-color .15s ease, transform .15s ease;
-  }
-  .tile:hover { border-color: var(--green); transform: translateY(-2px); }
-  .tile-icon {
-    height: 100px;
     border-radius: 14px;
-    background: var(--considering-bg);
-    display: flex; align-items: center; justify-content: center;
-    padding: 10px;
-    margin-bottom: 16px;
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    align-items: end;
   }
-  .tile-icon img { max-width: 100%; max-height: 100%; object-fit: contain; }
-  .tile h3 {
+  .filter-group { display: flex; flex-direction: column; gap: 6px; }
+  .filter-group label { font-size: 12.5px; color: var(--muted); font-weight: 700; }
+  .filter-group select {
+    padding: 9px 10px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 14px;
+  }
+  .btn-reset {
+    align-self: end;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--muted);
+    font-family: inherit;
+    font-size: 13.5px;
+    cursor: pointer;
+  }
+  .btn-reset:hover { border-color: var(--green); color: var(--text-green); }
+
+  .result-count { margin: 14px 0 0; font-size: 13.5px; color: var(--muted); }
+
+  /* --- record cards --- */
+  .db-list-section { padding: 20px 0 72px; }
+  .card-list { display: flex; flex-direction: column; gap: 18px; margin-top: 18px; }
+  .record-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 24px;
+  }
+  .record-meta { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin-bottom: 10px; font-size: 12.5px; color: var(--muted); }
+  .record-meta .meta-session { font-weight: 700; color: var(--text-green); }
+  .level-badge {
+    margin-left: auto;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .level-done { background: var(--badge-done-bg); color: var(--badge-done-fg); }
+  .level-progress { background: var(--badge-progress-bg); color: var(--badge-progress-fg); }
+  .level-research { background: var(--badge-research-bg); color: var(--badge-research-fg); }
+  .level-pending, .level-other { background: var(--considering-bg); color: var(--considering-fg); }
+
+  .record-title {
     font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
-    font-size: 16.5px;
-    margin: 0 0 6px;
+    font-size: 17px;
+    margin: 0 0 10px;
     color: var(--ink);
   }
-  .tile .tile-sub { font-size: 12.5px; color: var(--text-green); font-weight: 700; margin: 0 0 10px; }
-  .tile p.tile-desc { font-size: 13.5px; color: var(--muted); margin: 0 0 16px; flex: 1; }
-  .tile .tile-link { font-size: 13.5px; font-weight: 700; color: var(--text-green); }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--considering-bg);
+    color: var(--text-green);
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .qa-q, .qa-a { margin: 0 0 8px; font-size: 14.5px; }
+  .qa-q .tag, .qa-a .tag, .qa-followup .tag {
+    font-weight: 900;
+    color: var(--text-green);
+    margin-right: 6px;
+  }
+  .qa-a { background: var(--considering-bg); border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; }
+  .qa-followup { font-size: 13.5px; color: var(--muted); background: var(--paper); border: 1px dashed var(--line); border-radius: 10px; padding: 10px 14px; margin-bottom: 10px; }
+  .source-link {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--text-green);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--green);
+  }
+  .empty-state { text-align: center; color: var(--muted); font-size: 14.5px; padding: 40px 0; }
 
   footer.site-footer {
     position: relative;
@@ -209,61 +298,56 @@
 
 <section class="page-header">
   <div class="inner">
-    <h1>議会活動の記録（実績）</h1>
-    <p>テーマ別に、出雲けいこがこれまで取り組んできた議会活動をご覧いただけます。</p>
+    <h1>議会活動の記録</h1>
+    <p>出雲けいこが議会で「何を質問したか → 行政がどう答えたか → その後どうなったか」を、テーマ・年・会議種別・対応状況で検索できます。
+      <span class="total-count" id="totalCountText"></span>
+    </p>
   </div>
 </section>
 
-<section class="community-banner">
-  <img src="images/saitama-community.png" alt="さいたま市で暮らす、いろいろな世代のみなさん" loading="lazy">
+<section class="db-controls">
+  <div class="inner">
+    <div class="search-row">
+      <input type="search" id="keyword" placeholder="キーワードで検索（例：子育て、防災、環境 など）" aria-label="キーワードで検索">
+      <button type="button" class="controls-toggle-bar" id="filterToggle" aria-expanded="false" aria-controls="filterPanel">
+        絞り込み・並び替え <span class="chev" aria-hidden="true">▾</span>
+      </button>
+    </div>
+    <div class="filter-panel" id="filterPanel" hidden>
+      <div class="filter-group">
+        <label for="filterTag">分野</label>
+        <select id="filterTag" aria-label="分野で絞り込み"><option value="">すべて</option></select>
+      </div>
+      <div class="filter-group">
+        <label for="filterYear">年</label>
+        <select id="filterYear" aria-label="年で絞り込み"><option value="">すべて</option></select>
+      </div>
+      <div class="filter-group">
+        <label for="filterStatus">対応状況</label>
+        <select id="filterStatus" aria-label="対応状況で絞り込み"><option value="">すべて</option></select>
+      </div>
+      <div class="filter-group">
+        <label for="filterMeeting">会議種別</label>
+        <select id="filterMeeting" aria-label="会議種別で絞り込み"><option value="">すべて</option></select>
+      </div>
+      <div class="filter-group">
+        <label for="sortOrder">並び順</label>
+        <select id="sortOrder" aria-label="並び順">
+          <option value="desc">新しい順</option>
+          <option value="asc">古い順</option>
+        </select>
+      </div>
+      <button type="button" id="resetFilters" class="btn-reset">条件をリセット</button>
+    </div>
+    <p class="result-count" id="resultCount" aria-live="polite"></p>
+  </div>
 </section>
 
-<section class="tile-section">
+<section class="db-list-section">
   <div class="inner">
-    <div class="tile-grid">
-      <a class="tile" href="index.html#policy-1">
-        <div class="tile-icon"><img src="images/icon-kosodate.png" alt="" loading="lazy"></div>
-        <p class="tile-sub">①その子らしく育つための環境の充実</p>
-        <h3>子育て・教育</h3>
-        <p class="tile-desc">一人ひとりの個性や成長のペースを大切にできる、子育て・教育環境について。</p>
-        <span class="tile-link">くわしく見る ＞</span>
-      </a>
-      <a class="tile" href="index.html#policy-2">
-        <div class="tile-icon"><img src="images/icon-mamapapa.png" alt="" loading="lazy"></div>
-        <p class="tile-sub">②ママ、パパに寄り添った支援の充実</p>
-        <h3>妊娠・出産・子育て中の方へ</h3>
-        <p class="tile-desc">妊娠期から子育て期まで、孤立せずに頼れる支援について。</p>
-        <span class="tile-link">くわしく見る ＞</span>
-      </a>
-      <a class="tile" href="index.html#policy-3">
-        <div class="tile-icon"><img src="images/icon-anatarashisa.png" alt="" loading="lazy"></div>
-        <p class="tile-sub">③あなたらしさが尊重される社会</p>
-        <h3>性別・障害・年齢にかかわらず</h3>
-        <p class="tile-desc">誰もが自分らしく生きられる社会づくりについて。</p>
-        <span class="tile-link">くわしく見る ＞</span>
-      </a>
-      <a class="tile" href="index.html#policy-4">
-        <div class="tile-icon"><img src="images/icon-bousai.png" alt="" loading="lazy"></div>
-        <p class="tile-sub">④命と暮らしを守るさいたま</p>
-        <h3>防災・安心なくらし</h3>
-        <p class="tile-desc">災害への備えや、急な困りごとがあったときの安心について。</p>
-        <span class="tile-link">くわしく見る ＞</span>
-      </a>
-      <a class="tile" href="index.html#policy-5">
-        <div class="tile-icon"><img src="images/icon-kankyo.png" alt="" loading="lazy"></div>
-        <p class="tile-sub">⑤持続可能な社会のために</p>
-        <h3>環境・次の世代へ</h3>
-        <p class="tile-desc">次の世代に引き継げる、環境にも財政にもやさしいまちづくりについて。</p>
-        <span class="tile-link">くわしく見る ＞</span>
-      </a>
-      <a class="tile" href="reports.html">
-        <div class="tile-icon"><img src="images/icon-report.png" alt="" loading="lazy"></div>
-        <p class="tile-sub">市議会での質問・提案</p>
-        <h3>市議会レポートを見る</h3>
-        <p class="tile-desc">議会で何を質問し、行政がどう答え、その後どうなったかをまとめています。</p>
-        <span class="tile-link">くわしく見る ＞</span>
-      </a>
-    </div>
+    <div id="cardList" class="card-list"></div>
+    <p id="emptyState" class="empty-state" hidden>該当する記録が見つかりませんでした。条件を変えてお試しください。</p>
+    <p style="margin-top:32px;"><a class="source-link" href="record-text.html">テキスト版（検索エンジン・AI向け）＞</a></p>
   </div>
 </section>
 
@@ -291,6 +375,160 @@
     <p class="copyright">© 2026 出雲けいこ</p>
   </div>
 </footer>
+
+<script>
+(function () {
+  var state = { keyword: '', tag: '', year: '', status: '', meeting: '', sort: 'desc' };
+  var records = [];
+
+  var LEVEL_DISPLAY = {
+    '実施済': { label: '実施済', cls: 'level-done' },
+    '改善・対応予定': { label: '検討・対応予定', cls: 'level-progress' },
+    '検討を引き出した': { label: '検討・対応予定', cls: 'level-progress' },
+    '研究段階': { label: '研究段階', cls: 'level-research' }
+  };
+  function levelInfo(raw) {
+    if (!raw) return { label: '確認中', cls: 'level-pending' };
+    return LEVEL_DISPLAY[raw] || { label: raw, cls: 'level-other' };
+  }
+  function escapeHtml(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function yearOf(dateStr) { return (dateStr || '').slice(0, 4); }
+
+  function fillSelect(id, values, labelFn) {
+    var sel = document.getElementById(id);
+    values.forEach(function (v) {
+      var opt = document.createElement('option');
+      opt.value = v;
+      opt.textContent = labelFn ? labelFn(v) : v;
+      sel.appendChild(opt);
+    });
+  }
+
+  function buildFilterOptions() {
+    var tags = {}, years = {}, statuses = {}, meetings = {};
+    records.forEach(function (r) {
+      (r.tags || []).forEach(function (t) { tags[t] = true; });
+      var y = yearOf(r.date);
+      if (y) years[y] = true;
+      statuses[levelInfo(r.result_level).label] = true;
+      if (r.meeting_type) meetings[r.meeting_type] = true;
+    });
+    fillSelect('filterTag', Object.keys(tags).sort());
+    fillSelect('filterYear', Object.keys(years).sort().reverse(), function (y) { return y + '年'; });
+    fillSelect('filterStatus', Object.keys(statuses).sort());
+    fillSelect('filterMeeting', Object.keys(meetings).sort());
+  }
+
+  function matches(r) {
+    if (state.tag && (r.tags || []).indexOf(state.tag) === -1) return false;
+    if (state.year && yearOf(r.date) !== state.year) return false;
+    if (state.status && levelInfo(r.result_level).label !== state.status) return false;
+    if (state.meeting && r.meeting_type !== state.meeting) return false;
+    if (state.keyword) {
+      var hay = [r.question_topic, r.issue, r.proposal, r.summary, r.answer_summary, (r.tags || []).join(' ')]
+        .join(' ').toLowerCase();
+      if (hay.indexOf(state.keyword.toLowerCase()) === -1) return false;
+    }
+    return true;
+  }
+
+  function cardHtml(r) {
+    var lvl = levelInfo(r.result_level);
+    var meetingLabel = r.committee ? (r.meeting_type + '（' + r.committee + '）') : (r.meeting_type || '');
+    var tagsHtml = (r.tags || []).map(function (t) {
+      return '<span class="pill">' + escapeHtml(t) + '</span>';
+    }).join('');
+    var followUp = r.follow_up
+      ? '<div class="qa-followup"><span class="tag">その後</span>' + escapeHtml(r.follow_up) + '</div>'
+      : '';
+    var sourceLink = r.source_url
+      ? '<a class="source-link" href="' + escapeHtml(r.source_url) + '" target="_blank" rel="noopener">会議録を見る ＞</a>'
+      : '';
+    var qText = r.proposal || r.issue || '';
+    return '' +
+      '<article class="record-card">' +
+      '  <div class="record-meta">' +
+      '    <span class="meta-date">' + escapeHtml(r.date || '') + '</span>' +
+      '    <span class="meta-session">' + escapeHtml(r.session_name || '') + '</span>' +
+      '    <span class="meta-meeting">' + escapeHtml(meetingLabel) + '</span>' +
+      '    <span class="level-badge ' + lvl.cls + '">' + escapeHtml(lvl.label) + '</span>' +
+      '  </div>' +
+      '  <h3 class="record-title">' + escapeHtml(r.question_topic || '') + '</h3>' +
+      '  <div class="tag-row">' + tagsHtml + '</div>' +
+      '  <p class="qa-q"><span class="tag">Q.</span>' + escapeHtml(qText) + '</p>' +
+      '  <p class="qa-a"><span class="tag">A.</span>' + escapeHtml(r.answer_summary || '') + '</p>' +
+      followUp +
+      sourceLink +
+      '</article>';
+  }
+
+  function render() {
+    var filtered = records.filter(matches).slice().sort(function (a, b) {
+      var d = (a.date || '').localeCompare(b.date || '');
+      return state.sort === 'asc' ? d : -d;
+    });
+    document.getElementById('resultCount').textContent =
+      '全' + records.length + '件中 ' + filtered.length + '件を表示しています';
+
+    var list = document.getElementById('cardList');
+    var empty = document.getElementById('emptyState');
+    if (filtered.length === 0) {
+      list.innerHTML = '';
+      empty.hidden = false;
+      return;
+    }
+    empty.hidden = true;
+    list.innerHTML = filtered.map(cardHtml).join('');
+  }
+
+  function bindControls() {
+    document.getElementById('keyword').addEventListener('input', function (e) { state.keyword = e.target.value; render(); });
+    document.getElementById('filterTag').addEventListener('change', function (e) { state.tag = e.target.value; render(); });
+    document.getElementById('filterYear').addEventListener('change', function (e) { state.year = e.target.value; render(); });
+    document.getElementById('filterStatus').addEventListener('change', function (e) { state.status = e.target.value; render(); });
+    document.getElementById('filterMeeting').addEventListener('change', function (e) { state.meeting = e.target.value; render(); });
+    document.getElementById('sortOrder').addEventListener('change', function (e) { state.sort = e.target.value; render(); });
+    document.getElementById('resetFilters').addEventListener('click', function () {
+      state = { keyword: '', tag: '', year: '', status: '', meeting: '', sort: 'desc' };
+      document.getElementById('keyword').value = '';
+      ['filterTag', 'filterYear', 'filterStatus', 'filterMeeting'].forEach(function (id) {
+        document.getElementById(id).value = '';
+      });
+      document.getElementById('sortOrder').value = 'desc';
+      render();
+    });
+    var toggle = document.getElementById('filterToggle');
+    toggle.addEventListener('click', function () {
+      var panel = document.getElementById('filterPanel');
+      var willShow = panel.hidden;
+      panel.hidden = !willShow;
+      toggle.setAttribute('aria-expanded', String(willShow));
+    });
+  }
+
+  function load() {
+    fetch('activity_archive.json', { cache: 'no-store' })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        records = data || [];
+        buildFilterOptions();
+        bindControls();
+        render();
+        document.getElementById('totalCountText').textContent = '全' + records.length + '件を掲載しています。';
+      })
+      .catch(function () {
+        document.getElementById('cardList').innerHTML =
+          '<p class="empty-state">データの読み込みに失敗しました。しばらくしてから再度お試しください。</p>';
+      });
+  }
+
+  load();
+})();
+</script>
 
 </body>
 </html>
