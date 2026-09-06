@@ -268,29 +268,15 @@
   .btn-primary { background: var(--green); color: #fff; }
   .btn-outline { background: transparent; color: var(--text-green); border: 1.5px solid var(--green); }
   .hero-speech-btn {
-    position: relative;
     display: inline-flex; align-items: center;
     background: var(--green);
     color: #fff;
     font-size: 14.5px;
     font-weight: 700;
-    padding: 14px 26px;
-    border-radius: 22px;
+    padding: 14px 28px;
+    border-radius: 999px;
     text-decoration: none;
     white-space: nowrap;
-    box-shadow: 0 4px 14px rgba(34,48,42,.12);
-    overflow: visible;
-  }
-  .hero-speech-btn::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    right: -5px;
-    width: 14px; height: 14px;
-    background: var(--green);
-    border-radius: 3px;
-    transform: translateY(-50%) rotate(45deg);
-    z-index: -1;
   }
   .hero-wave { display: block; width: 100%; height: 64px; margin-top: -1px; }
 
@@ -414,50 +400,44 @@
   }
 
   @media (max-width: 720px) {
-    .tile-grid { grid-template-columns: 1fr; gap: 12px; }
-    .tile { flex-direction: row; align-items: flex-start; gap: 14px; padding: 14px 16px; }
-    .tile-icon { width: 44px; height: 44px; margin-bottom: 0; }
-    .tile-num { margin-right: 6px; }
-    .tile-sub { margin: 2px 0 4px; }
-    .tile h3 { font-size: 14.5px; margin: 0 0 4px; }
-    .tile-desc {
-      font-size: 12.5px; margin: 0 0 6px;
-      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    .tile-grid { grid-template-columns: 1fr; gap: 10px; }
+    .tile {
+      flex-direction: row; align-items: center; gap: 12px;
+      padding: 12px 14px;
+      position: relative;
     }
-    .tile-link { margin-top: 0; padding-top: 0; font-size: 12.5px; }
+    .tile-icon { width: 40px; height: 40px; margin-bottom: 0; }
+    .tile-body { flex-direction: row; flex-wrap: wrap; align-items: baseline; column-gap: 8px; padding-right: 16px; }
+    .tile-num { margin-right: 0; }
+    .tile-sub { margin: 0; font-size: 10.5px; }
+    .tile h3 { font-size: 14px; margin: 0; width: 100%; }
+    .tile-desc { display: none; }
+    .tile-link { display: none; }
+    .tile::after {
+      content: "＞";
+      position: absolute;
+      right: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 13px;
+      color: var(--muted);
+    }
   }
 
-  /* --- feature row --- */
-  .feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 18px;
+  /* --- progress (実現したこと・進行中のこと) --- */
+  .progress-section { background: var(--card); }
+  .status-legend { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 22px; }
+  .status-pill { display: inline-block; padding: 8px 18px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+  .status-pill.status-done { background: var(--done-bg); color: var(--done-fg); }
+  .status-pill.status-progress { background: var(--progress-bg); color: var(--progress-fg); }
+  .status-pill.status-considering { background: var(--considering-bg); color: var(--considering-fg); }
+
+  /* --- record (議会でしていること) --- */
+  .record-tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 22px; }
+  .record-tag {
+    display: inline-block; padding: 8px 16px; border-radius: 10px;
+    background: var(--card); border: 1px solid var(--line);
+    font-size: 13px; font-weight: 700; color: var(--text-green);
   }
-  .feature-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: 16px;
-    padding: 22px 20px;
-  }
-  .feature-card p { flex: 1; }
-  .feature-card .btn { margin-top: auto; align-self: flex-start; }
-  .feature-thumb {
-    width: 48px; height: 48px;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 14px;
-    background: var(--considering-bg);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .feature-thumb img { width: 100%; height: 100%; object-fit: cover; }
-  .feature-thumb svg { width: 24px; height: 24px; fill: none; stroke: var(--text-green); stroke-width: 1.8; }
-  .feature-card h3 { margin: 0 0 8px; font-size: 15.5px; font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; }
-  .feature-card p { margin: 0 0 16px; font-size: 13.5px; color: var(--muted); }
-  .feature-card .btn { padding: 9px 18px; font-size: 13px; }
-  .btn-small-outline { background: transparent; color: var(--text-green); border: 1.5px solid var(--line); }
 
   /* --- report --- */
   .report-band { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
@@ -701,35 +681,37 @@
   </div>
 </section>
 
+<section class="progress-section">
+  <div class="inner">
+    <h2 class="section-title">実現したこと・進行中のこと</h2>
+    <p class="section-lede">議会で提案してきたことが、今どうなっているのか。3つの状態でご覧いただけます。</p>
+    <div class="status-legend">
+      <span class="status-pill status-done">実現しました</span>
+      <span class="status-pill status-progress">進行中です</span>
+      <span class="status-pill status-considering">提案しています</span>
+    </div>
+    <a class="more-link" href="archive.html">実現したこと・進行中のことを見る ＞</a>
+  </div>
+</section>
+
+<section class="record-section">
+  <div class="inner">
+    <h2 class="section-title">議会でしていること</h2>
+    <p class="section-lede">一般質問、委員会での議論、議案への対応、市への提案とその後の動きまで、議員としての活動をお伝えしています。</p>
+    <div class="record-tags">
+      <span class="record-tag">一般質問</span>
+      <span class="record-tag">委員会</span>
+      <span class="record-tag">議案</span>
+      <span class="record-tag">市への提案</span>
+      <span class="record-tag">答弁</span>
+      <span class="record-tag">その後の対応</span>
+    </div>
+    <a class="more-link" href="record.html">議会での活動を見る ＞</a>
+  </div>
+</section>
+
 <section class="report-band">
   <div class="inner">
-    <div class="feature-grid" style="margin-bottom: 40px;">
-      <div class="feature-card">
-        <div class="feature-thumb"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3l8 4-8 4-8-4 8-4zM4 11l8 4 8-4M4 15l8 4 8-4"/></svg></div>
-        <h3>テーマごとの取り組み状況</h3>
-        <p>「子ども・子育て」「ケア・福祉」など、5つの政策テーマごとに、何に取り組んでいるかをご覧いただけます。</p>
-        <a class="btn btn-small-outline" href="policy.html">テーマごとの取り組みを見る ＞</a>
-      </div>
-      <div class="feature-card">
-        <div class="feature-thumb"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-        <h3>実現したこと・進行中のこと</h3>
-        <p>「実現しました」「進行中です」「提案しています」など、政策の進み具合をご紹介します。</p>
-        <a class="btn btn-small-outline" href="archive.html">政策の進み具合を見る ＞</a>
-      </div>
-      <div class="feature-card">
-        <div class="feature-thumb"><img src="images/profile-portrait-main.jpg" alt=""></div>
-        <h3>議会でしていること</h3>
-        <p>議会で質問したこと、提案したこと、その後の動きをご紹介します。</p>
-        <a class="btn btn-small-outline" href="record.html">議会での活動を見る ＞</a>
-      </div>
-      <div class="feature-card">
-        <div class="feature-thumb"><svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7.5-4.6-10-9.1C.5 8.6 2 5 5.5 5c2 0 3.3 1 4.5 2.5C11.2 6 12.5 5 14.5 5 18 5 19.5 8.6 22 11.9 19.5 16.4 12 21 12 21z"/></svg></div>
-        <h3>あなたの声</h3>
-        <p>「こんなこと相談していいのかな？」そんな小さな困りごとも、聞かせてください。</p>
-        <a class="btn btn-small-outline" href="contact.html">声を届ける ＞</a>
-      </div>
-    </div>
-
     <h2 class="section-title">市議会レポート（最新）</h2>
     <p class="section-lede">議会での質問・提案と、その後の進み方をお伝えしています。</p>
     <div class="report-card">
