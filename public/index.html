@@ -304,10 +304,11 @@
   }
   .reason-text p { margin: 0 0 16px; font-size: 15px; }
   .reason-text p:last-child { margin-bottom: 0; }
-  .reason-photo-wrap { height: 100%; }
+  .reason-photo-wrap { height: auto; align-self: center; }
   .reason-photo-wrap img {
-    display: block; width: 100%; height: 100%;
-    object-fit: cover; border-radius: 16px;
+    display: block; width: 100%; height: auto;
+    aspect-ratio: 4 / 3; object-fit: cover; object-position: 38% 42%;
+    border-radius: 16px;
     box-shadow: 0 4px 14px rgba(34,48,42,.10);
   }
 
