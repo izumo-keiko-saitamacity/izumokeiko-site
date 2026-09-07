@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<meta name="description" content="出雲けいこ（さいたま市議会議員）｜政策">
+<meta name="description" content="出雲けいこ（さいたま市議会議員）｜私がめざすまち。子ども・子育て、ケア・福祉、人権・多様性、防災・暮らし、環境・まちづくりの5つのテーマで政策をお伝えします。">
 <title>政策｜出雲けいこ</title>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
@@ -97,10 +97,77 @@
   }
 
 
-  main { max-width: 720px; margin: 0 auto; padding: 72px 20px; text-align: center; }
-  main h1 { font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; font-size: 26px; color: var(--text-green); margin: 0 0 14px; }
-  main p { color: var(--muted); font-size: 15px; }
+  .inner-wide { max-width: 1200px; }
   .badge { display: inline-block; background: var(--considering-bg); color: #6B7A63; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 999px; margin-bottom: 18px; }
+
+  .policy-intro { padding: 56px 0 40px; text-align: center; }
+  .policy-intro h1 { font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; font-size: clamp(24px, 3vw, 30px); color: var(--text-green); margin: 0 0 16px; }
+  .policy-lede { color: var(--muted); font-size: 15px; max-width: 640px; margin: 0 auto; }
+  .policy-lede a { color: var(--text-green); font-weight: 700; text-decoration: underline; }
+
+  .policy-tiles { padding: 0 0 56px; }
+  .tile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (min-width: 900px) { .tile-grid { grid-template-columns: repeat(5, 1fr); gap: 14px; } }
+  .tile {
+    display: flex; flex-direction: column; height: 100%;
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 22px 20px; text-decoration: none; color: inherit;
+    transition: box-shadow .15s, transform .15s;
+  }
+  .tile:hover { box-shadow: 0 6px 18px rgba(34,48,42,.10); transform: translateY(-2px); }
+  .tile-body { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+  .tile-icon { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; overflow: hidden; flex: none; }
+  .tile-icon img { width: 100%; height: 100%; object-fit: contain; }
+  .theme-1 .tile-icon { background: #FBEADD; }
+  .theme-2 .tile-icon { background: #E4F0EE; }
+  .theme-3 .tile-icon { background: #F7E6EA; }
+  .theme-4 .tile-icon { background: #E5EEF6; }
+  .theme-5 .tile-icon { background: #E4F2E8; }
+  .tile-num { font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; font-weight: 900; font-size: 12px; letter-spacing: .04em; }
+  .theme-1 .tile-num { color: #E8935B; }
+  .theme-2 .tile-num { color: #4E9C95; }
+  .theme-3 .tile-num { color: #D97A93; }
+  .theme-4 .tile-num { color: #5B8DBE; }
+  .theme-5 .tile-num { color: var(--green); }
+  .tile-sub { display: inline-block; font-size: 11px; font-weight: 700; color: var(--muted); margin: 2px 0 8px; }
+  .tile h3 { margin: 0 0 8px; font-size: 16px; font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; }
+  .tile-desc { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
+  .tile-link { display: inline-block; margin-top: auto; padding-top: 4px; font-size: 13px; font-weight: 700; color: var(--text-green); }
+  @media (min-width: 900px) {
+    .tile { padding: 18px 14px; }
+    .tile-icon { width: 46px; height: 46px; margin-bottom: 10px; }
+    .tile h3 { font-size: 14.5px; }
+    .tile-desc { font-size: 12.5px; }
+  }
+  @media (max-width: 720px) {
+    .tile-grid { grid-template-columns: 1fr; gap: 10px; }
+    .tile { flex-direction: row; align-items: center; gap: 12px; padding: 12px 14px; position: relative; }
+    .tile-icon { width: 40px; height: 40px; margin-bottom: 0; }
+    .tile-body { flex-direction: row; flex-wrap: wrap; align-items: baseline; column-gap: 8px; padding-right: 16px; }
+    .tile-num { margin-right: 0; }
+    .tile-sub { margin: 0; font-size: 10.5px; }
+    .tile h3 { font-size: 14px; margin: 0; width: 100%; }
+    .tile-desc { display: none; }
+    .tile-link { display: none; }
+    .tile::after { content: "＞"; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--muted); }
+  }
+
+  .policy-detail { padding: 0 0 64px; }
+  .policy-section { padding: 40px 0; border-top: 1px solid var(--line); scroll-margin-top: 84px; }
+  .policy-section:first-child { border-top: none; padding-top: 0; }
+  .policy-section-head { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+  .policy-section-icon { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; flex: none; }
+  .policy-section-icon img { width: 100%; height: 100%; object-fit: contain; }
+  .policy-section.theme-1 .policy-section-icon { background: #FBEADD; }
+  .policy-section.theme-2 .policy-section-icon { background: #E4F0EE; }
+  .policy-section.theme-3 .policy-section-icon { background: #F7E6EA; }
+  .policy-section.theme-4 .policy-section-icon { background: #E5EEF6; }
+  .policy-section.theme-5 .policy-section-icon { background: #E4F2E8; }
+  .policy-num { display: block; font-size: 12px; font-weight: 900; color: var(--muted); margin-bottom: 4px; letter-spacing: .04em; }
+  .policy-section h2 { margin: 0; font-size: clamp(18px, 2vw, 21px); font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; color: var(--ink); }
+  .policy-desc { margin: 0; font-size: 15.5px; color: var(--ink); max-width: 62ch; }
+
+  .more-link { display: inline-block; margin-top: 28px; font-size: 14px; font-weight: 700; color: var(--text-green); text-decoration: none; border-bottom: 1.5px solid var(--green); }
 
   footer.site-footer {
     position: relative;
@@ -156,9 +223,131 @@
 </header>
 
 <main>
-  <span class="badge">準備中</span>
-  <h1>政策</h1>
-  <p>テーマ別の政策と、検討中・進行中・実現済みの進み具合を、このページにまとめていきます。</p>
+  <section class="policy-intro">
+    <div class="inner">
+      <span class="badge">5つのテーマ</span>
+      <h1>私がめざすまち</h1>
+      <p class="policy-lede">こころにっこり、ひとりで抱え込まなくていいまちへ。5つのテーマを軸に、誰もが自分らしく暮らせるさいたま市をめざしています。テーマに関する議会での質問・提案とその後の動きは、<a href="record.html">議会活動の記録</a>で検索できます。</p>
+    </div>
+  </section>
+
+  <section class="policy-tiles">
+    <div class="inner inner-wide">
+      <div class="tile-grid">
+        <a class="tile theme-1" href="#policy-1">
+          <div class="tile-icon"><img src="images/icon-kosodate.png" alt=""></div>
+          <div class="tile-body">
+            <span class="tile-num">01</span>
+            <span class="tile-sub">子ども・子育て</span>
+            <h3>その子らしく育つために</h3>
+            <p class="tile-desc">一人ひとりの個性や成長のペースを大切にできる、子育て・教育環境をつくります。</p>
+            <span class="tile-link">くわしく見る ＞</span>
+          </div>
+        </a>
+        <a class="tile theme-2" href="#policy-2">
+          <div class="tile-icon"><img src="images/icon-mamapapa.png" alt=""></div>
+          <div class="tile-body">
+            <span class="tile-num">02</span>
+            <span class="tile-sub">ケア・福祉</span>
+            <h3>ママ・パパに寄り添った支援を</h3>
+            <p class="tile-desc">妊娠・出産から子育てまで、切れ目のない支援で負担や不安を減らします。</p>
+            <span class="tile-link">くわしく見る ＞</span>
+          </div>
+        </a>
+        <a class="tile theme-3" href="#policy-3">
+          <div class="tile-icon"><img src="images/icon-anatarashisa.png" alt=""></div>
+          <div class="tile-body">
+            <span class="tile-num">03</span>
+            <span class="tile-sub">人権・多様性</span>
+            <h3>あなたらしさが尊重される社会に</h3>
+            <p class="tile-desc">誰もが自分らしく生きられる、差別や偏見のない社会をめざします。</p>
+            <span class="tile-link">くわしく見る ＞</span>
+          </div>
+        </a>
+        <a class="tile theme-4" href="#policy-4">
+          <div class="tile-icon"><img src="images/icon-bousai.png" alt=""></div>
+          <div class="tile-body">
+            <span class="tile-num">04</span>
+            <span class="tile-sub">防災・暮らし</span>
+            <h3>命と暮らしを守る</h3>
+            <p class="tile-desc">災害や急な困りごとがあっても、命と暮らしの安全を守ります。</p>
+            <span class="tile-link">くわしく見る ＞</span>
+          </div>
+        </a>
+        <a class="tile theme-5" href="#policy-5">
+          <div class="tile-icon"><img src="images/icon-kankyo.png" alt=""></div>
+          <div class="tile-body">
+            <span class="tile-num">05</span>
+            <span class="tile-sub">環境・まちづくり</span>
+            <h3>持続可能な社会のために</h3>
+            <p class="tile-desc">未来の子どもたちへつなぐために、環境にやさしいまちをつくります。</p>
+            <span class="tile-link">くわしく見る ＞</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="policy-detail">
+    <div class="inner">
+      <div class="policy-section theme-1" id="policy-1">
+        <div class="policy-section-head">
+          <div class="policy-section-icon"><img src="images/icon-kosodate.png" alt=""></div>
+          <div>
+            <span class="policy-num">01　子ども・子育て</span>
+            <h2>その子らしく育つために</h2>
+          </div>
+        </div>
+        <p class="policy-desc">一人ひとりの個性や成長のペースを大切にできる、子育て・教育環境をつくります。</p>
+      </div>
+
+      <div class="policy-section theme-2" id="policy-2">
+        <div class="policy-section-head">
+          <div class="policy-section-icon"><img src="images/icon-mamapapa.png" alt=""></div>
+          <div>
+            <span class="policy-num">02　ケア・福祉</span>
+            <h2>ママ・パパに寄り添った支援を</h2>
+          </div>
+        </div>
+        <p class="policy-desc">妊娠・出産から子育てまで、切れ目のない支援で負担や不安を減らします。</p>
+      </div>
+
+      <div class="policy-section theme-3" id="policy-3">
+        <div class="policy-section-head">
+          <div class="policy-section-icon"><img src="images/icon-anatarashisa.png" alt=""></div>
+          <div>
+            <span class="policy-num">03　人権・多様性</span>
+            <h2>あなたらしさが尊重される社会に</h2>
+          </div>
+        </div>
+        <p class="policy-desc">誰もが自分らしく生きられる、差別や偏見のない社会をめざします。</p>
+      </div>
+
+      <div class="policy-section theme-4" id="policy-4">
+        <div class="policy-section-head">
+          <div class="policy-section-icon"><img src="images/icon-bousai.png" alt=""></div>
+          <div>
+            <span class="policy-num">04　防災・暮らし</span>
+            <h2>命と暮らしを守る</h2>
+          </div>
+        </div>
+        <p class="policy-desc">災害や急な困りごとがあっても、命と暮らしの安全を守ります。</p>
+      </div>
+
+      <div class="policy-section theme-5" id="policy-5">
+        <div class="policy-section-head">
+          <div class="policy-section-icon"><img src="images/icon-kankyo.png" alt=""></div>
+          <div>
+            <span class="policy-num">05　環境・まちづくり</span>
+            <h2>持続可能な社会のために</h2>
+          </div>
+        </div>
+        <p class="policy-desc">未来の子どもたちへつなぐために、環境にやさしいまちをつくります。</p>
+      </div>
+
+      <a class="more-link" href="record.html">議会活動の記録を見る ＞</a>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
