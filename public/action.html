@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="出雲けいこ（さいたま市議会議員）｜私がめざすまち。子ども・子育て、ケア・福祉、人権・多様性、防災・暮らし、環境・まちづくりの5つのテーマで政策をお伝えします。">
+<title>政策｜出雲けいこ</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #3DB56A;
+    --green-dark: #2C6B4E;
+    --text-green: #2C6B4E;
+    --ink: #22302A;
+    --muted: #5A6B62;
+    --paper: #FAFCF9;
+    --line: #E1E9E2;
+    --card: #FFFFFF;
+    --considering-bg: #EEF1EA; --considering-fg: #6B7A63;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    line-height: 1.8;
+  }
+  a { color: inherit; }
+  .inner { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  .brand-logo-img { display: block; height: 30px; width: auto; }
+
+  /* --- top nav --- */
+  .topbar {
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .topbar .inner {
+    max-width: 1080px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 20px;
+    flex-wrap: wrap;
+  }
+  .brand {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--text-green);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+  }
+  .nav-links {
+    display: flex;
+    gap: 22px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-green);
+    border-bottom: 2px solid transparent;
+    padding-bottom: 2px;
+  }
+  .nav-links a:hover { border-bottom-color: var(--green); }
+  .sns-group { display: flex; align-items: flex-start; }
+  .sns-row { display: flex; gap: 16px; align-items: flex-start; }
+  .sns-item { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .sns-icon {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: inset 0 0 0 1px var(--line);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .sns-icon img { width: 20px; height: 20px; object-fit: contain; display: block; }
+  .sns-text { font-size: 10px; font-weight: 700; color: var(--muted); line-height: 1; white-space: nowrap; }
+
+  .nav-cta {
+    position: relative;
+    display: inline-flex; align-items: center;
+    background: var(--green);
+    color: #fff;
+    font-size: 13.5px;
+    font-weight: 700;
+    padding: 9px 20px;
+    border-radius: 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-bottom: 7px;
+  }
+  .nav-cta::after {
+    content: "";
+    position: absolute;
+    left: 24px; bottom: -6px;
+    width: 0; height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 7px solid var(--green);
+  }
+
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex: none;
+  }
+  .nav-toggle-bars {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 22px; height: 16px;
+  }
+  .nav-toggle-bars span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--ink);
+    border-radius: 2px;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .nav-toggle-label { font-size: 11px; font-weight: 700; color: var(--ink); }
+  .nav-toggle.active .nav-toggle-bars span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.active .nav-toggle-bars span:nth-child(2) { opacity: 0; }
+  .nav-toggle.active .nav-toggle-bars span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 720px) {
+    .brand { order: 1; font-size: 15px; }
+    .sns-group { display: none; }
+    .nav-cta { order: 2; font-size: 12.5px; padding: 8px 14px; }
+    .nav-toggle { display: flex; order: 3; }
+    .nav-links {
+      order: 4;
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      gap: 0;
+      margin-top: 6px;
+      border-top: 1px solid var(--line);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      display: block;
+      padding: 13px 4px;
+      border: none;
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-links a:hover, .nav-links a.current {
+      border-bottom-color: var(--line);
+      color: var(--text-green);
+    }
+  }
+
+
+  .inner-wide { max-width: 1200px; }
+  .badge { display: inline-block; background: var(--considering-bg); color: #6B7A63; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 999px; margin-bottom: 18px; }
+
+  .policy-intro { padding: 56px 0 40px; text-align: center; }
+  .policy-intro h1 { font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; font-size: clamp(24px, 3vw, 30px); color: var(--text-green); margin: 0 0 16px; }
+  .policy-lede { color: var(--muted); font-size: 15px; max-width: 640px; margin: 0 auto; }
+  .policy-lede a { color: var(--text-green); font-weight: 700; text-decoration: underline; }
+
+  .policy-tiles { padding: 0 0 56px; }
+  .tile-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (min-width: 900px) { .tile-grid { grid-template-columns: repeat(5, 1fr); gap: 14px; } }
+  .tile {
+    display: flex; flex-direction: column; height: 100%;
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 22px 20px; text-decoration: none; color: inherit;
+    transition: box-shadow .15s, transform .15s;
+  }
+  .tile:hover { box-shadow: 0 6px 18px rgba(34,48,42,.10); transform: translateY(-2px); }
+  .tile-body { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+  .tile-icon { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; overflow: hidden; flex: none; }
+  .tile-icon img { width: 100%; height: 100%; object-fit: contain; }
+  .theme-1 .tile-icon { background: #FBEADD; }
+  .theme-2 .tile-icon { background: #E4F0EE; }
+  .theme-3 .tile-icon { background: #F7E6EA; }
+  .theme-4 .tile-icon { background: #E5EEF6; }
+  .theme-5 .tile-icon { background: #E4F2E8; }
+  .tile-num { font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; font-weight: 900; font-size: 12px; letter-spacing: .04em; }
+  .theme-1 .tile-num { color: #E8935B; }
+  .theme-2 .tile-num { color: #4E9C95; }
+  .theme-3 .tile-num { color: #D97A93; }
+  .theme-4 .tile-num { color: #5B8DBE; }
+  .theme-5 .tile-num { color: var(--green); }
+  .tile-sub { display: inline-block; font-size: 11px; font-weight: 700; color: var(--muted); margin: 2px 0 8px; }
+  .tile h3 { margin: 0 0 8px; font-size: 16px; font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; }
+  .tile-desc { font-size: 13.5px; color: var(--muted); margin: 0 0 14px; }
+  .tile-link { display: inline-block; margin-top: auto; padding-top: 4px; font-size: 13px; font-weight: 700; color: var(--text-green); }
+  @media (min-width: 900px) {
+    .tile { padding: 18px 14px; }
+    .tile-icon { width: 46px; height: 46px; margin-bottom: 10px; }
+    .tile h3 { font-size: 14.5px; }
+    .tile-desc { font-size: 12.5px; }
+  }
+  @media (max-width: 720px) {
+    .tile-grid { grid-template-columns: 1fr; gap: 10px; }
+    .tile { flex-direction: row; align-items: center; gap: 12px; padding: 12px 14px; position: relative; }
+    .tile-icon { width: 40px; height: 40px; margin-bottom: 0; }
+    .tile-body { flex-direction: row; flex-wrap: wrap; align-items: baseline; column-gap: 8px; padding-right: 16px; }
+    .tile-num { margin-right: 0; }
+    .tile-sub { margin: 0; font-size: 10.5px; }
+    .tile h3 { font-size: 14px; margin: 0; width: 100%; }
+    .tile-desc { display: none; }
+    .tile-link { display: none; }
+    .tile::after { content: "＞"; position: absolute; right: 14px; top: 50%; transform: translateY(-50%); font-size: 13px; color: var(--muted); }
+  }
+
+  .policy-detail { padding: 0 0 64px; }
+  .policy-section { padding: 40px 0; border-top: 1px solid var(--line); scroll-margin-top: 84px; }
+  .policy-section:first-child { border-top: none; padding-top: 0; }
+  .policy-section-head { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
+  .policy-section-icon { width: 76px; height: 76px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; flex: none; }
+  .policy-section-icon img { width: 100%; height: 100%; object-fit: contain; }
+  .policy-section.theme-1 .policy-section-icon { background: #FBEADD; }
+  .policy-section.theme-2 .policy-section-icon { background: #E4F0EE; }
+  .policy-section.theme-3 .policy-section-icon { background: #F7E6EA; }
+  .policy-section.theme-4 .policy-section-icon { background: #E5EEF6; }
+  .policy-section.theme-5 .policy-section-icon { background: #E4F2E8; }
+  .policy-num { display: block; font-size: 12px; font-weight: 900; color: var(--muted); margin-bottom: 4px; letter-spacing: .04em; }
+  .policy-section h2 { margin: 0; font-size: clamp(18px, 2vw, 21px); font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; color: var(--ink); }
+  .policy-desc { margin: 0; font-size: 15.5px; color: var(--ink); max-width: 62ch; }
+  .policy-list-label { display: block; margin: 22px 0 10px; font-size: 12.5px; font-weight: 700; color: var(--muted); }
+  .policy-list { margin: 0; padding: 0 0 0 1.2em; max-width: 62ch; }
+  .policy-list li { margin: 0 0 9px; font-size: 15px; color: var(--ink); }
+  .policy-list li:last-child { margin-bottom: 0; }
+
+  @media (min-width: 900px) {
+    .policy-section {
+      display: flex;
+      align-items: flex-start;
+      gap: 36px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-top: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 36px 40px;
+      margin-bottom: 22px;
+    }
+    .policy-section:first-child { padding-top: 36px; }
+    .policy-section-head { flex: 0 0 210px; flex-direction: column; align-items: flex-start; gap: 14px; margin-bottom: 0; }
+    .policy-section-body { flex: 1; min-width: 0; }
+    .policy-desc, .policy-list { max-width: 640px; }
+  }
+
+  .more-link { display: inline-block; margin-top: 28px; font-size: 14px; font-weight: 700; color: var(--text-green); text-decoration: none; border-bottom: 1.5px solid var(--green); }
+
+  footer.site-footer {
+    position: relative;
+    color: var(--ink);
+    padding: 28px 0;
+    font-size: 13px;
+    overflow: hidden;
+  }
+  footer.site-footer::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("images/footer-ajisai.jpg") center 15%/cover no-repeat;
+  }
+  footer.site-footer .inner {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, .82);
+    border-radius: 18px;
+    padding: 28px 28px 20px;
+  }
+  .footer-grid { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; margin-bottom: 24px; }
+  .footer-nav { display: flex; gap: 18px; flex-wrap: wrap; list-style: none; padding: 0; margin: 0; }
+  .footer-nav a { color: var(--ink); text-decoration: none; font-size: 13.5px; }
+  .footer-nav a:hover { text-decoration: underline; }
+  .office-info { font-size: 12.5px; opacity: .9; margin: 0 0 16px; line-height: 1.8; }
+  .office-info a { color: var(--ink); text-decoration: underline; }
+  .copyright { opacity: .65; margin-top: 0; }
+  .copyright a { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="inner">
+    <a class="brand" href="index.html">
+      <img class="brand-logo-img" src="images/kokoro-nikkori-logo.png" alt="こころにっこり">
+    </a>
+    <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-expanded="false" onclick="var l=document.querySelector('.nav-links');var o=l.classList.toggle('open');this.classList.toggle('active',o);this.setAttribute('aria-expanded',o?'true':'false');this.setAttribute('aria-label',o?'メニューを閉じる':'メニューを開く');">
+      <span class="nav-toggle-bars"><span></span><span></span><span></span></span>
+      <span class="nav-toggle-label">メニュー</span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="profile.html">プロフィール</a></li>
+      <li><a href="record.html">議会活動の記録</a></li>
+      <li><a href="action.html" class="current">私がめざすまち</a></li>
+      <li><a href="reports.html">市議会レポート</a></li>
+      <li><a href="archive.html">これまでの活動</a></li>
+    </ul>
+    <div class="sns-group">
+      <nav class="sns-row" aria-label="SNS">
+        <a class="sns-item" href="https://www.instagram.com/izumokeiko/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" title="Instagram">
+          <span class="sns-icon"><img src="images/icon-instagram.png" alt=""></span>
+          <span class="sns-text">Instagram</span>
+        </a>
+        <a class="sns-item" href="https://go2senkyo.com/seijika/168450" target="_blank" rel="noopener" title="ブログ">
+          <span class="sns-icon"><img src="images/icon-senkyodotcom.png" alt=""></span>
+          <span class="sns-text">ブログ</span>
+        </a>
+        <a class="sns-item" href="https://line.me/R/ti/p/@jev4977j" target="_blank" rel="noopener" title="公式LINE">
+          <span class="sns-icon"><img src="images/icon-line.png" alt=""></span>
+          <span class="sns-text">ｌｉｎｅ</span>
+        </a>
+      </nav>
+    </div>
+    <a class="nav-cta" href="contact.html">あなたの声</a>
+  </div>
+</header>
+
+<main>
+  <section class="policy-intro">
+    <div class="inner">
+      <span class="badge">5つのテーマ</span>
+      <h1>私がめざすまち</h1>
+      <p class="policy-lede">こころにっこり、ひとりで抱え込まなくていいまちへ。5つのテーマを軸に、誰もが自分らしく暮らせるさいたま市をめざしています。テーマに関する議会での質問・提案とその後の動きは、<a href="record.html">議会活動の記録</a>で検索できます。</p>
+    </div>
+  </section>
+
+  <section class="policy-detail">
+    <div class="inner">
+      <div class="policy-section theme-1" id="policy-1">
+        <div class="policy-section-head">
+          <div class="policy-section-icon"><img src="images/icon-kosodate.png" alt=""></div>
+          <div>
+            <span class="policy-num">01　子ども・子育て</span>
+            <h2>その子らしく育つために</h2>
+          </div>
+        </div>
+        <div class="policy-section-body">
+          <p class="policy-desc">一人ひとりの個性や成長のペースを大切にできる、子育て・教育環境をつくります。</p>
+          <span class="policy-list-label">具体的な取り組み</span>
+          <ul class="policy-list">
+            <li>プレイパーク（冒険遊び場）を身近な場所に</li>
+            <li>子どもたちの意見が反映される社会のために、子ども議会やアドボケイト制度の導入</li>
+            <li>学校外で学ぶ経済的支援と居場所の充実</li>
+            <li>ユースクリニックの設置</li>
+            <li>高等教育（大学、短期大学、専門学校など）の修学支援制度の充実</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="policy-section theme-2" id="policy-2">
+        <div class="policy-section-head">
+          <div class="policy-section-icon"><img src="images/icon-mamapapa.png" alt=""></div>
+          <div>
+            <span class="policy-num">02　ケア・福祉</span>
+            <h2>ママ・パパに寄り添った支援を</h2>
+          </div>
+        </div>
+        <div class="policy-section-body">
+          <p class="policy-desc">妊娠・出産から子育てまで、切れ目のない支援で負担や不安を減らします。</p>
+          <span class="policy-list-label">具体的な取り組み</span>
+          <ul class="policy-list">
+            <li>子育て家族の支援の充実</li>
+            <li>ひとり親、多胎児、リトルベビー家族などの支援の充実</li>
+            <li>保育施設や学童・放課後デイ等の質と場の充実</li>
+            <li>医療的ケア児や障害児と家族の支援</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="policy-section theme-3" id="policy-3">
+        <div class="policy-section-head">
+          <div class="policy-section-icon"><img src="images/icon-anatarashisa.png" alt=""></div>
+          <div>
+            <span class="policy-num">03　人権・多様性</span>
+            <h2>あなたらしさが尊重される社会に</h2>
+          </div>
+        </div>
+        <div class="policy-section-body">
+          <p class="policy-desc">誰もが自分らしく生きられる、差別や偏見のない社会をめざします。</p>
+          <span class="policy-list-label">具体的な取り組み</span>
+          <ul class="policy-list">
+            <li>家族を支えるケアラー、ヤングケアラーの支援</li>
+            <li>女性が様々なライフステージをしあわせに過ごせる支援</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="policy-section theme-4" id="policy-4">
+        <div class="policy-section-head">
+          <div class="policy-section-icon"><img src="images/icon-bousai.png" alt=""></div>
+          <div>
+            <span class="policy-num">04　防災・暮らし</span>
+            <h2>命と暮らしを守る</h2>
+          </div>
+        </div>
+        <div class="policy-section-body">
+          <p class="policy-desc">災害や急な困りごとがあっても、命と暮らしの安全を守ります。</p>
+          <span class="policy-list-label">具体的な取り組み</span>
+          <ul class="policy-list">
+            <li>福祉ネットワークで支え合いを</li>
+            <li>水害に強いインフラの強化</li>
+            <li>誰一人取り残さない減災・防災</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="policy-section theme-5" id="policy-5">
+        <div class="policy-section-head">
+          <div class="policy-section-icon"><img src="images/icon-kankyo.png" alt=""></div>
+          <div>
+            <span class="policy-num">05　環境・まちづくり</span>
+            <h2>持続可能な社会のために</h2>
+          </div>
+        </div>
+        <div class="policy-section-body">
+          <p class="policy-desc">未来の子どもたちへつなぐために、環境にやさしいまちをつくります。</p>
+          <span class="policy-list-label">具体的な取り組み</span>
+          <ul class="policy-list">
+            <li>地産地消のエネルギー活用</li>
+            <li>食品ロス削減</li>
+            <li>有機農業の推進</li>
+            <li>リユースしやすい教材や学用品を提案</li>
+            <li>コミュニティバス等の交通手段の拡充</li>
+          </ul>
+        </div>
+      </div>
+
+      <a class="more-link" href="record.html">議会活動の記録を見る ＞</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="inner">
+    <div class="footer-grid">
+      <ul class="footer-nav">
+        <li><a href="profile.html">プロフィール</a></li>
+        <li><a href="record.html">議会活動の記録</a></li>
+        <li><a href="action.html">私がめざすまち</a></li>
+        <li><a href="reports.html">市議会レポート</a></li>
+        <li><a href="archive.html">これまでの活動</a></li>
+        <li><a href="contact.html">あなたの声を聞かせてください</a></li>
+      </ul>
+      <nav class="sns-row" aria-label="SNS">
+        <a href="https://www.instagram.com/izumokeiko/?utm_source=ig_web_button_share_sheet" target="_blank" rel="noopener" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 2 .3 2.4.5.6.2 1 .5 1.5 1 .4.4.7.9 1 1.5.2.5.4 1.2.5 2.4.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 2-.5 2.4-.2.6-.5 1-1 1.5-.4.4-.9.7-1.5 1-.5.2-1.2.4-2.4.5-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-2-.3-2.4-.5-.6-.2-1-.5-1.5-1-.4-.4-.7-.9-1-1.5-.2-.5-.4-1.2-.5-2.4C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-2 .5-2.4.2-.6.5-1 1-1.5.4-.4.9-.7 1.5-1 .5-.2 1.2-.4 2.4-.5C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.1-1 .1-1.6.2-1.9.4-.5.2-.8.4-1.1.7-.3.3-.6.6-.7 1.1-.1.3-.3.9-.4 1.9-.1 1.2-.1 1.6-.1 4.7s0 3.5.1 4.7c.1 1 .2 1.6.4 1.9.2.5.4.8.7 1.1.3.3.6.6 1.1.7.3.1.9.3 1.9.4 1.2.1 1.6.1 4.7.1s3.5 0 4.7-.1c1-.1 1.6-.2 1.9-.4.5-.2.8-.4 1.1-.7.3-.3.6-.6.7-1.1.1-.3.3-.9.4-1.9.1-1.2.1-1.6.1-4.7s0-3.5-.1-4.7c-.1-1-.2-1.6-.4-1.9-.2-.5-.4-.8-.7-1.1-.3-.3-.6-.6-1.1-.7-.3-.1-.9-.3-1.9-.4-1.2-.1-1.6-.1-4.7-.1zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.7-2a1.1 1.1 0 11-2.1 0 1.1 1.1 0 012.1 0z"/></svg></a>
+        <a href="https://go2senkyo.com/seijika/168450" target="_blank" rel="noopener" title="ブログ"><svg viewBox="0 0 24 24"><path d="M5 3h14a1 1 0 011 1v16a1 1 0 01-1 1H5a1 1 0 01-1-1V4a1 1 0 011-1zm2 5h10V6H7v2zm0 4h10v-2H7v2zm0 4h7v-2H7v2z"/></svg></a>
+        <a href="https://line.me/R/ti/p/@jev4977j" target="_blank" rel="noopener" title="公式LINE"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 5.6 2 10c0 3.9 3.5 7.2 8.3 7.9.3.1.8.2.9.5.1.3 0 .7 0 1l-.1.9c0 .3-.2 1.1 1 .6 1.1-.5 6.2-3.6 8.4-6.2C22.1 12.9 22 11.5 22 10c0-4.4-4.5-8-10-8z"/></svg></a>
+      </nav>
+    </div>
+    <div class="office-info">
+      <p class="office-address">〒331-0045　さいたま市西区内野本郷448-9　第２ノグチコーポ201</p>
+      <p class="office-contact">TEL 048-607-9593　／　FAX 048-715-0919　／　<a href="mailto:izumokeiko@outlook.jp">izumokeiko@outlook.jp</a></p>
+    </div>
+    <p class="copyright">© 2026 出雲けいこ　｜　<a href="policy.html">運営ポリシー・SNSガイドライン</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
