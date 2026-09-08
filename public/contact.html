@@ -189,6 +189,25 @@
 
   /* --- form --- */
   .form-section { padding: 40px 0 72px; }
+  .form-inner { position: relative; }
+  .contact-photo {
+    position: absolute;
+    top: -230px;
+    right: 6px;
+    width: 300px;
+    transform: rotate(8deg);
+    filter: drop-shadow(0 18px 26px rgba(34,48,42,.30));
+    z-index: 3;
+    pointer-events: none;
+  }
+  .contact-photo img { display: block; width: 100%; height: auto; }
+  @media (max-width: 900px) {
+    .contact-photo { width: 210px; top: -160px; right: 0; }
+  }
+  @media (max-width: 600px) {
+    .contact-photo { position: static; width: 200px; margin: 0 auto 8px; transform: rotate(6deg); }
+    .form-inner { display: flex; flex-direction: column; align-items: center; }
+  }
   .form-wrap {
     max-width: 720px;
     margin: 0 auto;
@@ -283,7 +302,10 @@
 </section>
 
 <section class="form-section">
-  <div class="inner">
+  <div class="inner form-inner">
+    <div class="contact-photo">
+      <img src="images/keiko-flag-photo.png" alt="のぼり旗「お困りごと相談 さいたま市議会議員 受付中」を持つ出雲けいこ" width="700" height="1051">
+    </div>
     <div class="form-wrap">
       <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeRnS9sTCh1COGLxiFtkgesLpU1nUQMnkrgQ1SDl2YpGLFdUQ/viewform?embedded=true" title="ご相談・ご要望フォーム">読み込んでいます…</iframe>
     </div>
