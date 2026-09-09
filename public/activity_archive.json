@@ -379,7 +379,7 @@
     "session_name": "2024年9月定例会",
     "source_type": "議事録",
     "source_url": "https://ssp.kaigiroku.net/tenant/saitama/SpMinuteView.html?council_id=1004&schedule_id=6&minute_id=42&is_search=true",
-    "follow_up": "",
+    "follow_up": "多胎児家庭サポート事業（育児支援員による外出同行等）を開始。議会での確認質問は未実施。",
     "question_topic": "多胎児支援の充実(ピアサポーター導入を含む)",
     "issue": "さいたま市では年間約100組・200人の多胎児が生まれ、低出生体重児・早産・死産率などのリスクが単胎児より高い。市内の多胎サークルの調査では67%が鬱傾向にあるなど、多胎家庭の身体的・精神的負担が大きい。",
     "proposal": "産前産後ヘルパー派遣や産後ドゥーラなど他自治体の事例も参考にしながら、多胎児支援(ピアサポーター等)を充実させること。",
@@ -389,7 +389,12 @@
       "社会福祉"
     ],
     "answer_summary": "子育てヘルパー派遣事業の利用日数拡大、ファミリー・サポート・センター利用料補助、ふたご支援事業(交流・相談)、産後ケア宿泊型の多胎児加算増額などを実施中。再質問への答弁では、多胎児支援を既存の子育てヘルパー事業の枠組みから切り離し、多胎児に特化したサービスを提供する新たな仕組みの検討を進めたいと回答。",
-    "result_level": "検討へ"
+    "result_level": "検討へ",
+    "follow_up_evidence": {
+      "evidence_title": "多胎児家庭サポート事業（さいたま市）",
+      "evidence_url": "https://www.city.saitama.lg.jp/003/001/011/p120391.html",
+      "verified_date": "2026-09-09"
+    }
   },
   {
     "date": "2024-09-11",
