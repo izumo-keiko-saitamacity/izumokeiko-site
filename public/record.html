@@ -27,6 +27,8 @@
     --badge-done-bg: #E3F3E9; --badge-done-fg: #2C6B4E;
     --badge-progress-bg: #FFF3D6; --badge-progress-fg: #8A6D1D;
     --badge-research-bg: #E6EEF7; --badge-research-fg: #35577D;
+    --badge-verified-bg: #E1F0EF; --badge-verified-fg: #1F7A6C;
+    --badge-review-bg: #FBEBDD; --badge-review-fg: #B5651D;
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -227,14 +229,10 @@
 
   .filter-panel {
     margin-top: 14px;
-    padding: 18px;
+    padding: 4px 18px 18px;
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: 14px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 14px;
-    align-items: end;
   }
   .filter-group { display: flex; flex-direction: column; gap: 6px; }
   .filter-group label { font-size: 12.5px; color: var(--muted); font-weight: 700; }
@@ -260,6 +258,51 @@
   }
   .btn-reset:hover { border-color: var(--green); color: var(--text-green); }
 
+  .pill-filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 8px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .pill-filter-row:last-of-type { border-bottom: none; }
+  .pill-filter-label {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--muted);
+    white-space: nowrap;
+    margin-right: 2px;
+  }
+  .pill-group { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill-btn {
+    padding: 7px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .pill-btn:hover { border-color: var(--green); color: var(--text-green); }
+  .pill-btn.active {
+    background: var(--green-dark);
+    border-color: var(--green-dark);
+    color: #fff;
+  }
+  .filter-panel-grid {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    align-items: end;
+  }
+
   .result-count { margin: 14px 0 0; font-size: 13.5px; color: var(--muted); }
 
   /* --- record cards --- */
@@ -284,6 +327,8 @@
   .level-done { background: var(--badge-done-bg); color: var(--badge-done-fg); }
   .level-progress { background: var(--badge-progress-bg); color: var(--badge-progress-fg); }
   .level-research { background: var(--badge-research-bg); color: var(--badge-research-fg); }
+  .level-verified { background: var(--badge-verified-bg); color: var(--badge-verified-fg); }
+  .level-review { background: var(--badge-review-bg); color: var(--badge-review-fg); }
   .level-pending, .level-other { background: var(--considering-bg); color: var(--considering-fg); }
 
   .record-title {
@@ -410,30 +455,65 @@
       </button>
     </div>
     <div class="filter-panel" id="filterPanel" hidden>
-      <div class="filter-group">
-        <label for="filterTag">分野</label>
-        <select id="filterTag" aria-label="分野で絞り込み"><option value="">すべて</option></select>
+      <div class="pill-filter-row">
+        <span class="pill-filter-label">種別</span>
+        <div class="pill-group" id="pillSourceType" data-state-key="sourceType">
+          <button type="button" class="pill-btn active" data-value="">すべて</button>
+          <button type="button" class="pill-btn" data-value="議事録">議事録</button>
+          <button type="button" class="pill-btn" data-value="予算提案">予算提案</button>
+        </div>
       </div>
-      <div class="filter-group">
-        <label for="filterYear">年</label>
-        <select id="filterYear" aria-label="年で絞り込み"><option value="">すべて</option></select>
+      <div class="pill-filter-row">
+        <span class="pill-filter-label">対応状況</span>
+        <div class="pill-group" id="pillStatus" data-state-key="status">
+          <button type="button" class="pill-btn active" data-value="">すべて</button>
+          <button type="button" class="pill-btn" data-value="実施済">✅ 実施済</button>
+          <button type="button" class="pill-btn" data-value="対応予定">対応予定</button>
+          <button type="button" class="pill-btn" data-value="検討へ">検討へ</button>
+          <button type="button" class="pill-btn" data-value="研究段階">研究段階</button>
+          <button type="button" class="pill-btn" data-value="提案のみ">提案のみ</button>
+          <button type="button" class="pill-btn" data-value="適正確認">🔍 適正確認</button>
+        </div>
       </div>
-      <div class="filter-group">
-        <label for="filterStatus">対応状況</label>
-        <select id="filterStatus" aria-label="対応状況で絞り込み"><option value="">すべて</option></select>
+      <div class="pill-filter-row">
+        <span class="pill-filter-label">分野</span>
+        <div class="pill-group" id="pillTag" data-state-key="tag">
+          <button type="button" class="pill-btn active" data-value="">すべて</button>
+          <button type="button" class="pill-btn" data-value="社会福祉">社会福祉</button>
+          <button type="button" class="pill-btn" data-value="保健衛生・医療">保健衛生・医療</button>
+          <button type="button" class="pill-btn" data-value="子ども・子育て">子ども・子育て</button>
+          <button type="button" class="pill-btn" data-value="教育">教育</button>
+          <button type="button" class="pill-btn" data-value="まちづくり">まちづくり</button>
+          <button type="button" class="pill-btn" data-value="環境">環境</button>
+          <button type="button" class="pill-btn" data-value="経済・雇用">経済・雇用</button>
+          <button type="button" class="pill-btn" data-value="市民活動">市民活動</button>
+          <button type="button" class="pill-btn" data-value="スポーツ">スポーツ</button>
+          <button type="button" class="pill-btn" data-value="文化芸術">文化芸術</button>
+          <button type="button" class="pill-btn" data-value="防災・消防">防災・消防</button>
+          <button type="button" class="pill-btn" data-value="行政運営">行政運営</button>
+          <button type="button" class="pill-btn" data-value="DX">DX</button>
+          <button type="button" class="pill-btn" data-value="議会改革">議会改革</button>
+          <button type="button" class="pill-btn" data-value="人権・多様性">人権・多様性</button>
+        </div>
       </div>
-      <div class="filter-group">
-        <label for="filterMeeting">会議種別</label>
-        <select id="filterMeeting" aria-label="会議種別で絞り込み"><option value="">すべて</option></select>
+      <div class="filter-panel-grid">
+        <div class="filter-group">
+          <label for="filterYear">年</label>
+          <select id="filterYear" aria-label="年で絞り込み"><option value="">すべて</option></select>
+        </div>
+        <div class="filter-group">
+          <label for="filterMeeting">会議種別</label>
+          <select id="filterMeeting" aria-label="会議種別で絞り込み"><option value="">すべて</option></select>
+        </div>
+        <div class="filter-group">
+          <label for="sortOrder">並び順</label>
+          <select id="sortOrder" aria-label="並び順">
+            <option value="desc">新しい順</option>
+            <option value="asc">古い順</option>
+          </select>
+        </div>
+        <button type="button" id="resetFilters" class="btn-reset">条件をリセット</button>
       </div>
-      <div class="filter-group">
-        <label for="sortOrder">並び順</label>
-        <select id="sortOrder" aria-label="並び順">
-          <option value="desc">新しい順</option>
-          <option value="asc">古い順</option>
-        </select>
-      </div>
-      <button type="button" id="resetFilters" class="btn-reset">条件をリセット</button>
     </div>
     <p class="result-count" id="resultCount" aria-live="polite"></p>
   </div>
@@ -473,14 +553,21 @@
 
 <script>
 (function () {
-  var state = { keyword: '', tag: '', year: '', status: '', meeting: '', sort: 'desc' };
+  var state = { keyword: '', tag: '', year: '', status: '', meeting: '', sourceType: '', sort: 'desc' };
   var records = [];
 
+  // 現行の6段階すべてに色を割り当てる。
+  // 「改善・対応予定」「検討を引き出した」は旧・3段階運用からの互換用
+  // （古いデータが残っていた場合のフォールバック）で、今のデータには存在しない。
   var LEVEL_DISPLAY = {
     '実施済': { label: '実施済', cls: 'level-done' },
-    '改善・対応予定': { label: '検討・対応予定', cls: 'level-progress' },
-    '検討を引き出した': { label: '検討・対応予定', cls: 'level-progress' },
-    '研究段階': { label: '研究段階', cls: 'level-research' }
+    '適正確認': { label: '適正確認', cls: 'level-verified' },
+    '対応予定': { label: '対応予定', cls: 'level-progress' },
+    '検討へ': { label: '検討へ', cls: 'level-review' },
+    '研究段階': { label: '研究段階', cls: 'level-research' },
+    '提案のみ': { label: '提案のみ', cls: 'level-pending' },
+    '改善・対応予定': { label: '対応予定', cls: 'level-progress' },
+    '検討を引き出した': { label: '検討へ', cls: 'level-review' }
   };
   function levelInfo(raw) {
     if (!raw) return { label: '確認中', cls: 'level-pending' };
@@ -532,25 +619,22 @@
   }
 
   function buildFilterOptions() {
-    var tags = {}, years = {}, statuses = {}, meetings = {};
+    var years = {}, meetings = {};
     records.forEach(function (r) {
-      (r.tags || []).forEach(function (t) { tags[t] = true; });
       var y = yearOf(r.date);
       if (y) years[y] = true;
-      statuses[levelInfo(r.result_level).label] = true;
       if (r.meeting_type) meetings[r.meeting_type] = true;
     });
-    fillSelect('filterTag', Object.keys(tags).sort());
     fillSelect('filterYear', Object.keys(years).sort().reverse(), function (y) { return y + '年'; });
-    fillSelect('filterStatus', Object.keys(statuses).sort());
     fillSelect('filterMeeting', Object.keys(meetings).sort());
   }
 
   function matches(r) {
     if (state.tag && (r.tags || []).indexOf(state.tag) === -1) return false;
     if (state.year && yearOf(r.date) !== state.year) return false;
-    if (state.status && levelInfo(r.result_level).label !== state.status) return false;
+    if (state.status && r.result_level !== state.status) return false;
     if (state.meeting && r.meeting_type !== state.meeting) return false;
+    if (state.sourceType && r.source_type !== state.sourceType) return false;
     if (state.keyword) {
       var hay = [r.question_topic, r.issue, r.proposal, r.summary, r.answer_summary, (r.tags || []).join(' ')]
         .join(' ').toLowerCase();
@@ -610,20 +694,42 @@
     list.innerHTML = filtered.map(cardHtml).join('');
   }
 
+  function bindPillGroups() {
+    document.querySelectorAll('.pill-group').forEach(function (group) {
+      var key = group.getAttribute('data-state-key');
+      group.addEventListener('click', function (e) {
+        var btn = e.target.closest('.pill-btn');
+        if (!btn || !group.contains(btn)) return;
+        group.querySelectorAll('.pill-btn').forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        state[key] = btn.getAttribute('data-value');
+        render();
+      });
+    });
+  }
+
+  function resetPillGroups() {
+    document.querySelectorAll('.pill-group').forEach(function (group) {
+      group.querySelectorAll('.pill-btn').forEach(function (b, i) {
+        b.classList.toggle('active', i === 0);
+      });
+    });
+  }
+
   function bindControls() {
     document.getElementById('keyword').addEventListener('input', function (e) { state.keyword = e.target.value; render(); });
-    document.getElementById('filterTag').addEventListener('change', function (e) { state.tag = e.target.value; render(); });
     document.getElementById('filterYear').addEventListener('change', function (e) { state.year = e.target.value; render(); });
-    document.getElementById('filterStatus').addEventListener('change', function (e) { state.status = e.target.value; render(); });
     document.getElementById('filterMeeting').addEventListener('change', function (e) { state.meeting = e.target.value; render(); });
     document.getElementById('sortOrder').addEventListener('change', function (e) { state.sort = e.target.value; render(); });
+    bindPillGroups();
     document.getElementById('resetFilters').addEventListener('click', function () {
-      state = { keyword: '', tag: '', year: '', status: '', meeting: '', sort: 'desc' };
+      state = { keyword: '', tag: '', year: '', status: '', meeting: '', sourceType: '', sort: 'desc' };
       document.getElementById('keyword').value = '';
-      ['filterTag', 'filterYear', 'filterStatus', 'filterMeeting'].forEach(function (id) {
+      ['filterYear', 'filterMeeting'].forEach(function (id) {
         document.getElementById(id).value = '';
       });
       document.getElementById('sortOrder').value = 'desc';
+      resetPillGroups();
       render();
     });
     var toggle = document.getElementById('filterToggle');
