@@ -310,6 +310,9 @@
   }
   .qa-a { background: var(--considering-bg); border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; }
   .qa-followup { font-size: 13.5px; color: var(--muted); background: var(--paper); border: 1px dashed var(--line); border-radius: 10px; padding: 10px 14px; margin-bottom: 10px; }
+  .qa-evidence { font-size: 13.5px; color: var(--text-green); background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; margin-bottom: 10px; }
+  .qa-evidence .tag { font-weight: 900; color: var(--text-green); margin-right: 6px; }
+  .qa-evidence a { color: var(--text-green); font-weight: 700; text-decoration: none; border-bottom: 1.5px solid var(--green); margin-right: 12px; }
   .source-link {
     display: inline-block;
     margin-top: 4px;
@@ -490,6 +493,34 @@
   }
   function yearOf(dateStr) { return (dateStr || '').slice(0, 4); }
 
+  // follow_up_evidence を根拠ラベル＋リンクに変換する。
+  // ラベルはデータに保存せず、council_ref / evidence_url の有無からその都度計算する
+  // （council_ref＝会議録URLは表示するだけで、取得・閲覧はしない）。
+  function evidenceHtml(ev) {
+    if (!ev) return '';
+    var councilRef = ev.council_ref || '';
+    var evidenceUrl = ev.evidence_url || '';
+    var evidenceTitle = ev.evidence_title || '';
+    var verifiedDate = ev.verified_date || '';
+    var label;
+    if (councilRef && evidenceUrl) label = '議会・行政資料で確認';
+    else if (councilRef) label = '議会で確認';
+    else if (evidenceUrl) label = '行政資料で確認';
+    else return '';
+
+    var links = '';
+    if (evidenceUrl) {
+      var title = evidenceTitle || '行政資料';
+      var dateNote = verifiedDate ? '／' + escapeHtml(verifiedDate) + '確認' : '';
+      links += '<a href="' + escapeHtml(evidenceUrl) + '" target="_blank" rel="noopener">' +
+        escapeHtml(title) + '（外部リンク' + dateNote + '）</a>';
+    }
+    if (councilRef) {
+      links += '<a href="' + escapeHtml(councilRef) + '" target="_blank" rel="noopener">会議録で確認（外部リンク）</a>';
+    }
+    return '<div class="qa-evidence"><span class="tag">根拠</span>' + escapeHtml(label) + '　' + links + '</div>';
+  }
+
   function fillSelect(id, values, labelFn) {
     var sel = document.getElementById(id);
     values.forEach(function (v) {
@@ -537,6 +568,7 @@
     var followUp = r.follow_up
       ? '<div class="qa-followup"><span class="tag">その後</span>' + escapeHtml(r.follow_up) + '</div>'
       : '';
+    var evidenceBlock = evidenceHtml(r.follow_up_evidence);
     var sourceLink = r.source_url
       ? '<a class="source-link" href="' + escapeHtml(r.source_url) + '" target="_blank" rel="noopener">会議録を見る ＞</a>'
       : '';
@@ -554,6 +586,7 @@
       '  <p class="qa-q"><span class="tag">Q.</span>' + escapeHtml(qText) + '</p>' +
       '  <p class="qa-a"><span class="tag">A.</span>' + escapeHtml(r.answer_summary || '') + '</p>' +
       followUp +
+      evidenceBlock +
       sourceLink +
       '</article>';
   }

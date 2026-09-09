@@ -51,6 +51,49 @@ def esc(s):
     return html.escape(s or "", quote=True)
 
 
+def evidence_html(ev):
+    """follow_up_evidence を根拠ラベル＋リンクとして描画する。
+
+    表示ラベルはデータに保存せず、council_ref / evidence_url の
+    有無からその都度計算する（follow_up_定義.md の対応表のとおり）。
+    council_ref（kaigiroku.net の会議録URL）は文字列として
+    リンクにするだけで、Claude 側から取得・閲覧は行わない。
+    """
+    if not ev:
+        return ""
+
+    council_ref = ev.get("council_ref") or ""
+    evidence_url = ev.get("evidence_url") or ""
+    evidence_title = ev.get("evidence_title") or ""
+    verified_date = ev.get("verified_date") or ""
+
+    if council_ref and evidence_url:
+        label = "議会・行政資料で確認"
+    elif council_ref:
+        label = "議会で確認"
+    elif evidence_url:
+        label = "行政資料で確認"
+    else:
+        return ""
+
+    links = []
+    if evidence_url:
+        title = evidence_title or "行政資料"
+        date_note = f"／{esc(verified_date)}確認" if verified_date else ""
+        links.append(
+            f'<a href="{esc(evidence_url)}" target="_blank" rel="noopener">'
+            f"{esc(title)}（外部リンク{date_note}）</a>"
+        )
+    if council_ref:
+        links.append(
+            f'<a href="{esc(council_ref)}" target="_blank" rel="noopener">'
+            "会議録で確認（外部リンク）</a>"
+        )
+    links_html = "　".join(links)
+
+    return f'<p><strong>根拠：</strong>{label}　{links_html}</p>'
+
+
 def record_html(r):
     meeting = r.get("meeting_type") or ""
     committee = r.get("committee") or ""
@@ -66,6 +109,7 @@ def record_html(r):
     )
     follow_up = r.get("follow_up") or ""
     follow_up_line = f"<p><strong>その後：</strong>{esc(follow_up)}</p>" if follow_up else ""
+    evidence_line = evidence_html(r.get("follow_up_evidence"))
     category_line = f"<p><strong>分類：</strong>{esc(category)}</p>" if category else ""
 
     return f"""
@@ -79,6 +123,7 @@ def record_html(r):
   <p><strong>Q：</strong>{esc(q_text)}</p>
   <p><strong>A：</strong>{esc(r.get('answer_summary'))}</p>
   {follow_up_line}
+  {evidence_line}
   {source_line}
 </article>
 """.strip()
