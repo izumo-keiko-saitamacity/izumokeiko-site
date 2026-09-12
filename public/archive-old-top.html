@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<meta name="description" content="出雲けいこ（さいたま市議会議員）｜アーカイブ">
-<title>アーカイブ｜出雲けいこ</title>
+<meta name="description" content="出雲けいこ（さいたま市議会議員）｜旧ホームページ（トップページ）保存版">
+<title>旧ホームページ（保存版）｜出雲けいこ</title>
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -174,11 +174,73 @@
     }
   }
 
+  /* --- archive page content --- */
+  main.archive-main { max-width: 860px; margin: 0 auto; padding: 48px 20px 80px; }
 
-  main { max-width: 720px; margin: 0 auto; padding: 72px 20px; text-align: center; }
-  main h1 { font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif; font-size: 26px; color: var(--text-green); margin: 0 0 14px; }
-  main p { color: var(--muted); font-size: 15px; }
-  .badge { display: inline-block; background: var(--considering-bg); color: #6B7A63; font-size: 12px; font-weight: 700; padding: 4px 14px; border-radius: 999px; margin-bottom: 18px; }
+  .archive-notice {
+    background: var(--considering-bg);
+    color: var(--considering-fg);
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-size: 13.5px;
+    line-height: 1.9;
+    margin-bottom: 40px;
+  }
+  .archive-notice strong { color: var(--text-green); }
+
+  .archive-hero {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .archive-hero img.hero-banner { max-width: 320px; width: 100%; height: auto; border-radius: 12px; }
+  .archive-hero img.hero-photo { max-width: 220px; width: 100%; height: auto; border-radius: 12px; }
+
+  .archive-intro { display: flex; align-items: flex-start; gap: 20px; flex-wrap: wrap; margin-bottom: 56px; }
+  .archive-intro img.egao { width: 90px; height: auto; flex: none; }
+  .archive-intro h2 {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-size: 24px;
+    color: var(--text-green);
+    margin: 0 0 12px;
+  }
+  .archive-intro p { color: var(--ink); font-size: 14.5px; margin: 0 0 10px; }
+
+  .proposals-heading {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-size: 22px;
+    color: var(--text-green);
+    text-align: center;
+    margin: 0 0 6px;
+  }
+  .proposals-sub { text-align: center; color: var(--muted); font-size: 13.5px; margin: 0 0 40px; }
+
+  .proposal-block { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; margin-bottom: 44px; }
+  .proposal-block:nth-child(even) { flex-direction: row-reverse; }
+  .proposal-block img { width: 100%; max-width: 280px; height: auto; }
+  .proposal-text { flex: 1; min-width: 240px; }
+  .proposal-text h3 {
+    font-family: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+    font-size: 17px;
+    color: var(--text-green);
+    margin: 0 0 10px;
+  }
+  .proposal-text ul { margin: 0; padding-left: 1.2em; font-size: 13.5px; color: var(--ink); }
+  .proposal-text ul li { margin-bottom: 4px; }
+
+  .archive-back { text-align: center; margin-top: 20px; }
+  .archive-back a {
+    display: inline-block;
+    background: var(--green);
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 28px;
+    border-radius: 14px;
+    text-decoration: none;
+  }
 
   footer.site-footer {
     position: relative;
@@ -248,10 +310,100 @@
   </div>
 </header>
 
-<main>
-  <h1>アーカイブ</h1>
-  <p>旧ホームページの内容は、こちらから引き続きご覧いただけます。</p>
-  <p style="margin-top:28px;"><a href="archive-old-top.html" style="display:inline-block;background:var(--green);color:#fff;font-weight:700;font-size:14px;padding:10px 28px;border-radius:14px;text-decoration:none;">旧ホームページ（トップページ）を見る</a></p>
+<main class="archive-main">
+
+  <p class="archive-notice">
+    <strong>これは旧ホームページ（トップページ）の保存版です。</strong><br>
+    2026年9月時点でizumokeiko.comに掲載されていた内容を、記録として保存しています。最新の情報は現在のサイトの各ページをご覧ください。
+  </p>
+
+  <div class="archive-hero">
+    <img class="hero-banner" src="images/archive-topsin.png" alt="さいたま市議会 出雲けいこ こころにっこりのさいたま市へ">
+    <img class="hero-photo" src="images/archive-profile.jpg" alt="出雲けいこ">
+  </div>
+
+  <div class="archive-intro">
+    <img class="egao" src="images/archive-egao.png" alt="">
+    <div>
+      <h2>こころにっこりまちづくり</h2>
+      <p>２０１０年にさいたま市に引っ越し、翌年２０１１年　東日本大震災が発生し、家族だけで子どもたちを守ることには限界があり、友人や地域とのつながりが大事だと考えるようになりました。</p>
+      <p>二人の子どもの母である私が、子育てのリアルな声を生かした政策提案につなげていきます。</p>
+      <p>子どもたちが安全にこころにっこり過ごせるまちは地域の活力があり、かつ高齢者や障害者の方々も安心して過ごせるまちです。</p>
+      <p>あなたの暮らしの声に寄り添った、きめ細かい政策提案をします。お困りごとがありましたら、ご連絡ください。</p>
+    </div>
+  </div>
+
+  <h2 class="proposals-heading">出雲けいこの提案</h2>
+  <p class="proposals-sub">一人ひとりの多様な価値観や生きかたを認め合い尊重し、お互いさまに支え合える社会に向けて</p>
+
+  <div class="proposal-block">
+    <img src="images/archive-icon-asobi-manabi.png" alt="">
+    <div class="proposal-text">
+      <h3>①その子らしく育つための環境の充実</h3>
+      <ul>
+        <li>プレイパーク（冒険遊び場）を身近な場所に</li>
+        <li>子どもたちの意見が反映される社会のために、子ども議会やアドボケイト制度の導入</li>
+        <li>学校外で学ぶ経済的支援と居場所の充実</li>
+        <li>ユースクリニックの設置</li>
+        <li>高等教育（大学、短期大学、専門学校など）の修学支援制度の充実</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="proposal-block">
+    <img src="images/archive-icon-papa-mama.png" alt="">
+    <div class="proposal-text">
+      <h3>②ママ、パパに寄り添った支援の充実</h3>
+      <ul>
+        <li>子育て家族の支援の充実</li>
+        <li>ひとり親、多胎児、リトルベビー家族などの支援の充実</li>
+        <li>保育施設や学童・放課後デイ等の質と場の充実</li>
+        <li>医療的ケア児や障害児と家族の支援</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="proposal-block">
+    <img src="images/archive-icon-young-carer.png" alt="">
+    <div class="proposal-text">
+      <h3>③あなたらしさが尊重される社会</h3>
+      <ul>
+        <li>家族を支えるケアラー、ヤングケアラーの支援</li>
+        <li>女性が様々なライフステージをしあわせに過ごせる支援</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="proposal-block">
+    <img src="images/archive-icon-josei-lifestage.png" alt="">
+    <div class="proposal-text">
+      <h3>④命と暮らしを守るさいたま</h3>
+      <ul>
+        <li>福祉ネットワークで支え合いを</li>
+        <li>水害に強いインフラの強化</li>
+        <li>誰一人取り残さない減災・防災</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="proposal-block">
+    <img src="images/archive-icon-yuuki-nougyou.png" alt="">
+    <div class="proposal-text">
+      <h3>⑤持続可能な社会のために</h3>
+      <ul>
+        <li>地産地消のエネルギー活用</li>
+        <li>食品ロス削減</li>
+        <li>有機農業の推進</li>
+        <li>リユースしやすい教材や学用品を提案</li>
+        <li>コミュニティバス等の交通手段の拡充</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="archive-back">
+    <a href="archive.html">これまでの活動へ戻る</a>
+  </div>
+
 </main>
 
 <footer class="site-footer">
